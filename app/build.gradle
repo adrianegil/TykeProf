@@ -29,13 +29,31 @@ android {
 
 dependencies {
 
+    //implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.2.0'
+    //implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
-
-
+    //TESTING
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
+    //VIEW
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+
+    //DATA PERSISTENCE
+    implementation 'androidx.room:room-runtime:2.3.0'
+    //implementation 'androidx.room:room-common:2.3.0'
+    annotationProcessor "androidx.room:room-compiler:2.3.0"
+    testImplementation "androidx.room:room-testing:2.3.0"
+
+    //WEB SERVICES
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    //implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
+
+    //USER PREFERENCES OR CONFIGURATIONS
+    implementation 'androidx.preference:preference:1.1.1'
 }
