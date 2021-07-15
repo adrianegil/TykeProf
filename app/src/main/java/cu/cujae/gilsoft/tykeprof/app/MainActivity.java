@@ -1,8 +1,10 @@
-package cu.cujae.gilsoft.tykeprof;
+package cu.cujae.gilsoft.tykeprof.app;
+
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
+import cu.cujae.gilsoft.tykeprof.R;
 
 public class MainActivity extends AppCompatActivity {
 
