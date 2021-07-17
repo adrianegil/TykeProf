@@ -7,12 +7,14 @@
     <color name="white">#FFFFFFFF</color>
 
     //TYKE COLORS
-    <color name="colorPrimaryDark">#2C703C</color>
     <color name="colorToolbarTyke">#3F9655</color>
     <color name="colorGrayTyke">#5D5B5B</color>
     <color name="colorBlueLightTyke">#82B1FF</color>
     <color name="colorRedTyke">#FF5252</color>
     <color name="colorBlueDarkTyke">#2196F3</color>
-    <color name="colorSuccesTyke">#4CAF50</color>
+    <color name="colorSuccessTyke">#4CAF50</color>
     <color name="colorYellowTyke">#FFC107</color>
+
+    //MY COLORS
+    <color name="colorPrimaryDark">#337E45</color>
 </resources>

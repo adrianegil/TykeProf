@@ -6,4 +6,20 @@
     <string name="exit">Salir</string>
     <string name="login">Iniciar Sesión</string>
     <string name="tyke_login">Inicio de Sesión en Tyke</string>
+    <string name="incorrect_credentials">Las Credenciales son Incorrectas</string>
+    <string name="empty_fields">Campos Vacíos</string>
+    <string name="no_connection">No tienes conexión a la red</string>
+    <string name="check_connection">Chequee la conexión</string>
+    <string name="success_aut">Autenticación Exitosa</string>
+    <string name="failed_aut">Autenticación Fallida</string>
+    <string name="required_user">Usuario Requerido</string>
+    <string name="required_password">Contraseña Requerida</string>
+    <string name="must_fill_fields">Debe llenar todos los Campos</string>
+    <string name="change_user_config">Se ha detectado cambios en la configuración de Usuario</string>
+    <string name="yes_connection">Usted está conectado a la red</string>
+    <string name="cancel">Cancelar</string>
+    <string name="yes">Si</string>
+    <string name="exit_confirm">Confirmar Salir</string>
+    <string name="exit_confirm_description">Desea realmente salir de la Aplicación</string>
+    <string name="exit_again_toast">Presione nuevamente atras para salir</string>
 </resources>
