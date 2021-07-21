@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home_Fragment"
+            android:icon="@drawable/ic_home"
+            android:title="@string/home" />
+    </group>
+
+
+    <item android:title="@string/questions">
+        <menu>
+
+            <group android:checkableBehavior="single">
+
+
+                <item
+                    android:id="@+id/nav_Question"
+                    android:icon="@drawable/ic_question"
+                    android:title="@string/question" />
+                <item
+                    android:id="@+id/nav_Pista_Type"
+                    android:icon="@drawable/ic_pista"
+                    android:title="@string/pista_type" />
+                <item
+                    android:id="@+id/nav_Question_Type"
+                    android:icon="@drawable/ic_question_type"
+                    android:title="@string/question_type" />
+
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="@string/strategies">
+        <menu>
+
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/nav_Strategy"
+                    android:icon="@drawable/ic_strategy"
+                    android:title="@string/strategy" />
+                <item
+                    android:id="@+id/nav_Insignia"
+                    android:icon="@drawable/ic_insignia"
+                    android:title="@string/insignia" />
+                <item
+                    android:id="@+id/nav_Grant"
+                    android:icon="@drawable/ic_grant"
+                    android:title="@string/grant" />
+                <item
+                    android:id="@+id/nav_Ranking"
+                    android:icon="@drawable/ic_ranking"
+                    android:title="@string/ranking" />
+                <item
+                    android:id="@+id/nav_Gift"
+                    android:icon="@drawable/ic_gift"
+                    android:title="@string/gift" />
+                <item
+                    android:id="@+id/nav_Professional_Rol"
+                    android:icon="@drawable/ic_rol"
+                    android:title="@string/professional_rol" />
+                <item
+                    android:id="@+id/nav_Gift_Type"
+                    android:icon="@drawable/ic_gift_type_black"
+                    android:title="@string/gift_type" />
+            </group>
+        </menu>
+    </item>
+</menu>

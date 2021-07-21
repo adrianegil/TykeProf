@@ -22,4 +22,19 @@
     <string name="exit_confirm">Confirmar Salir</string>
     <string name="exit_confirm_description">Desea realmente salir de la Aplicación</string>
     <string name="exit_again_toast">Presione nuevamente atras para salir</string>
+    <string name="home">Inicio</string>
+    <string name="questions">Preguntas</string>
+    <string name="question">Pregunta</string>
+    <string name="pista_type">Tipo de Pista</string>
+    <string name="question_type">Tipo de Pregunta</string>
+    <string name="strategies">Estrategias</string>
+    <string name="strategy">Estrategia</string>
+    <string name="insignia">Insignia</string>
+    <string name="grant">Otorgamiento</string>
+    <string name="ranking">Ranking</string>
+    <string name="gift">Regalo</string>
+    <string name="professional_rol">Rol Profesional</string>
+    <string name="gift_type">Tipo Regalo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
