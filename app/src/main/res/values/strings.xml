@@ -9,7 +9,6 @@
     <string name="incorrect_credentials">Las Credenciales son Incorrectas</string>
     <string name="empty_fields">Campos Vacíos</string>
     <string name="no_connection">No tienes conexión a la red</string>
-    <string name="check_connection">Chequee la conexión</string>
     <string name="success_aut">Autenticación Exitosa</string>
     <string name="failed_aut">Autenticación Fallida</string>
     <string name="required_user">Usuario Requerido</string>
@@ -37,4 +36,12 @@
     <string name="gift_type">Tipo Regalo</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add">Añadir</string>
+    <string name="check_connection">Debes tener conexión para realizar esta operación</string>
+    <string name="delete_success">Se ha eliminado correctamente</string>
+    <string name="save_success">Se ha insertado correctamente</string>
+    <string name="required">Requerido</string>
+    <string name="try_again_operation">Por favor intente nuevamente la operación</string>
+    <string name="accept">Aceptar</string>
+    <string name="new_questiontype">Nuevo Tipo de Pregunta</string>
 </resources>

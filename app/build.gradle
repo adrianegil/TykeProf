@@ -28,6 +28,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+
 }
 
 dependencies {
@@ -42,7 +43,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
     //VIEW
-    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
 
     //NAVIGATION COMPONENTS
@@ -53,7 +54,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.3.0"
     implementation "androidx.lifecycle:lifecycle-livedata:2.3.0"
     //implementation "androidx.lifecycle:lifecycle-common-java8:2.3.0"
-    //implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
 
     //DATA PERSISTENCE WHIT ROOM COMPONENTS
     implementation 'androidx.room:room-runtime:2.3.0'
@@ -69,4 +70,5 @@ dependencies {
 
     //USER PREFERENCES OR CONFIGURATIONS
     implementation 'androidx.preference:preference:1.1.1'
+
 }

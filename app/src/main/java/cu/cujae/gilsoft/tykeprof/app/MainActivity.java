@@ -16,10 +16,23 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import cu.cujae.gilsoft.tykeprof.R;
+import cu.cujae.gilsoft.tykeprof.data.AppDatabase;
+import cu.cujae.gilsoft.tykeprof.data.dao.Question_Type_Dao;
+import cu.cujae.gilsoft.tykeprof.data.entity.Question_Type;
 import cu.cujae.gilsoft.tykeprof.databinding.ActivityMainBinding;
+import cu.cujae.gilsoft.tykeprof.service.Question_Type_Service;
 import cu.cujae.gilsoft.tykeprof.util.Login;
+import cu.cujae.gilsoft.tykeprof.util.RetrofitClient;
 import cu.cujae.gilsoft.tykeprof.util.UserHelper;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         //setContentView(R.layout.activity_main);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -44,18 +56,16 @@ public class MainActivity extends AppCompatActivity {
         Log.e("User Login ", login.getPassword() + "  " + login.getUserCredential());
 
         setSupportActionBar(binding.toolbarMainActivity);
-
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        myAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home_Fragment)
+        myAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home_Fragment,R.id.nav_questionTypeFragment)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_container);
         NavigationUI.setupActionBarWithNavController(this, navController, myAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
     }
 
     @Override

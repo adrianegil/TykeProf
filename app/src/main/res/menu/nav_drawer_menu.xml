@@ -27,7 +27,7 @@
                     android:icon="@drawable/ic_pista"
                     android:title="@string/pista_type" />
                 <item
-                    android:id="@+id/nav_Question_Type"
+                    android:id="@+id/nav_questionTypeFragment"
                     android:icon="@drawable/ic_question_type"
                     android:title="@string/question_type" />
 

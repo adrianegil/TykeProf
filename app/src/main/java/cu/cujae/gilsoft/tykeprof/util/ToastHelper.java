@@ -1,5 +1,7 @@
 package cu.cujae.gilsoft.tykeprof.util;
 
+import android.app.Activity;
+import android.app.Application;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,8 +18,7 @@ import cu.cujae.gilsoft.tykeprof.R;
 //CLASE DE AYUDA PARA LA GESTIÓN DE TOASTS PERSONALIZADOS
 public class ToastHelper {
 
-
-    public static void showCustomToast(AppCompatActivity activity, String type, String message) {
+    public static void showCustomToast(Activity activity, String type, String message) {
         Toast toast = new Toast(activity);
         toast.setDuration(Toast.LENGTH_SHORT);
         View custom_toast = activity.getLayoutInflater().inflate(R.layout.custom_toast, null);

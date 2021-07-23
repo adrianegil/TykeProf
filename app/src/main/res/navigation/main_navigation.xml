@@ -10,4 +10,9 @@
         android:name="cu.cujae.gilsoft.tykeprof.app.fragment.HomeFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/nav_questionTypeFragment"
+        android:name="cu.cujae.gilsoft.tykeprof.app.fragment.QuestionTypeFragment"
+        android:label="@string/question_type"
+        tools:layout="@layout/question_type_fragment" />
 </navigation>
