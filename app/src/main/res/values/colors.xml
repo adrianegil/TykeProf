@@ -17,4 +17,6 @@
 
     //MY COLORS
     <color name="colorPrimaryDark">#337E45</color>
+    <color name="colorPink">#CEEF2368</color>
+
 </resources>

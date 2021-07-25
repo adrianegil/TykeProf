@@ -136,7 +136,6 @@ public class LoginActivity extends AppCompatActivity {
         dialog.setPositiveButton(R.string.yes, (dialog12, which) -> {
             finish();
         });
-
         dialog.setNegativeButton("No", (dialog13, which) -> dialog13.dismiss());
         dialog.setNeutralButton(R.string.cancel, (dialog1, which) -> dialog1.dismiss());
         dialog.show();

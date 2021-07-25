@@ -36,6 +36,8 @@ dependencies {
     //implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    //implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
+    //implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
     //TESTING
     testImplementation 'junit:junit:4.12'
@@ -43,7 +45,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
     //VIEW
-    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
 
     //NAVIGATION COMPONENTS
@@ -70,5 +72,4 @@ dependencies {
 
     //USER PREFERENCES OR CONFIGURATIONS
     implementation 'androidx.preference:preference:1.1.1'
-
 }

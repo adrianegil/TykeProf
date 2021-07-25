@@ -45,14 +45,14 @@ public class QuestionType_Adapter extends ListAdapter<Question_Type, QuestionTyp
         holder.materialTextViewType.setText(question_type.getType());
         holder.materialButtonDeleteQuestionType.setOnClickListener(v -> {
             AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-            dialog.setTitle("Eliminar Tipo de Pregunta");
-            dialog.setMessage("Desea realmente eliminar este Tipo de Pregunta");
+            dialog.setTitle(R.string.delete_question_type);
+            dialog.setMessage(R.string.confirm_delete_cuestion_type);
 
-            dialog.setPositiveButton("Si", (dialog1, which) -> {
+            dialog.setPositiveButton(R.string.yes, (dialog1, which) -> {
                 questionTypeViewModel.deleteQuestionType(question_type);
             });
             dialog.setNegativeButton("No", (dialog13, which) -> dialog13.dismiss());
-            dialog.setNeutralButton("Cancelar", (dialog12, which) -> dialog12.dismiss());
+            dialog.setNeutralButton(R.string.cancel, (dialog12, which) -> dialog12.dismiss());
             dialog.show();
         });
     }

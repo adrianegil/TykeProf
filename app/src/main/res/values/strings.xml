@@ -24,7 +24,7 @@
     <string name="home">Inicio</string>
     <string name="questions">Preguntas</string>
     <string name="question">Pregunta</string>
-    <string name="pista_type">Tipo de Pista</string>
+    <string name="clue_type">Tipo de Pista</string>
     <string name="question_type">Tipo de Pregunta</string>
     <string name="strategies">Estrategias</string>
     <string name="strategy">Estrategia</string>
@@ -40,8 +40,13 @@
     <string name="check_connection">Debes tener conexión para realizar esta operación</string>
     <string name="delete_success">Se ha eliminado correctamente</string>
     <string name="save_success">Se ha insertado correctamente</string>
+    <string name="edit_success">Se ha modificado correctamente</string>
     <string name="required">Requerido</string>
     <string name="try_again_operation">Por favor intente nuevamente la operación</string>
     <string name="accept">Aceptar</string>
     <string name="new_questiontype">Nuevo Tipo de Pregunta</string>
+    <string name="games_points">Puntos de juego</string>
+    <string name="clue_points">Puntos de pista</string>
+    <string name="delete_question_type">Eliminar Tipo de Pregunta</string>
+    <string name="confirm_delete_cuestion_type">Desea realmente eliminar este Tipo de Pregunta</string>
 </resources>

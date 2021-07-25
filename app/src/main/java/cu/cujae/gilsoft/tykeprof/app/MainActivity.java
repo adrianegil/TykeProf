@@ -23,9 +23,12 @@ import java.util.concurrent.Executors;
 
 import cu.cujae.gilsoft.tykeprof.R;
 import cu.cujae.gilsoft.tykeprof.data.AppDatabase;
+import cu.cujae.gilsoft.tykeprof.data.dao.Clue_Type_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Question_Type_Dao;
+import cu.cujae.gilsoft.tykeprof.data.entity.Clue_Type;
 import cu.cujae.gilsoft.tykeprof.data.entity.Question_Type;
 import cu.cujae.gilsoft.tykeprof.databinding.ActivityMainBinding;
+import cu.cujae.gilsoft.tykeprof.service.Clue_Type_Service;
 import cu.cujae.gilsoft.tykeprof.service.Question_Type_Service;
 import cu.cujae.gilsoft.tykeprof.util.Login;
 import cu.cujae.gilsoft.tykeprof.util.RetrofitClient;
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private AppBarConfiguration myAppBarConfiguration;
+    Clue_Type_Service clue_type_service = RetrofitClient.getRetrofit().create(Clue_Type_Service.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        myAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home_Fragment,R.id.nav_questionTypeFragment)
+        myAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home_Fragment, R.id.nav_questionTypeFragment,R.id.nav_clueTypeFragment)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_container);
@@ -87,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
                 dialog.setPositiveButton(R.string.yes, (dialog12, which) -> {
                     finish();
                 });
-
                 dialog.setNegativeButton("No", (dialog13, which) -> dialog13.dismiss());
                 dialog.setNeutralButton(R.string.cancel, (dialog1, which) -> dialog1.dismiss());
                 dialog.show();
@@ -104,4 +107,38 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    public void deleteClueType(){
+
+        String token = UserHelper.getToken(MainActivity.this);
+        AppDatabase db = AppDatabase.getDatabase(this);
+        Clue_Type_Dao clue_type_dao = db.clue_type_dao();
+        Clue_Type clue_type = new Clue_Type("Para mejorar",20,12);
+        clue_type.setId(6);
+
+
+        Call<Clue_Type> callClueType = clue_type_service.deleteClueTypeByWeb("Bearer " + token,6);
+        callClueType.enqueue(new Callback<Clue_Type>() {
+            @Override
+            public void onResponse(Call<Clue_Type> call, Response<Clue_Type> response) {
+
+                if (response.isSuccessful()) {
+                    Clue_Type clueType;
+                    clueType = response.body();
+                    Log.e("Clue Type ", clueType.getId() + " " + clueType.getType());
+
+                    AppDatabase.databaseWriteExecutor.execute(() -> {
+                        clue_type_dao.deleteClueType(clueType);
+                    });
+                } else if (response.code() == 403) {
+                    UserHelper.renovateToken(MainActivity.this);
+                    //getAllQuestionTypeWeb();
+                } else
+                    Toast.makeText(MainActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Clue_Type> call, Throwable t) {
+            }
+        });
+    }
 }

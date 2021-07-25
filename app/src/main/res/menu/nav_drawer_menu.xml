@@ -23,9 +23,9 @@
                     android:icon="@drawable/ic_question"
                     android:title="@string/question" />
                 <item
-                    android:id="@+id/nav_Pista_Type"
-                    android:icon="@drawable/ic_pista"
-                    android:title="@string/pista_type" />
+                    android:id="@+id/nav_clueTypeFragment"
+                    android:icon="@drawable/ic_clue"
+                    android:title="@string/clue_type" />
                 <item
                     android:id="@+id/nav_questionTypeFragment"
                     android:icon="@drawable/ic_question_type"

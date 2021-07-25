@@ -11,13 +11,16 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import cu.cujae.gilsoft.tykeprof.data.dao.Clue_Type_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Question_Type_Dao;
+import cu.cujae.gilsoft.tykeprof.data.entity.Clue_Type;
 import cu.cujae.gilsoft.tykeprof.data.entity.Question_Type;
 
-@Database(entities = {Question_Type.class}, version = 1, exportSchema = false)
+@Database(entities = {Question_Type.class, Clue_Type.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract Question_Type_Dao question_type_dao();
+    public abstract Clue_Type_Dao clue_type_dao();
 
     private static volatile AppDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
@@ -50,8 +53,8 @@ public abstract class AppDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 // Populate the database in the background.
                 // If you want to start with more words, just add them.
-                Question_Type_Dao question_type_dao = INSTANCE.question_type_dao();
-                question_type_dao.deleteAll();
+                //Question_Type_Dao question_type_dao = INSTANCE.question_type_dao();
+                //question_type_dao.deleteAll();
             });
         }
     };
