@@ -30,7 +30,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -59,4 +58,11 @@ public class HomeFragment extends Fragment {
             navController.navigate(R.id.go_QuestionTypeFragment);
         });
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
 }

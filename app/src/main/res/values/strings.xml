@@ -33,9 +33,7 @@
     <string name="ranking">Ranking</string>
     <string name="gift">Regalo</string>
     <string name="professional_rol">Rol Profesional</string>
-    <string name="gift_type">Tipo Regalo</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="gift_type">Tipo de Regalo</string>
     <string name="add">Añadir</string>
     <string name="check_connection">Debes tener conexión para realizar esta operación</string>
     <string name="delete_success">Se ha eliminado correctamente</string>
@@ -45,8 +43,11 @@
     <string name="try_again_operation">Por favor intente nuevamente la operación</string>
     <string name="accept">Aceptar</string>
     <string name="new_questiontype">Nuevo Tipo de Pregunta</string>
+    <string name="new_gifttype">Nuevo Tipo de Regalo</string>
     <string name="games_points">Puntos de juego</string>
     <string name="clue_points">Puntos de pista</string>
     <string name="delete_question_type">Eliminar Tipo de Pregunta</string>
     <string name="confirm_delete_cuestion_type">Desea realmente eliminar este Tipo de Pregunta</string>
+    <string name="delete_clue_type">Eliminar Tipo de Pista</string>
+    <string name="confirm_delete_cluetype">Desea realmente eliminar este Tipo de Pista</string>
 </resources>

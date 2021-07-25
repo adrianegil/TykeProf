@@ -9,7 +9,7 @@
         android:id="@+id/nav_home_Fragment"
         android:name="cu.cujae.gilsoft.tykeprof.app.fragment.HomeFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/go_QuestionTypeFragment"
             app:destination="@id/nav_questionTypeFragment" />
@@ -27,4 +27,9 @@
         android:name="cu.cujae.gilsoft.tykeprof.app.fragment.ClueTypeFragment"
         android:label="@string/clue_type"
         tools:layout="@layout/clue_type_fragment" />
+    <fragment
+        android:id="@+id/nav_giftTypeFragment"
+        android:name="cu.cujae.gilsoft.tykeprof.app.fragment.GiftTypeFragment"
+        android:label="@string/gift_type"
+        tools:layout="@layout/gift_type_fragment" />
 </navigation>

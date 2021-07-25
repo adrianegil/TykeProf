@@ -24,15 +24,19 @@ import java.util.concurrent.Executors;
 import cu.cujae.gilsoft.tykeprof.R;
 import cu.cujae.gilsoft.tykeprof.data.AppDatabase;
 import cu.cujae.gilsoft.tykeprof.data.dao.Clue_Type_Dao;
+import cu.cujae.gilsoft.tykeprof.data.dao.Gift_Type_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Question_Type_Dao;
 import cu.cujae.gilsoft.tykeprof.data.entity.Clue_Type;
+import cu.cujae.gilsoft.tykeprof.data.entity.Gift_Type;
 import cu.cujae.gilsoft.tykeprof.data.entity.Question_Type;
 import cu.cujae.gilsoft.tykeprof.databinding.ActivityMainBinding;
 import cu.cujae.gilsoft.tykeprof.service.Clue_Type_Service;
+import cu.cujae.gilsoft.tykeprof.service.Gift_Type_Service;
 import cu.cujae.gilsoft.tykeprof.service.Question_Type_Service;
 import cu.cujae.gilsoft.tykeprof.util.Login;
 import cu.cujae.gilsoft.tykeprof.util.RetrofitClient;
 import cu.cujae.gilsoft.tykeprof.util.UserHelper;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -41,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private AppBarConfiguration myAppBarConfiguration;
-    Clue_Type_Service clue_type_service = RetrofitClient.getRetrofit().create(Clue_Type_Service.class);
+    Gift_Type_Service gift_type_service = RetrofitClient.getRetrofit().create(Gift_Type_Service.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,12 +68,17 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        myAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home_Fragment, R.id.nav_questionTypeFragment,R.id.nav_clueTypeFragment)
+        myAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home_Fragment, R.id.nav_questionTypeFragment,
+                R.id.nav_clueTypeFragment,R.id.nav_giftTypeFragment)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_container);
         NavigationUI.setupActionBarWithNavController(this, navController, myAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        //getAllGiftType();
+        //deleteGiftType();
+        //saveGiftType();
     }
 
     @Override
@@ -107,28 +116,27 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    public void deleteClueType(){
+    public void deleteGiftType(){
 
         String token = UserHelper.getToken(MainActivity.this);
         AppDatabase db = AppDatabase.getDatabase(this);
-        Clue_Type_Dao clue_type_dao = db.clue_type_dao();
-        Clue_Type clue_type = new Clue_Type("Para mejorar",20,12);
-        clue_type.setId(6);
+        Gift_Type_Dao gift_type_dao = db.gift_type_dao();
+        Gift_Type gift_type = new Gift_Type("Legendario");
+        gift_type.setId_gift_type(4);
 
 
-        Call<Clue_Type> callClueType = clue_type_service.deleteClueTypeByWeb("Bearer " + token,6);
-        callClueType.enqueue(new Callback<Clue_Type>() {
+        Call<ResponseBody> calldeleteGiftType = gift_type_service.deleteGiftTypeByWeb("Bearer " + token,4);
+        calldeleteGiftType.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<Clue_Type> call, Response<Clue_Type> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
                 if (response.isSuccessful()) {
-                    Clue_Type clueType;
-                    clueType = response.body();
-                    Log.e("Clue Type ", clueType.getId() + " " + clueType.getType());
 
                     AppDatabase.databaseWriteExecutor.execute(() -> {
-                        clue_type_dao.deleteClueType(clueType);
+                        gift_type_dao.deleteGiftType(gift_type);
                     });
+                    Toast.makeText(MainActivity.this, getResources().getString(R.string.delete_success), Toast.LENGTH_SHORT).show();
+
                 } else if (response.code() == 403) {
                     UserHelper.renovateToken(MainActivity.this);
                     //getAllQuestionTypeWeb();
@@ -137,8 +145,80 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Clue_Type> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            }
+        });
+    }
+
+    public void getAllGiftType(){
+
+        String token = UserHelper.getToken(MainActivity.this);
+        AppDatabase db = AppDatabase.getDatabase(this);
+        Gift_Type_Dao gift_type_dao = db.gift_type_dao();
+
+        Call<List<Gift_Type>> listCallQuestionType = gift_type_service.getAllGiftTypeByWeb("Bearer " + token);
+        listCallQuestionType.enqueue(new Callback<List<Gift_Type>>() {
+            @Override
+            public void onResponse(Call<List<Gift_Type>> call, Response<List<Gift_Type>> response) {
+
+                if(response.isSuccessful()){
+                    List<Gift_Type> gift_typeList;
+                    gift_typeList = response.body();
+                    for (Gift_Type gift_type : gift_typeList) {
+                        Log.e("Gift Type ", gift_type.getId_gift_type() + " " + gift_type.getName());
+                    }
+                    AppDatabase.databaseWriteExecutor.execute(() -> {
+                        gift_type_dao.deleteAll();
+                        gift_type_dao.saveAllGiftType(gift_typeList);
+                    });
+                }
+                else if(response.code()==403){
+                    UserHelper.renovateToken(MainActivity.this);
+                    //getAllQuestionTypeWeb();
+                }
+                else
+                    Toast.makeText(MainActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<List<Gift_Type>> call, Throwable t) {
+            }
+        });
+    }
+
+    public  void saveGiftType(){
+        String token = UserHelper.getToken(MainActivity.this);
+        AppDatabase db = AppDatabase.getDatabase(this);
+        Gift_Type_Dao gift_type_dao = db.gift_type_dao();
+        Gift_Type gift_type = new Gift_Type("Legendario");
+
+        Call<Gift_Type> saveGiftTypeCall = gift_type_service.saveGiftTypeByWeb("Bearer " + token, gift_type);
+        saveGiftTypeCall.enqueue(new Callback<Gift_Type>() {
+            @Override
+            public void onResponse(Call<Gift_Type> call, Response<Gift_Type> response) {
+
+                if(response.isSuccessful()){
+                    Gift_Type giftType_response;
+                    giftType_response = response.body();
+                    Log.e("Gift Type ", giftType_response.getId_gift_type() + " " + giftType_response.getName());
+                    AppDatabase.databaseWriteExecutor.execute(() -> {
+                        gift_type_dao.saveGiftType(giftType_response);
+                    });
+                    Toast.makeText(MainActivity.this,getResources().getString(R.string.save_success), Toast.LENGTH_SHORT).show();
+                }
+                else if (response.code()==403){
+                    UserHelper.renovateToken(MainActivity.this);
+                    // saveQuestionType(question_type);
+                }
+                else
+                    Toast.makeText(MainActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Gift_Type> call, Throwable t) {
+                Toast.makeText(MainActivity.this,getResources().getString(R.string.check_connection), Toast.LENGTH_SHORT).show();
             }
         });
     }
 }
+

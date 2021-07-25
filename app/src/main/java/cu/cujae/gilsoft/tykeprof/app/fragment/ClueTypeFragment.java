@@ -38,7 +38,6 @@ public class ClueTypeFragment extends Fragment {
     private ClueTypeViewModel clueTypeViewModel;
     private ClueTypeFragmentBinding binding;
 
-
     public static ClueTypeFragment newInstance() {
         return new ClueTypeFragment();
     }
@@ -55,7 +54,7 @@ public class ClueTypeFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        // mViewModel = new ViewModelProvider(this).get(ClueTypeViewModel.class);
+        // clueTypeViewModel = new ViewModelProvider(this).get(ClueTypeViewModel.class);
         clueTypeViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(ClueTypeViewModel.class);
         RecyclerView recyclerView = binding.RecyclerViewClueType;
         final ClueType_Adapter adapter = new ClueType_Adapter(new ClueType_Adapter.ClueTypeDiff(), clueTypeViewModel, getActivity());
@@ -102,7 +101,7 @@ public class ClueTypeFragment extends Fragment {
                         textInputLayoutGamePoints.setError(getString(R.string.required));
                     if (stringCluePoints.isEmpty())
                         textInputLayoutCluePoints.setError(getString(R.string.required));
-                    ToastHelper.showCustomToast(getActivity(), "warning", getString(R.string.must_fill_fields));
+                    //ToastHelper.showCustomToast(getActivity(), "warning", getString(R.string.must_fill_fields));
                 } else {
                     clueTypeViewModel.saveClueType(new Clue_Type(stringClueType, Integer.valueOf(stringCluePoints), Integer.valueOf(stringGamePoints)));
                     dialog.dismiss();

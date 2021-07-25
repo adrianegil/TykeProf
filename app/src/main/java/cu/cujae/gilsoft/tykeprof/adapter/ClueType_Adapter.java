@@ -62,14 +62,14 @@ public class ClueType_Adapter extends ListAdapter<Clue_Type, ClueType_Adapter.Vi
 
         holder.viewDeleteClueType.setOnClickListener(v -> {
             AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
-            dialog.setTitle("Eliminar Tipo de Pista");
-            dialog.setMessage("Desea realmente eliminar este Tipo de Pista");
+            dialog.setTitle(R.string.delete_clue_type);
+            dialog.setMessage(R.string.confirm_delete_cluetype);
 
-            dialog.setPositiveButton("Si", (dialog1, which) -> {
+            dialog.setPositiveButton(R.string.yes, (dialog1, which) -> {
                 clueTypeViewModel.deleteClueType(clue_type);
             });
             dialog.setNegativeButton("No", (dialog13, which) -> dialog13.dismiss());
-            dialog.setNeutralButton("Cancelar", (dialog12, which) -> dialog12.dismiss());
+            dialog.setNeutralButton(R.string.cancel, (dialog12, which) -> dialog12.dismiss());
             dialog.show();
         });
 
@@ -109,7 +109,7 @@ public class ClueType_Adapter extends ListAdapter<Clue_Type, ClueType_Adapter.Vi
                         textInputLayoutGamePoints.setError(activity.getString(R.string.required));
                     if (stringCluePoints.isEmpty())
                         textInputLayoutCluePoints.setError(activity.getString(R.string.required));
-                    ToastHelper.showCustomToast(activity, "warning", activity.getString(R.string.must_fill_fields));
+                   // ToastHelper.showCustomToast(activity, "warning", activity.getString(R.string.must_fill_fields));
                 } else {
                     clue_type.setGamePoints(Integer.valueOf(stringGamePoints));
                     clue_type.setCluePoints(Integer.valueOf(stringCluePoints));
@@ -120,7 +120,6 @@ public class ClueType_Adapter extends ListAdapter<Clue_Type, ClueType_Adapter.Vi
             Button buttonNeg = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
             buttonNeg.setOnClickListener(v12 -> {
                 dialog.dismiss();
-                //notifyDataSetChanged();
             });
         });
     }

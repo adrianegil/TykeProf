@@ -65,9 +65,10 @@
                     android:icon="@drawable/ic_rol"
                     android:title="@string/professional_rol" />
                 <item
-                    android:id="@+id/nav_Gift_Type"
+                    android:id="@+id/nav_giftTypeFragment"
                     android:icon="@drawable/ic_gift_type_black"
-                    android:title="@string/gift_type" />
+                    android:title="@string/gift_type"
+                    />
             </group>
         </menu>
     </item>
