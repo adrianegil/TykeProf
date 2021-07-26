@@ -49,7 +49,7 @@
                     android:icon="@drawable/ic_insignia"
                     android:title="@string/insignia" />
                 <item
-                    android:id="@+id/nav_Grant"
+                    android:id="@+id/nav_grantFragment"
                     android:icon="@drawable/ic_grant"
                     android:title="@string/grant" />
                 <item

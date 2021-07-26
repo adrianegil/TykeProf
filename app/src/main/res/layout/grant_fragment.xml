@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".app.fragment.GiftTypeFragment">
+    tools:context=".app.fragment.GrantFragment">
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButtonAddGiftType"
+        android:id="@+id/materialButtonAddGrant"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,14 +26,13 @@
         app:strokeColor="@color/colorBlueDarkTyke" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RecyclerViewGiftType"
+        android:id="@+id/RecyclerViewGrant"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/materialButtonAddGiftType"
+        app:layout_constraintBottom_toTopOf="@+id/materialButtonAddGrant"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:itemCount="5"
-        tools:listitem="@layout/gift_type_itemlist" />
-
+        tools:itemCount="15"
+        tools:listitem="@layout/grant_itemlist" />
 </androidx.constraintlayout.widget.ConstraintLayout>

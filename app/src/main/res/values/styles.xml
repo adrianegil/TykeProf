@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="tooltip" parent="Widget.MaterialComponents.Tooltip">
+        <item name="shapeAppearanceOverlay">@style/tooltipShapeOverlay</item>
+        <item name="backgroundTint">@color/colorToolbarTyke</item>
+    </style>
+
+    <style name="tooltipShapeOverlay">
+        <item name="cornerSize">50%</item>
+        <item name="cornerFamily">rounded</item>
+    </style>
+
+</resources>

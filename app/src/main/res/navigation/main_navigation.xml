@@ -32,4 +32,9 @@
         android:name="cu.cujae.gilsoft.tykeprof.app.fragment.GiftTypeFragment"
         android:label="@string/gift_type"
         tools:layout="@layout/gift_type_fragment" />
+    <fragment
+        android:id="@+id/nav_grantFragment"
+        android:name="cu.cujae.gilsoft.tykeprof.app.fragment.GrantFragment"
+        android:label="@string/grant"
+        tools:layout="@layout/grant_fragment" />
 </navigation>

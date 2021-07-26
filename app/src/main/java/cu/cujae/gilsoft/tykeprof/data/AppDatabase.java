@@ -13,17 +13,23 @@ import java.util.concurrent.Executors;
 
 import cu.cujae.gilsoft.tykeprof.data.dao.Clue_Type_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Gift_Type_Dao;
+import cu.cujae.gilsoft.tykeprof.data.dao.Grant_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Question_Type_Dao;
 import cu.cujae.gilsoft.tykeprof.data.entity.Clue_Type;
 import cu.cujae.gilsoft.tykeprof.data.entity.Gift_Type;
+import cu.cujae.gilsoft.tykeprof.data.entity.Grant;
 import cu.cujae.gilsoft.tykeprof.data.entity.Question_Type;
 
-@Database(entities = {Question_Type.class, Clue_Type.class, Gift_Type.class}, version = 1, exportSchema = false)
+@Database(entities = {Question_Type.class, Clue_Type.class, Gift_Type.class, Grant.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract Question_Type_Dao question_type_dao();
+
     public abstract Clue_Type_Dao clue_type_dao();
+
     public abstract Gift_Type_Dao gift_type_dao();
+
+    public abstract Grant_Dao grant_dao();
 
 
     private static volatile AppDatabase INSTANCE;
@@ -31,7 +37,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-   public static AppDatabase getDatabase(final Context context) {
+    public static AppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
@@ -57,14 +63,14 @@ public abstract class AppDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 // Populate the database in the background.
                 // If you want to start with more words, just add them.
-                Question_Type_Dao question_type_dao = INSTANCE.question_type_dao();
+                /*Question_Type_Dao question_type_dao = INSTANCE.question_type_dao();
                 question_type_dao.deleteAll();
 
                 Clue_Type_Dao clue_type_dao = INSTANCE.clue_type_dao();
                 clue_type_dao.deleteAll();
 
                 Gift_Type_Dao gift_type_dao = INSTANCE.gift_type_dao();
-                gift_type_dao.deleteAll();
+                gift_type_dao.deleteAll();*/
 
             });
         }
