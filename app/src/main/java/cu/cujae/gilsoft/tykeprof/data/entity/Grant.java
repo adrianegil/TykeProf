@@ -23,6 +23,12 @@ public class Grant {
     @SerializedName("otorgamiento")
     private String grant_name;
 
+    @Ignore
+    @Override
+    public String toString() {
+        return grant_name;
+    }
+
     public Grant() {
     }
 

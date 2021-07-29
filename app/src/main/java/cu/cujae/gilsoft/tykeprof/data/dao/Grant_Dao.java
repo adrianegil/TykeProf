@@ -19,13 +19,19 @@ public interface Grant_Dao {
     @Query("SELECT * FROM grant")
     LiveData<List<Grant>> getAllGrant();
 
+    @Query("SELECT * FROM grant")
+    List<Grant> getAllGrantList();
+
     @Query("SELECT * FROM grant WHERE id_grant =:id")
     Grant getGrantById(long id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void saveAllGrant(List<Grant> grantList);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void saveAllGrantList(List<Grant> grantList);
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void saveGrant(Grant grant);
 
     @Update

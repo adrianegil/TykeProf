@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -24,15 +25,19 @@ import java.util.concurrent.Executors;
 import cu.cujae.gilsoft.tykeprof.R;
 import cu.cujae.gilsoft.tykeprof.data.AppDatabase;
 import cu.cujae.gilsoft.tykeprof.data.dao.Clue_Type_Dao;
+import cu.cujae.gilsoft.tykeprof.data.dao.Gift_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Gift_Type_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Grant_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Question_Type_Dao;
 import cu.cujae.gilsoft.tykeprof.data.entity.Clue_Type;
+import cu.cujae.gilsoft.tykeprof.data.entity.Gift;
 import cu.cujae.gilsoft.tykeprof.data.entity.Gift_Type;
 import cu.cujae.gilsoft.tykeprof.data.entity.Grant;
 import cu.cujae.gilsoft.tykeprof.data.entity.Question_Type;
+import cu.cujae.gilsoft.tykeprof.data.model.Gift_Model;
 import cu.cujae.gilsoft.tykeprof.databinding.ActivityMainBinding;
 import cu.cujae.gilsoft.tykeprof.service.Clue_Type_Service;
+import cu.cujae.gilsoft.tykeprof.service.Gift_Service;
 import cu.cujae.gilsoft.tykeprof.service.Gift_Type_Service;
 import cu.cujae.gilsoft.tykeprof.service.Grant_Service;
 import cu.cujae.gilsoft.tykeprof.service.Question_Type_Service;
@@ -48,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private AppBarConfiguration myAppBarConfiguration;
-    Grant_Service grant_service = RetrofitClient.getRetrofit().create(Grant_Service.class);
+    Gift_Service gift_service = RetrofitClient.getRetrofit().create(Gift_Service.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         myAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home_Fragment, R.id.nav_questionTypeFragment,
-                R.id.nav_clueTypeFragment,R.id.nav_giftTypeFragment,R.id.nav_grantFragment)
+                R.id.nav_clueTypeFragment, R.id.nav_giftTypeFragment, R.id.nav_grantFragment,R.id.nav_giftFragment)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_container);
@@ -114,144 +119,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_container);
         return NavigationUI.navigateUp(navController, myAppBarConfiguration)
                 || super.onSupportNavigateUp();
-    }
-
-    public void deleteGrant(){
-
-        String token = UserHelper.getToken(MainActivity.this);
-        AppDatabase db = AppDatabase.getDatabase(this);
-        Grant_Dao grant_dao = db.grant_dao();
-        Grant grant = new Grant(15,"Test Update");
-        grant.setId_grant(7);
-
-
-        Call<ResponseBody> calldeleteGrant= grant_service.deleteGrantByWeb("Bearer " + token, grant.getId_grant());
-        calldeleteGrant.enqueue(new Callback<ResponseBody>() {
-            @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-                if (response.isSuccessful()) {
-
-                    AppDatabase.databaseWriteExecutor.execute(() -> {
-                        grant_dao.deleteGrant(grant);
-                    });
-                    Toast.makeText(MainActivity.this, getResources().getString(R.string.delete_success), Toast.LENGTH_SHORT).show();
-
-                } else if (response.code() == 403) {
-                    UserHelper.renovateToken(MainActivity.this);
-                } else
-                    Toast.makeText(MainActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-            }
-        });
-    }
-
-    public void getAllGrantWeb(){
-
-        String token = UserHelper.getToken(MainActivity.this);
-        AppDatabase db = AppDatabase.getDatabase(this);
-        Grant_Dao grant_dao = db.grant_dao();
-
-        Call<List<Grant>> listCallGrant= grant_service.getAllGrantByWeb("Bearer " + token);
-        listCallGrant.enqueue(new Callback<List<Grant>>() {
-            @Override
-            public void onResponse(Call<List<Grant>> call, Response<List<Grant>> response) {
-
-                if(response.isSuccessful()){
-                    List<Grant> grantList;
-                    grantList = response.body();
-                    for (Grant grant : grantList) {
-                        Log.e("Grant ", grant.getId_grant() + " " + grant.getGrant_name());
-                    }
-                    AppDatabase.databaseWriteExecutor.execute(() -> {
-                        grant_dao.deleteAll();
-                        grant_dao.saveAllGrant(grantList);
-                    });
-                }
-                else if(response.code()==403){
-                    UserHelper.renovateToken(MainActivity.this);
-                    //getAllQuestionTypeWeb();
-                }
-                else
-                    Toast.makeText(MainActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(Call<List<Grant>> call, Throwable t) {
-            }
-        });
-    }
-
-    public  void saveGrantWeb(){
-        String token = UserHelper.getToken(MainActivity.this);
-        AppDatabase db = AppDatabase.getDatabase(this);
-        Grant_Dao grant_dao = db.grant_dao();
-        Grant grant = new Grant(25,"Test");
-
-        Call<Grant> saveGrantCall = grant_service.saveGrantByWeb("Bearer " + token, grant);
-        saveGrantCall.enqueue(new Callback<Grant>() {
-            @Override
-            public void onResponse(Call<Grant> call, Response<Grant> response) {
-
-                if(response.isSuccessful()){
-                    Grant gran_response;
-                    gran_response = response.body();
-                    Log.e("Gift Type ", gran_response.getId_grant() + " " + gran_response.getGrant_name());
-                    AppDatabase.databaseWriteExecutor.execute(() -> {
-                        grant_dao.saveGrant(gran_response);
-                    });
-                    Toast.makeText(MainActivity.this,getResources().getString(R.string.save_success), Toast.LENGTH_SHORT).show();
-                }
-                else if (response.code()==403){
-                    UserHelper.renovateToken(MainActivity.this);
-                }
-                else
-                    Toast.makeText(MainActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(Call<Grant> call, Throwable t) {
-                Toast.makeText(MainActivity.this,getResources().getString(R.string.check_connection), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    public  void updateGrantWeb(){
-        String token = UserHelper.getToken(MainActivity.this);
-        AppDatabase db = AppDatabase.getDatabase(this);
-        Grant_Dao grant_dao = db.grant_dao();
-        Grant grant = new Grant(15,"Test Update");
-        grant.setId_grant(7);
-
-        Call<Grant> updateGrantCall = grant_service.updateGrantByWeb("Bearer " + token, grant);
-        updateGrantCall.enqueue(new Callback<Grant>() {
-            @Override
-            public void onResponse(Call<Grant> call, Response<Grant> response) {
-
-                if(response.isSuccessful()){
-                    Grant gran_response;
-                    gran_response = response.body();
-                    Log.e("Grant ", gran_response.getId_grant() + " " + gran_response.getGrant_name());
-                    AppDatabase.databaseWriteExecutor.execute(() -> {
-                        grant_dao.updateGrant(gran_response);
-                    });
-                    Toast.makeText(MainActivity.this,getResources().getString(R.string.save_success), Toast.LENGTH_SHORT).show();
-                }
-                else if (response.code()==403){
-                    UserHelper.renovateToken(MainActivity.this);
-                }
-                else
-                    Toast.makeText(MainActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(Call<Grant> call, Throwable t) {
-                Toast.makeText(MainActivity.this,getResources().getString(R.string.check_connection), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
 }

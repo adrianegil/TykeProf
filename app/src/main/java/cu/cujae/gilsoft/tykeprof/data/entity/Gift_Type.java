@@ -20,6 +20,12 @@ public class Gift_Type {
     @SerializedName("nombre")
     private String name;
 
+    @Ignore
+    @Override
+    public String toString() {
+        return name;
+    }
+
     public Gift_Type() {
     }
 

@@ -11,13 +11,9 @@
             android:title="@string/home" />
     </group>
 
-
     <item android:title="@string/questions">
         <menu>
-
             <group android:checkableBehavior="single">
-
-
                 <item
                     android:id="@+id/nav_Question"
                     android:icon="@drawable/ic_question"
@@ -30,16 +26,13 @@
                     android:id="@+id/nav_questionTypeFragment"
                     android:icon="@drawable/ic_question_type"
                     android:title="@string/question_type" />
-
             </group>
         </menu>
     </item>
 
     <item android:title="@string/strategies">
         <menu>
-
             <group android:checkableBehavior="single">
-
                 <item
                     android:id="@+id/nav_Strategy"
                     android:icon="@drawable/ic_strategy"
@@ -57,7 +50,7 @@
                     android:icon="@drawable/ic_ranking"
                     android:title="@string/ranking" />
                 <item
-                    android:id="@+id/nav_Gift"
+                    android:id="@+id/nav_giftFragment"
                     android:icon="@drawable/ic_gift"
                     android:title="@string/gift" />
                 <item

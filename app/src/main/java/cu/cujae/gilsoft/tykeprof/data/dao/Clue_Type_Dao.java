@@ -25,7 +25,7 @@ public interface Clue_Type_Dao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void saveAllClueType(List<Clue_Type> clue_typeList);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void saveClueType(Clue_Type clue_type);
 
     @Update

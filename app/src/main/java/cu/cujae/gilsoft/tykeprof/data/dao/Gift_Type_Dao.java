@@ -19,13 +19,19 @@ public interface Gift_Type_Dao {
     @Query("SELECT * FROM gift_type")
     LiveData<List<Gift_Type>> getAllGiftType();
 
+    @Query("SELECT * FROM gift_type")
+    List<Gift_Type> getAllGiftTypeList();
+
     @Query("SELECT * FROM gift_type WHERE id_gift_type =:id")
     Gift_Type getGiftTypeById(long id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void saveAllGiftType(List<Gift_Type> gift_typeList);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void saveAllGiftTypelist(List<Gift_Type> gift_typeList);
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void saveGiftType(Gift_Type gift_type);
 
     @Delete

@@ -4,8 +4,9 @@ buildscript {
         mavenLocal {
             url "D:\\Repositories\\Google_Maven"
         }
-        google()
+        jcenter()
         mavenCentral()
+        google()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.2.2"
@@ -20,9 +21,10 @@ allprojects {
         mavenLocal {
             url "D:\\Repositories\\Google_Maven"
         }
-        google()
+        jcenter()
         mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
+        google()
+     // Warning: this repository is going to shut down soon
     }
 }
 
