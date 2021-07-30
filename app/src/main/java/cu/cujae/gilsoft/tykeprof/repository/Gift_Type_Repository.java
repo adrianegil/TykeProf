@@ -77,8 +77,6 @@ public class Gift_Type_Repository {
 
     public List<Gift_Type> getAllGiftTypeList() {
 
-       //ArrayList<Gift_Type> giftTypeListLocal = new ArrayList<>();
-
         Call<List<Gift_Type>> listCallQuestionType = gift_type_service.getAllGiftTypeByWeb("Bearer " + token);
         listCallQuestionType.enqueue(new Callback<List<Gift_Type>>() {
             @Override
@@ -100,6 +98,7 @@ public class Gift_Type_Repository {
                         Log.e("Gift Type ", gift_type.getId_gift_type() + " " + gift_type.getName());
                     }
                     AppDatabase.databaseWriteExecutor.execute(() -> {
+                        gift_type_dao.deleteAll();
                         gift_type_dao.saveAllGiftTypelist(giftTypeListResponse);
                     });
                 } else if (response.code() == 403) {
@@ -116,6 +115,10 @@ public class Gift_Type_Repository {
         return gift_type_dao.getAllGiftTypeList();
     }
 
+    public List<Gift_Type> getAllGiftTypeLocalList() {
+        return gift_type_dao.getAllGiftTypeList();
+    }
+
     public void saveGiftType(Gift_Type gift_type) {
 
         Call<Gift_Type> saveGiftTypeCall = gift_type_service.saveGiftTypeByWeb("Bearer " + token, gift_type);
@@ -125,7 +128,7 @@ public class Gift_Type_Repository {
                 if (response.isSuccessful()) {
                     Gift_Type giftType_response;
                     giftType_response = response.body();
-                    Log.e("Gift Type ", giftType_response.getId_gift_type() + " " + giftType_response.getName());
+                    Log.e("Gift Type Save ", giftType_response.getId_gift_type() + " " + giftType_response.getName());
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         gift_type_dao.saveGiftType(giftType_response);
                     });
@@ -167,7 +170,7 @@ public class Gift_Type_Repository {
         });
     }
 
-    public Gift_Type getGiftTypebyId(long id) {
+    public Gift_Type getGiftTypeLocalbyId(long id) {
         return gift_type_dao.getGiftTypeById(id);
     }
 }

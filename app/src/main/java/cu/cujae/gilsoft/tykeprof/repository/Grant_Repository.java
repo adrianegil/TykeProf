@@ -99,6 +99,7 @@ public class Grant_Repository {
                         Log.e("Grant ", grant.getId_grant() + " " + grant.getGrant_name());
                     }
                     AppDatabase.databaseWriteExecutor.execute(() -> {
+                        grant_dao.deleteAll();
                         grant_dao.saveAllGrantList(grantListResponse);
                     });
                 } else if (response.code() == 403) {
@@ -114,6 +115,10 @@ public class Grant_Repository {
         return grant_dao.getAllGrantList();
     }
 
+    public List<Grant> getAllGrantLocalList() {
+        return grant_dao.getAllGrantList();
+    }
+
     public void saveGrant(Grant grant) {
         Call<Grant> saveGrantCall = grant_service.saveGrantByWeb("Bearer " + token, grant);
         saveGrantCall.enqueue(new Callback<Grant>() {
@@ -123,7 +128,7 @@ public class Grant_Repository {
                 if (response.isSuccessful()) {
                     Grant gran_response;
                     gran_response = response.body();
-                    Log.e("Gift Type ", gran_response.getId_grant() + " " + gran_response.getGrant_name());
+                    Log.e("Grant Save ", gran_response.getId_grant() + " " + gran_response.getGrant_name());
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         grant_dao.saveGrant(gran_response);
                     });
@@ -151,7 +156,7 @@ public class Grant_Repository {
                 if (response.isSuccessful()) {
                     Grant gran_response;
                     gran_response = response.body();
-                    Log.e("Grant ", gran_response.getId_grant() + " " + gran_response.getGrant_name());
+                    Log.e("Grant Update ", gran_response.getId_grant() + " " + gran_response.getGrant_name());
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         grant_dao.updateGrant(gran_response);
                     });
@@ -193,7 +198,7 @@ public class Grant_Repository {
         });
     }
 
-    public Grant getGranttbyId(long id) {
+    public Grant getGrantLocabyId(long id) {
         return grant_dao.getGrantById(id);
     }
 

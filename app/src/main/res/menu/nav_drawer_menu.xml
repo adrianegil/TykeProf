@@ -54,7 +54,7 @@
                     android:icon="@drawable/ic_gift"
                     android:title="@string/gift" />
                 <item
-                    android:id="@+id/nav_Professional_Rol"
+                    android:id="@+id/nav_professionalRolFragment"
                     android:icon="@drawable/ic_rol"
                     android:title="@string/professional_rol" />
                 <item

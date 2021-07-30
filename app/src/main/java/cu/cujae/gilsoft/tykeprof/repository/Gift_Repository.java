@@ -127,7 +127,7 @@ public class Gift_Repository {
                     Grant grant = gift_response.getGrant();
                     Gift_Type gift_type = gift_response.getGift_type();
                     Gift giftUpdate = new Gift(gift_response.getId_gift(), gift_response.getDescrip(), gift_response.getGift_type().getId_gift_type(), gift_response.getGrant().getId_grant());
-                    //Log.e("Grant ", gift_response.ge() + " " + gran_response.getGrant_name());
+                    Log.e("Gift Update ", giftUpdate.getId_gift() + " " + giftUpdate.getDescrip());
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         grant_dao.saveGrant(grant);
                         gift_type_dao.saveGiftType(gift_type);

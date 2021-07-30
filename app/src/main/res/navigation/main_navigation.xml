@@ -42,4 +42,9 @@
         android:name="cu.cujae.gilsoft.tykeprof.app.fragment.GiftFragment"
         android:label="@string/gift"
         tools:layout="@layout/gift_fragment" />
+    <fragment
+        android:id="@+id/nav_professionalRolFragment"
+        android:name="cu.cujae.gilsoft.tykeprof.app.fragment.ProfessionalRolFragment"
+        android:label="@string/professional_rol"
+        tools:layout="@layout/professional_rol_fragment" />
 </navigation>

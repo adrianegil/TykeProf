@@ -65,15 +65,10 @@ public class Gift_Adapter extends ListAdapter<Gift, Gift_Adapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         Gift gift = getItem(position);
-
-        Gift_Type gift_type = gift_type_repository.getGiftTypebyId(gift.getId_gift_type());
-        Grant grant = grant_repository.getGranttbyId(gift.getId_grant());
-
-        holder.textViewGiftTypeofGift.setText(gift_type.getName());
         holder.textViewGiftDecrip.setText("Descripción: " + gift.getDescrip());
-        holder.textViewGrantofGift.setText("Otorgamiento: " + grant.getGrant_name());
-
         holder.layoutExpanded.setVisibility(gift.isContenExpandable() ? View.VISIBLE : View.GONE);
+
+        View view1 = activity.getLayoutInflater().inflate(R.layout.dialog_add_gift, null);
 
         holder.viewDeleteGift.setOnClickListener(v -> {
             AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
@@ -87,41 +82,27 @@ public class Gift_Adapter extends ListAdapter<Gift, Gift_Adapter.ViewHolder> {
             dialog.show();
         });
 
-        View view1 = activity.getLayoutInflater().inflate(R.layout.dialog_add_gift, null);
+        Gift_Type gift_type = gift_type_repository.getGiftTypeLocalbyId(gift.getId_gift_type());
+        Grant grant = grant_repository.getGrantLocabyId(gift.getId_grant());
+
+        holder.textViewGiftTypeofGift.setText(gift_type.getName());
+        holder.textViewGrantofGift.setText("Otorgamiento: " + grant.getGrant_name());
 
         // Spinner spinner = view1.findViewById(R.id.textInputLayoutGiftTypeOfGift);
 
-       /* autoCompleteGiftTypeOfGift.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Gift_Type  gift_type = (Gift_Type) autoCompleteGiftTypeOfGift.getAdapter().getItem(position);
-                gift_model.setId_gift_typeName(gift_type.getName());
-            }
-        });
-
-        autoCompleteGrantOfGift.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Grant  grant = (Grant) autoCompleteGrantOfGift.getAdapter().getItem(position);
-                gift_model.setId_grant_Name(grant.getGrant_name());
-            }
-        });
-*/
         holder.viewEditGift.setOnClickListener(v -> {
 
             ViewGroup parent = (ViewGroup) view1.getParent();
             if (parent != null)
                 parent.removeAllViews();
 
-            ArrayList<Gift_Type> gift_typeArrayList = (ArrayList<Gift_Type>) gift_type_repository.getAllGiftTypeList();
-            ArrayList<Grant> grantArrayList = (ArrayList<Grant>) grant_repository.getAllGrantList();
+            ArrayList<Gift_Type> gift_typeArrayList = (ArrayList<Gift_Type>) gift_type_repository.getAllGiftTypeLocalList();
+            ArrayList<Grant> grantArrayList = (ArrayList<Grant>) grant_repository.getAllGrantLocalList();
 
             TextInputLayout textInputLayoutGiftTypeOfGift = view1.findViewById(R.id.textInputLayoutGiftTypeOfGift);
             AutoCompleteTextView autoCompleteGiftTypeOfGift = view1.findViewById(R.id.autoCompleteGiftTypeOfGift);
-
             TextInputLayout textInputLayouGrantOfGift = view1.findViewById(R.id.textInputLayouGrantOfGift);
             AutoCompleteTextView autoCompleteGrantOfGift = view1.findViewById(R.id.autoCompleteGrantOfGift);
-
             TextInputLayout textInputLayoutDescripOfGift = view1.findViewById(R.id.textInputLayoutDescripOfGift);
             EditText editTextDescripOfGift = view1.findViewById(R.id.editTextDescripOfGift);
 
@@ -131,7 +112,6 @@ public class Gift_Adapter extends ListAdapter<Gift, Gift_Adapter.ViewHolder> {
             autoCompleteGiftTypeOfGift.setText(gift_type.getName());
             autoCompleteGrantOfGift.setText(grant.getGrant_name());
             editTextDescripOfGift.setText(gift.getDescrip());
-
             // spinner.setAdapter(adapterGiftType);
             autoCompleteGiftTypeOfGift.setAdapter(giftTypeAdapter);
             autoCompleteGrantOfGift.setAdapter(grantAdapter);
@@ -160,10 +140,6 @@ public class Gift_Adapter extends ListAdapter<Gift, Gift_Adapter.ViewHolder> {
                         textInputLayoutGiftTypeOfGift.setError(activity.getString(R.string.required));
                     if (stringGrantNameId.isEmpty())
                         textInputLayouGrantOfGift.setError(activity.getString(R.string.required));
-                    Toast.makeText(activity,gift_model.getId_gift_typeName() + "" + gift_model.getId_grant_Name(),Toast.LENGTH_SHORT).show();
-                    Toast.makeText(activity,autoCompleteGiftTypeOfGift.getText().toString() + "" + autoCompleteGrantOfGift.getText().toString(),Toast.LENGTH_SHORT).show();
-
-                    //ToastHelper.showCustomToast(getActivity(), "warning", getString(R.string.must_fill_fields));
                 } else {
                     gift_model.setDescrip(stringDescrip);
                     gift_model.setId_gift_typeName(autoCompleteGiftTypeOfGift.getText().toString());
@@ -178,8 +154,6 @@ public class Gift_Adapter extends ListAdapter<Gift, Gift_Adapter.ViewHolder> {
             Button buttonNeg = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
             buttonNeg.setOnClickListener(v12 -> dialog.dismiss());
         });
-
-
 
     }
 
@@ -212,8 +186,6 @@ public class Gift_Adapter extends ListAdapter<Gift, Gift_Adapter.ViewHolder> {
                     notifyItemChanged(getAdapterPosition());
                 }
             });
-
-            // Gift gift = Gift_Adapter.this.getCurrentList().get(getAdapterPosition());
         }
     }
 

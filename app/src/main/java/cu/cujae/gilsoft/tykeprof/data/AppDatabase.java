@@ -11,18 +11,24 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import cu.cujae.gilsoft.tykeprof.data.dao.Career_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Clue_Type_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Gift_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Gift_Type_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Grant_Dao;
+import cu.cujae.gilsoft.tykeprof.data.dao.Professional_Rol_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Question_Type_Dao;
+import cu.cujae.gilsoft.tykeprof.data.dao.Topic_Dao;
+import cu.cujae.gilsoft.tykeprof.data.entity.Career;
 import cu.cujae.gilsoft.tykeprof.data.entity.Clue_Type;
 import cu.cujae.gilsoft.tykeprof.data.entity.Gift;
 import cu.cujae.gilsoft.tykeprof.data.entity.Gift_Type;
 import cu.cujae.gilsoft.tykeprof.data.entity.Grant;
+import cu.cujae.gilsoft.tykeprof.data.entity.Professional_Rol;
 import cu.cujae.gilsoft.tykeprof.data.entity.Question_Type;
+import cu.cujae.gilsoft.tykeprof.data.entity.Topic;
 
-@Database(entities = {Question_Type.class, Clue_Type.class, Gift_Type.class, Grant.class, Gift.class}, version = 1, exportSchema = false)
+@Database(entities = {Question_Type.class, Clue_Type.class, Gift_Type.class, Grant.class, Gift.class, Career.class, Topic.class, Professional_Rol.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract Question_Type_Dao question_type_dao();
@@ -34,6 +40,12 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract Grant_Dao grant_dao();
 
     public abstract Gift_Dao gift_dao();
+
+    public abstract Career_Dao career_dao();
+
+    public abstract Topic_Dao topic_dao();
+
+    public abstract Professional_Rol_Dao professional_rol_dao();
 
 
     private static volatile AppDatabase INSTANCE;

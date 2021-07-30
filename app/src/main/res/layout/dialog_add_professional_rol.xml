@@ -14,89 +14,86 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayoutGiftTypeOfGift"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <AutoCompleteTextView
-                    android:id="@+id/autoCompleteGiftTypeOfGift"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/selector_ic_game_points"
-                    android:drawablePadding="12dp"
-                    android:editable="false"
-                    android:hint="@string/gift_type" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-           <!-- <Spinner
-                android:id="@+id/textInputLayoutGiftTypeOfGift"
-                android:background="@drawable/custom_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </Spinner>-->
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayouGrantOfGift"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutGiftTypeOfGift">
-
-                <AutoCompleteTextView
-                    android:id="@+id/autoCompleteGrantOfGift"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/selector_ic_game_points"
-                    android:drawablePadding="12dp"
-                    android:editable="false"
-                    android:hint="@string/grant"
-                  />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayoutDescripOfGift"
+                android:id="@+id/textInputLayoutNameOfProfessRol"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                app:counterMaxLength="45"
-                app:counterEnabled="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textInputLayouGrantOfGift">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editTextDescripOfGift"
+                    android:id="@+id/editTextNameOfProfessRol"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/selector_ic_textfield"
                     android:drawablePadding="12dp"
-                    android:hint="Descripción"
-                    android:maxLength="45"
-                    android:inputType="textMultiLine"
-                />
+                    android:hint="@string/name" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- <Spinner
+                 android:id="@+id/textInputLayoutGiftTypeOfGift"
+                 android:background="@drawable/custom_spinner"
+                 android:layout_width="match_parent"
+                 android:layout_height="55dp"
+                 android:layout_marginStart="8dp"
+                 android:layout_marginTop="8dp"
+                 android:layout_marginEnd="8dp"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toTopOf="parent">
+
+             </Spinner>-->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutCareerOfProfessRol"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutNameOfProfessRol">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteCareerOfProfessRol"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/selector_ic_school"
+                    android:drawablePadding="12dp"
+                    android:editable="false"
+                    android:hint="@string/career"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutTopicOfProfessRol"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:counterMaxLength="9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutCareerOfProfessRol">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteTopicOfProfessRol"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/selector_ic_theme"
+                    android:drawablePadding="12dp"
+                    android:hint="@string/topic"
+                    android:editable="false"
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 

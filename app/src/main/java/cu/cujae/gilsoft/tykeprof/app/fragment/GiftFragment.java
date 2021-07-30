@@ -48,6 +48,10 @@ public class GiftFragment extends Fragment {
 
     private GiftViewModel giftViewModel;
     private GiftFragmentBinding binding;
+    Gift_Type_Repository gift_type_repository;
+    Grant_Repository grant_repository;
+    ArrayList<Gift_Type> gift_typeArrayList;
+    ArrayList<Grant> grantArrayList;
 
 
     public static GiftFragment newInstance() {
@@ -65,14 +69,22 @@ public class GiftFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        giftViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(GiftViewModel.class);
+
+        gift_type_repository = new Gift_Type_Repository(getActivity().getApplication());
+        grant_repository = new Grant_Repository(getActivity().getApplication());
+
+        gift_typeArrayList = (ArrayList<Gift_Type>) gift_type_repository.getAllGiftTypeList();
+        grantArrayList = (ArrayList<Grant>) grant_repository.getAllGrantList();
+
         RecyclerView recyclerView = binding.RecyclerViewGift;
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        giftViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(GiftViewModel.class);
         final Gift_Adapter adapter = new Gift_Adapter(new Gift_Adapter.GiftDiff(), giftViewModel, getActivity(), getActivity().getApplication());
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         giftViewModel.getAllGift().observe(getViewLifecycleOwner(), giftList -> {
             adapter.submitList(giftList);
         });
+
     }
 
     @Override
@@ -81,7 +93,7 @@ public class GiftFragment extends Fragment {
 
         View view1 = getLayoutInflater().inflate(R.layout.dialog_add_gift, null);
 
-       // Spinner spinner = view1.findViewById(R.id.textInputLayoutGiftTypeOfGift);
+        // Spinner spinner = view1.findViewById(R.id.textInputLayoutGiftTypeOfGift);
 
         /*autoCompleteGiftTypeOfGift.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -108,27 +120,22 @@ public class GiftFragment extends Fragment {
             if (parent != null)
                 parent.removeAllViews();
 
-            Gift_Type_Repository gift_type_repository = new Gift_Type_Repository(getActivity().getApplication());
-            Grant_Repository grant_repository = new Grant_Repository(getActivity().getApplication());
-
-            ArrayList<Gift_Type> gift_typeArrayList = (ArrayList<Gift_Type>) gift_type_repository.getAllGiftTypeList();
-            ArrayList<Grant> grantArrayList = (ArrayList<Grant>) grant_repository.getAllGrantList();
-
-            TextInputLayout textInputLayoutGiftTypeOfGift = view1.findViewById(R.id.textInputLayoutGiftTypeOfGift);
-            AutoCompleteTextView autoCompleteGiftTypeOfGift = view1.findViewById(R.id.autoCompleteGiftTypeOfGift);
-
-            TextInputLayout textInputLayouGrantOfGift = view1.findViewById(R.id.textInputLayouGrantOfGift);
-            AutoCompleteTextView autoCompleteGrantOfGift = view1.findViewById(R.id.autoCompleteGrantOfGift);
-
-            TextInputLayout textInputLayoutDescripOfGift = view1.findViewById(R.id.textInputLayoutDescripOfGift);
-            EditText editTextDescripOfGift = view1.findViewById(R.id.editTextDescripOfGift);
+            gift_typeArrayList = (ArrayList<Gift_Type>) gift_type_repository.getAllGiftTypeLocalList();
+            grantArrayList = (ArrayList<Grant>) grant_repository.getAllGrantLocalList();
 
             ArrayAdapter<Gift_Type> giftTypeAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, gift_typeArrayList);
             ArrayAdapter<Grant> grantAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, grantArrayList);
 
+            AutoCompleteTextView autoCompleteGiftTypeOfGift = view1.findViewById(R.id.autoCompleteGiftTypeOfGift);
+            AutoCompleteTextView autoCompleteGrantOfGift = view1.findViewById(R.id.autoCompleteGrantOfGift);
             // spinner.setAdapter(adapterGiftType);
             autoCompleteGiftTypeOfGift.setAdapter(giftTypeAdapter);
             autoCompleteGrantOfGift.setAdapter(grantAdapter);
+
+            TextInputLayout textInputLayoutGiftTypeOfGift = view1.findViewById(R.id.textInputLayoutGiftTypeOfGift);
+            TextInputLayout textInputLayouGrantOfGift = view1.findViewById(R.id.textInputLayouGrantOfGift);
+            TextInputLayout textInputLayoutDescripOfGift = view1.findViewById(R.id.textInputLayoutDescripOfGift);
+            EditText editTextDescripOfGift = view1.findViewById(R.id.editTextDescripOfGift);
 
             AlertDialog dialog = new AlertDialog.Builder(getActivity())
                     .setTitle("Nuevo Regalo")
@@ -144,14 +151,14 @@ public class GiftFragment extends Fragment {
                 String stringGiftTypeNameId = autoCompleteGiftTypeOfGift.getText().toString();
                 String stringGrantNameId = autoCompleteGrantOfGift.getText().toString();
 
-                if (stringDescrip.isEmpty()||stringGiftTypeNameId.isEmpty()||stringGiftTypeNameId.isEmpty()) {
+                if (stringDescrip.isEmpty() || stringGiftTypeNameId.isEmpty() || stringGiftTypeNameId.isEmpty()) {
                     if (stringDescrip.isEmpty())
                         textInputLayoutDescripOfGift.setError(getString(R.string.required));
                     if (stringGiftTypeNameId.isEmpty())
                         textInputLayoutGiftTypeOfGift.setError(getString(R.string.required));
                     if (stringGrantNameId.isEmpty())
                         textInputLayouGrantOfGift.setError(getString(R.string.required));
-                    Toast.makeText(getActivity(),gift_model.getId_gift_typeName() + "" + gift_model.getId_grant_Name(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), gift_model.getId_gift_typeName() + "" + gift_model.getId_grant_Name(), Toast.LENGTH_SHORT).show();
 
                     //ToastHelper.showCustomToast(getActivity(), "warning", getString(R.string.must_fill_fields));
                 } else {

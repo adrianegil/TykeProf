@@ -50,7 +50,12 @@
     <string name="confirm_delete_cuestion_type">Desea realmente eliminar este Tipo de Pregunta</string>
     <string name="delete_clue_type">Eliminar Tipo de Pista</string>
     <string name="delete_gift">Eliminar Regalo</string>
+    <string name="delete_profess_rol">Eliminar Rol Profesional</string>
     <string name="confirm_delete_gift">Desea realmente eliminar este Regalo</string>
+    <string name="confirm_delete_profess_rol">Desea realmente eliminar este Rol Professional</string>
     <string name="confirm_delete_cluetype">Desea realmente eliminar este Tipo de Pista</string>
     <string name="points">Puntos</string>
+    <string name="topic">Tema</string>
+    <string name="career">Carrera</string>
+    <string name="name">Nombre</string>
 </resources>

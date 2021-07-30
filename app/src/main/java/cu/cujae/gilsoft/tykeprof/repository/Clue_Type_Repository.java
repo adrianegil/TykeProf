@@ -59,7 +59,6 @@ public class Clue_Type_Repository {
                     });
                 } else if (response.code() == 403) {
                     UserHelper.renovateToken(context);
-                    //getAllQuestionTypeWeb();
                 } else
                     Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show();
             }
@@ -114,7 +113,7 @@ public class Clue_Type_Repository {
                 if (response.isSuccessful()) {
                     Clue_Type clueType;
                     clueType = response.body();
-                    Log.e("Clue Type ", clueType.getId() + " " + clueType.getType());
+                    Log.e("Clue Type Save ", clueType.getId() + " " + clueType.getType());
 
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         clue_type_dao.saveClueType(clueType);
@@ -146,7 +145,7 @@ public class Clue_Type_Repository {
                 if (response.isSuccessful()) {
                     Clue_Type clueType;
                     clueType = response.body();
-                    Log.e("Clue Type ", clueType.getId() + " " + clueType.getType());
+                    Log.e("Clue Type Update", clueType.getId() + " " + clueType.getType());
 
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         clue_type_dao.updateClueType(clueType);
@@ -177,7 +176,7 @@ public class Clue_Type_Repository {
                 if (response.isSuccessful()) {
                     Clue_Type clueType;
                     clueType = response.body();
-                    Log.e("Clue Type ", clueType.getId() + " " + clueType.getType());
+                    Log.e("Clue Type Delete ", clueType.getId() + " " + clueType.getType());
 
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         clue_type_dao.deleteClueType(clueType);
@@ -196,6 +195,5 @@ public class Clue_Type_Repository {
                 Toast.makeText(context, context.getResources().getString(R.string.check_connection), Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 }

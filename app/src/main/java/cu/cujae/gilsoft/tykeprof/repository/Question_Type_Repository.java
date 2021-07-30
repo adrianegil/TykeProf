@@ -81,7 +81,7 @@ public class Question_Type_Repository {
                 if(response.isSuccessful()){
                     Question_Type question_type_response;
                     question_type_response = response.body();
-                    Log.e("Question Type ", question_type_response.getId() + " " + question_type_response.getType());
+                    Log.e("Question Type Response ", question_type_response.getId() + " " + question_type_response.getType());
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         question_type_dao.saveQuestionType(question_type_response);
                     });
@@ -111,7 +111,7 @@ public class Question_Type_Repository {
                 if(response.isSuccessful()){
                     Question_Type question_type_response;
                     question_type_response = response.body();
-                    Log.e("Question Type ", question_type_response.getId() + " " + question_type_response.getType());
+                    Log.e("Question Type Delete ", question_type_response.getId() + " " + question_type_response.getType());
 
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         question_type_dao.deleteQuestionType(question_type_response);
