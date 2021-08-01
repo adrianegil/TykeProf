@@ -16,6 +16,7 @@ import cu.cujae.gilsoft.tykeprof.data.dao.Clue_Type_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Gift_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Gift_Type_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Grant_Dao;
+import cu.cujae.gilsoft.tykeprof.data.dao.Insignia_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Professional_Rol_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Question_Type_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Topic_Dao;
@@ -24,11 +25,13 @@ import cu.cujae.gilsoft.tykeprof.data.entity.Clue_Type;
 import cu.cujae.gilsoft.tykeprof.data.entity.Gift;
 import cu.cujae.gilsoft.tykeprof.data.entity.Gift_Type;
 import cu.cujae.gilsoft.tykeprof.data.entity.Grant;
+import cu.cujae.gilsoft.tykeprof.data.entity.Insignia;
 import cu.cujae.gilsoft.tykeprof.data.entity.Professional_Rol;
 import cu.cujae.gilsoft.tykeprof.data.entity.Question_Type;
 import cu.cujae.gilsoft.tykeprof.data.entity.Topic;
 
-@Database(entities = {Question_Type.class, Clue_Type.class, Gift_Type.class, Grant.class, Gift.class, Career.class, Topic.class, Professional_Rol.class}, version = 1, exportSchema = false)
+@Database(entities = {Question_Type.class, Clue_Type.class, Gift_Type.class, Grant.class, Gift.class, Career.class, Topic.class,
+        Professional_Rol.class, Insignia.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract Question_Type_Dao question_type_dao();
@@ -47,6 +50,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract Professional_Rol_Dao professional_rol_dao();
 
+    public abstract Insignia_Dao insignia_dao();
 
     private static volatile AppDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;

@@ -38,7 +38,7 @@
                     android:icon="@drawable/ic_strategy"
                     android:title="@string/strategy" />
                 <item
-                    android:id="@+id/nav_Insignia"
+                    android:id="@+id/nav_insigniaFragment"
                     android:icon="@drawable/ic_insignia"
                     android:title="@string/insignia" />
                 <item
@@ -46,7 +46,7 @@
                     android:icon="@drawable/ic_grant"
                     android:title="@string/grant" />
                 <item
-                    android:id="@+id/nav_Ranking"
+                    android:id="@+id/nav_rankingFragment"
                     android:icon="@drawable/ic_ranking"
                     android:title="@string/ranking" />
                 <item

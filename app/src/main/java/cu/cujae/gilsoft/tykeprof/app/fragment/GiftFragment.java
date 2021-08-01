@@ -173,7 +173,12 @@ public class GiftFragment extends Fragment {
                 }
             });
             Button buttonNeg = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
-            buttonNeg.setOnClickListener(v12 -> dialog.dismiss());
+            buttonNeg.setOnClickListener(v12 -> {
+                editTextDescripOfGift.setText("");
+                autoCompleteGrantOfGift.setText("");
+                autoCompleteGiftTypeOfGift.setText("");
+                dialog.dismiss();
+            });
         });
 
     }

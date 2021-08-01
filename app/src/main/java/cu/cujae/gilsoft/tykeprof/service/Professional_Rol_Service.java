@@ -25,5 +25,4 @@ public interface Professional_Rol_Service {
 
     @DELETE("tyke-strategy-service/api/v1/rol-profesional/delete/id")
     Call<ResponseBody> deleteProfessionalRolByWeb(@Header("Authorization") String token, @Query("id") long id);
-
 }

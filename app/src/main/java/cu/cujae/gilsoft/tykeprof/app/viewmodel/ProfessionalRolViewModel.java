@@ -18,7 +18,7 @@ public class ProfessionalRolViewModel extends AndroidViewModel {
     private Professional_Rol_Repository professional_rol_repository;
     private final LiveData<List<Professional_Rol>> allProfessionalRol;
 
-    public ProfessionalRolViewModel(@NonNull @NotNull Application application) {
+    public ProfessionalRolViewModel(@NonNull Application application) {
         super(application);
         this.professional_rol_repository = new Professional_Rol_Repository(application);
         this.allProfessionalRol = professional_rol_repository.getAllProfessionalRol();

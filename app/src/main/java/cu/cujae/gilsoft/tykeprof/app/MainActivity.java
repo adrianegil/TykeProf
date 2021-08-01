@@ -1,11 +1,13 @@
 package cu.cujae.gilsoft.tykeprof.app;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -17,6 +19,8 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +34,7 @@ import cu.cujae.gilsoft.tykeprof.data.dao.Clue_Type_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Gift_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Gift_Type_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Grant_Dao;
+import cu.cujae.gilsoft.tykeprof.data.dao.Insignia_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Professional_Rol_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Question_Type_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Topic_Dao;
@@ -38,17 +43,21 @@ import cu.cujae.gilsoft.tykeprof.data.entity.Clue_Type;
 import cu.cujae.gilsoft.tykeprof.data.entity.Gift;
 import cu.cujae.gilsoft.tykeprof.data.entity.Gift_Type;
 import cu.cujae.gilsoft.tykeprof.data.entity.Grant;
+import cu.cujae.gilsoft.tykeprof.data.entity.Insignia;
 import cu.cujae.gilsoft.tykeprof.data.entity.Professional_Rol;
 import cu.cujae.gilsoft.tykeprof.data.entity.Question_Type;
 import cu.cujae.gilsoft.tykeprof.data.entity.Topic;
 import cu.cujae.gilsoft.tykeprof.data.model.Gift_Model;
+import cu.cujae.gilsoft.tykeprof.data.model.Insignia_Model;
 import cu.cujae.gilsoft.tykeprof.data.model.Professional_Rol_Model;
 import cu.cujae.gilsoft.tykeprof.databinding.ActivityMainBinding;
+import cu.cujae.gilsoft.tykeprof.repository.Professional_Rol_Repository;
 import cu.cujae.gilsoft.tykeprof.service.Career_Service;
 import cu.cujae.gilsoft.tykeprof.service.Clue_Type_Service;
 import cu.cujae.gilsoft.tykeprof.service.Gift_Service;
 import cu.cujae.gilsoft.tykeprof.service.Gift_Type_Service;
 import cu.cujae.gilsoft.tykeprof.service.Grant_Service;
+import cu.cujae.gilsoft.tykeprof.service.Insignia_Service;
 import cu.cujae.gilsoft.tykeprof.service.Professional_Rol_Service;
 import cu.cujae.gilsoft.tykeprof.service.Question_Type_Service;
 import cu.cujae.gilsoft.tykeprof.service.Topic_Sevice;
@@ -67,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
     Career_Service career_service = RetrofitClient.getRetrofit().create(Career_Service.class);
     Topic_Sevice topic_sevice = RetrofitClient.getRetrofit().create(Topic_Sevice.class);
     Professional_Rol_Service professional_rol_service = RetrofitClient.getRetrofit().create(Professional_Rol_Service.class);
+    Insignia_Service insignia_service = RetrofitClient.getRetrofit().create(Insignia_Service.class);
 
 
     @Override
@@ -75,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
         //setContentView(R.layout.activity_main);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        //Professional_Rol_Repository professional_rol_repository = new Professional_Rol_Repository(getApplication());
+        //professional_rol_repository.getAllProfessionalRol();
 
         //VERIFICA SI EL USUARIO SE AUTENTICÓ EN LA PLATAFORMA TYKE Y SI ES LA PRIMERA VEZ QUE LO HIZO
         if (getSharedPreferences("autenticacion", MODE_PRIVATE).getBoolean("firstLaunch", true))
@@ -91,18 +104,18 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         myAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home_Fragment, R.id.nav_questionTypeFragment,
-                R.id.nav_clueTypeFragment, R.id.nav_giftTypeFragment, R.id.nav_grantFragment, R.id.nav_giftFragment, R.id.nav_professionalRolFragment)
+                R.id.nav_clueTypeFragment, R.id.nav_giftTypeFragment, R.id.nav_grantFragment, R.id.nav_giftFragment, R.id.nav_professionalRolFragment,
+                R.id.nav_insigniaFragment, R.id.nav_rankingFragment)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_container);
         NavigationUI.setupActionBarWithNavController(this, navController, myAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        //getAllCareerWeb();
-        //getAllTopicWeb();
-        // getAllProfessionalRolLWeb();
-        // saveProfessionalRol();
-        // deleteProfessionalRol();
+        // getAllInsigniaWeb();
+        //saveInsignia();
+        // updateInsignia();
+        // deleteInsignia();
     }
 
     @Override
@@ -110,6 +123,12 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
         return true;
     }
+
+/*    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        setContentView(R.layout.activity_main);
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -140,113 +159,35 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    public void getAllCareerWeb() {
-
-        String token = UserHelper.getToken(this);
-        Career_Dao career_dao = AppDatabase.getDatabase(this).career_dao();
-
-        Call<List<Career>> listCallCareer = career_service.getAllCareerByWeb("Bearer " + token);
-        listCallCareer.enqueue(new Callback<List<Career>>() {
-            @Override
-            public void onResponse(Call<List<Career>> call, Response<List<Career>> response) {
-                if (response.isSuccessful()) {
-
-                    ArrayList<Career> careersSave = new ArrayList<>();
-                    List<Career> careerList;
-                    careerList = response.body();
-
-                    for (Career career : careerList) {
-                        Career careerSave = new Career(career.getId_career(), career.getName(), career.getAcronyms());
-                        careersSave.add(careerSave);
-
-                        Log.e("Gift ", careerSave.getId_career() + " " + careerSave.getName() + "" + careerSave.getAcronyms());
-                    }
-                    AppDatabase.databaseWriteExecutor.execute(() -> {
-                        career_dao.deleteAll();
-                        career_dao.saveAllCareer(careersSave);
-                    });
-                } else if (response.code() == 403) {
-                    UserHelper.renovateToken(MainActivity.this);
-                    //getAllQuestionTypeWeb();
-                } else
-                    Toast.makeText(MainActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(Call<List<Career>> call, Throwable t) {
-            }
-        });
-
-    }
-
-    public void getAllTopicWeb() {
-
-        String token = UserHelper.getToken(this);
-        Topic_Dao topic_dao = AppDatabase.getDatabase(this).topic_dao();
-
-        Call<List<Topic>> listCallTopic = topic_sevice.getAllTopicByWeb("Bearer " + token);
-        listCallTopic.enqueue(new Callback<List<Topic>>() {
-            @Override
-            public void onResponse(Call<List<Topic>> call, Response<List<Topic>> response) {
-                if (response.isSuccessful()) {
-
-                    ArrayList<Topic> topicsSave = new ArrayList<>();
-                    List<Topic> topicListResponse;
-                    topicListResponse = response.body();
-
-                    for (Topic topic : topicListResponse) {
-                        Topic topicSave = new Topic(topic.getId_topic(), topic.getName(), topic.getDescrip());
-                        topicsSave.add(topicSave);
-
-                        Log.e("Gift ", topicSave.getId_topic() + " " + topicSave.getName() + "" + topicSave.getDescrip());
-                    }
-                    AppDatabase.databaseWriteExecutor.execute(() -> {
-                        topic_dao.deleteAll();
-                        topic_dao.saveAllTopic(topicsSave);
-                    });
-                } else if (response.code() == 403) {
-                    UserHelper.renovateToken(MainActivity.this);
-                    //getAllQuestionTypeWeb();
-                } else
-                    Toast.makeText(MainActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onFailure(Call<List<Topic>> call, Throwable t) {
-            }
-        });
-
-    }
-
-    public void getAllProfessionalRolLWeb() {
+    public void getAllInsigniaWeb() {
 
         String token = UserHelper.getToken(this);
         Professional_Rol_Dao professional_rol_dao = AppDatabase.getDatabase(this).professional_rol_dao();
-        Topic_Dao topic_dao = AppDatabase.getDatabase(this).topic_dao();
-        Career_Dao career_dao = AppDatabase.getDatabase(this).career_dao();
+        Insignia_Dao insignia_dao = AppDatabase.getDatabase(this).insignia_dao();
 
-        Call<List<Professional_Rol>> listCallProfessionalRol = professional_rol_service.getAllProfessionalRolByWeb("Bearer " + token);
-        listCallProfessionalRol.enqueue(new Callback<List<Professional_Rol>>() {
+        Call<List<Insignia>> listCallInsignia = insignia_service.getAllInsigniasByWeb("Bearer " + token);
+        listCallInsignia.enqueue(new Callback<List<Insignia>>() {
             @Override
-            public void onResponse(Call<List<Professional_Rol>> call, Response<List<Professional_Rol>> response) {
+            public void onResponse(Call<List<Insignia>> call, Response<List<Insignia>> response) {
                 if (response.isSuccessful()) {
-                    ArrayList<Career> careers = new ArrayList<>();
-                    ArrayList<Topic> topics = new ArrayList<>();
-                    ArrayList<Professional_Rol> professional_rolsSave = new ArrayList<>();
-                    List<Professional_Rol> professional_rolsResponse;
-                    professional_rolsResponse = response.body();
 
-                    for (Professional_Rol professional_rol : professional_rolsResponse) {
-                        professional_rolsSave.add(professional_rol);
-                        careers.add(professional_rol.getCareer());
-                        topics.add(professional_rol.getTopic());
-                        Log.e("Gift ", professional_rol.getId_profess_rol() + " " + professional_rol.getName() + "" + professional_rol.getCareer() + " " + professional_rol.getTopic());
+                    ArrayList<Professional_Rol> professional_rol = new ArrayList<>();
+
+                    ArrayList<Insignia> insigniasSave = new ArrayList<>();
+                    List<Insignia> insigniasResponse;
+                    insigniasResponse = response.body();
+
+                    for (Insignia insignia : insigniasResponse) {
+
+                        insignia.setId_profess_rol(insignia.getProfessional_rol().getId_profess_rol());
+                        professional_rol.add(insignia.getProfessional_rol());
+                        insigniasSave.add(insignia);
+                        Log.e("Insignia ", insignia.getId_insignia() + " " + insignia.getName() + "" + insignia.getProfessional_rol());
                     }
                     AppDatabase.databaseWriteExecutor.execute(() -> {
-                        career_dao.saveAllCareer(careers);
-                        topic_dao.saveAllTopic(topics);
-                        professional_rol_dao.deleteAll();
-                        professional_rol_dao.saveAllProfessionalRol(professional_rolsSave);
+                        professional_rol_dao.saveAllProfessionalRolList(professional_rol);
+                        insignia_dao.deleteAll();
+                        insignia_dao.saveAllInsignias(insigniasSave);
                     });
                 } else if (response.code() == 403) {
                     UserHelper.renovateToken(MainActivity.this);
@@ -256,29 +197,27 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Professional_Rol>> call, Throwable t) {
+            public void onFailure(Call<List<Insignia>> call, Throwable t) {
             }
         });
 
     }
 
-    public void saveProfessionalRol() {
+    public void saveInsignia() {
 
         String token = UserHelper.getToken(this);
         Professional_Rol_Dao professional_rol_dao = AppDatabase.getDatabase(this).professional_rol_dao();
         Professional_Rol_Model professional_rol_model = new Professional_Rol_Model(1, 2, "Analista de Negocio");
 
-        Call<Professional_Rol> saveProfessionalRolCall = professional_rol_service.saveProfessionalRolByWeb("Bearer " + token, professional_rol_model);
-        saveProfessionalRolCall.enqueue(new Callback<Professional_Rol>() {
+        Insignia_Model insignia_model = new Insignia_Model(1, "Insignia Name Insert", 30, 60);
+
+        Call<Integer> saveInsignia = insignia_service.saveInsigniaByWeb("Bearer " + token, insignia_model);
+        saveInsignia.enqueue(new Callback<Integer>() {
             @Override
-            public void onResponse(Call<Professional_Rol> call, Response<Professional_Rol> response) {
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
                 if (response.isSuccessful()) {
-                    Professional_Rol professional_rol;
-                    professional_rol = response.body();
-                    Log.e("Professional Rol ", professional_rol.getId_profess_rol() + " " + professional_rol.getName());
-                    AppDatabase.databaseWriteExecutor.execute(() -> {
-                        professional_rol_dao.saveProfessionalRol(professional_rol);
-                    });
+
+                    getAllInsigniaWeb();
                     Toast.makeText(MainActivity.this, getResources().getString(R.string.save_success), Toast.LENGTH_SHORT).show();
                 } else if (response.code() == 403) {
                     UserHelper.renovateToken(MainActivity.this);
@@ -287,26 +226,67 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Professional_Rol> call, Throwable t) {
+            public void onFailure(Call<Integer> call, Throwable t) {
                 Toast.makeText(MainActivity.this, getResources().getString(R.string.check_connection), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public void deleteProfessionalRol() {
+    public void updateInsignia() {
 
         String token = UserHelper.getToken(this);
-        Professional_Rol_Dao professional_rol_dao = AppDatabase.getDatabase(this).professional_rol_dao();
+        Insignia_Dao insignia_dao = AppDatabase.getDatabase(this).insignia_dao();
 
-        Call<ResponseBody> calldeleteProfessionalRol = professional_rol_service.deleteProfessionalRolByWeb("Bearer " + token, 10);
-        calldeleteProfessionalRol.enqueue(new Callback<ResponseBody>() {
+        Insignia insignia = new Insignia();
+        insignia.setId_insignia(5);
+        insignia.setName("Insignia Update 2");
+        insignia.setAdvance_points(30);
+        insignia.setGrant_points(60);
+
+        Professional_Rol professional_rol = new Professional_Rol();
+        professional_rol.setId_profess_rol(21);
+        insignia.setProfessional_rol(professional_rol);
+        insignia.setId_profess_rol(21);
+
+        Call<Insignia> callupdateInsignia = insignia_service.updateInsignialByWeb("Bearer " + token, insignia);
+        callupdateInsignia.enqueue(new Callback<Insignia>() {
+            @Override
+            public void onResponse(Call<Insignia> call, Response<Insignia> response) {
+
+                if (response.isSuccessful()) {
+
+                    AppDatabase.databaseWriteExecutor.execute(() -> {
+                        insignia_dao.updateInsignia(insignia);
+                    });
+                    Toast.makeText(MainActivity.this, getString(R.string.edit_success), Toast.LENGTH_SHORT).show();
+
+                } else if (response.code() == 403) {
+                    UserHelper.renovateToken(MainActivity.this);
+                } else
+                    Toast.makeText(MainActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Insignia> call, Throwable t) {
+                Toast.makeText(MainActivity.this, getString(R.string.check_connection), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void deleteInsignia() {
+
+        String token = UserHelper.getToken(this);
+        Insignia_Dao insignia_dao = AppDatabase.getDatabase(this).insignia_dao();
+
+        Call<ResponseBody> calldeleteInsignia = insignia_service.deleteInsigniaByWeb("Bearer " + token, 5);
+        calldeleteInsignia.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
                 if (response.isSuccessful()) {
 
                     AppDatabase.databaseWriteExecutor.execute(() -> {
-                        professional_rol_dao.deleteProfessionalRolByID(10);
+                        insignia_dao.deleteInsigniaByID(5);
                     });
                     Toast.makeText(MainActivity.this, getString(R.string.delete_success), Toast.LENGTH_SHORT).show();
 

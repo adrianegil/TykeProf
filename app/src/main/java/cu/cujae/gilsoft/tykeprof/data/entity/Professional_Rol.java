@@ -49,6 +49,12 @@ public class Professional_Rol {
     @Ignore
     private boolean contenExpandable;
 
+    @Ignore
+    @Override
+    public String toString() {
+        return name;
+    }
+
     public Professional_Rol() {
     }
 

@@ -31,7 +31,8 @@
                     android:drawableStart="@drawable/selector_ic_textfield"
                     android:drawablePadding="12dp"
                     android:hint="@string/grant"
-                    android:inputType="textMultiLine" />
+                    android:imeOptions="flagNoExtractUi"
+                    android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

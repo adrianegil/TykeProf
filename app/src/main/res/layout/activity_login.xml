@@ -107,6 +107,7 @@
                     android:drawableStart="@drawable/selector_ic_account"
                     android:drawablePadding="12dp"
                     android:hint="@string/user"
+                    android:imeOptions="flagNoExtractUi"
                     android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -130,6 +131,7 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/selector_ic_key"
                     android:drawablePadding="12dp"
+                    android:imeOptions="flagNoExtractUi"
                     android:hint="@string/password"
                     android:inputType="textPassword" />
 

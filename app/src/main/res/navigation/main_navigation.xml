@@ -47,4 +47,14 @@
         android:name="cu.cujae.gilsoft.tykeprof.app.fragment.ProfessionalRolFragment"
         android:label="@string/professional_rol"
         tools:layout="@layout/professional_rol_fragment" />
+    <fragment
+        android:id="@+id/nav_insigniaFragment"
+        android:name="cu.cujae.gilsoft.tykeprof.app.fragment.InsigniaFragment"
+        android:label="@string/insignia"
+        tools:layout="@layout/insignia_fragment" />
+    <fragment
+        android:id="@+id/nav_rankingFragment"
+        android:name="cu.cujae.gilsoft.tykeprof.app.fragment.RankingFragment"
+        android:label="@string/ranking"
+        tools:layout="@layout/ranking_fragment" />
 </navigation>

@@ -12,5 +12,4 @@ public interface Topic_Sevice {
 
     @GET("schoolar-management-service/api/tema")
     Call<List<Topic>> getAllTopicByWeb(@Header("Authorization") String token);
-
 }

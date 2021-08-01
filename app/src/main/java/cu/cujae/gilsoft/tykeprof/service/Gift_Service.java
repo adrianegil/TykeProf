@@ -28,5 +28,4 @@ public interface Gift_Service {
 
     @DELETE("tyke-strategy-service/api/v1/regalo/delete/id")
     Call<ResponseBody> deleteGiftByWeb(@Header("Authorization") String token, @Query("id") long id);
-
 }

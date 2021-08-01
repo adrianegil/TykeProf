@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -35,19 +35,19 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-           <!-- <Spinner
-                android:id="@+id/textInputLayoutGiftTypeOfGift"
-                android:background="@drawable/custom_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+            <!-- <Spinner
+                 android:id="@+id/textInputLayoutGiftTypeOfGift"
+                 android:background="@drawable/custom_spinner"
+                 android:layout_width="match_parent"
+                 android:layout_height="55dp"
+                 android:layout_marginStart="8dp"
+                 android:layout_marginTop="8dp"
+                 android:layout_marginEnd="8dp"
+                 app:layout_constraintEnd_toEndOf="parent"
+                 app:layout_constraintStart_toStartOf="parent"
+                 app:layout_constraintTop_toTopOf="parent">
 
-            </Spinner>-->
+             </Spinner>-->
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayouGrantOfGift"
@@ -68,8 +68,7 @@
                     android:drawableStart="@drawable/selector_ic_game_points"
                     android:drawablePadding="12dp"
                     android:editable="false"
-                    android:hint="@string/grant"
-                  />
+                    android:hint="@string/grant" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,8 +80,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                app:counterMaxLength="45"
                 app:counterEnabled="true"
+                app:counterMaxLength="45"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayouGrantOfGift">
@@ -94,9 +93,9 @@
                     android:drawableStart="@drawable/selector_ic_textfield"
                     android:drawablePadding="12dp"
                     android:hint="Descripción"
-                    android:maxLength="45"
-                    android:inputType="textMultiLine"
-                />
+                    android:imeOptions="flagNoExtractUi"
+                    android:inputType="text"
+                    android:maxLength="45" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

@@ -21,5 +21,4 @@ public interface Question_Type_Service {
 
     @DELETE("question-service/api/tipo-pregunta/delete/id")
     Call<Question_Type> deleteQuestionTypeByWeb(@Header("Authorization") String token, @Query("id") long id);
-
 }

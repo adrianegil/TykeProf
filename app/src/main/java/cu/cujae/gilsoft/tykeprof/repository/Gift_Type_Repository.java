@@ -119,6 +119,10 @@ public class Gift_Type_Repository {
         return gift_type_dao.getAllGiftTypeList();
     }
 
+    public Gift_Type getGiftTypeLocalbyId(long id) {
+        return gift_type_dao.getGiftTypeById(id);
+    }
+
     public void saveGiftType(Gift_Type gift_type) {
 
         Call<Gift_Type> saveGiftTypeCall = gift_type_service.saveGiftTypeByWeb("Bearer " + token, gift_type);
@@ -170,7 +174,4 @@ public class Gift_Type_Repository {
         });
     }
 
-    public Gift_Type getGiftTypeLocalbyId(long id) {
-        return gift_type_dao.getGiftTypeById(id);
-    }
 }

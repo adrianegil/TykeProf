@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,7 +30,9 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/selector_ic_textfield"
                     android:drawablePadding="12dp"
-                    android:hint="@string/name" />
+                    android:hint="@string/name"
+                    android:inputType="text"
+                    android:imeOptions="flagNoExtractUi" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -67,8 +69,7 @@
                     android:drawableStart="@drawable/selector_ic_school"
                     android:drawablePadding="12dp"
                     android:editable="false"
-                    android:hint="@string/career"
-                    />
+                    android:hint="@string/career" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,9 +92,8 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/selector_ic_theme"
                     android:drawablePadding="12dp"
-                    android:hint="@string/topic"
                     android:editable="false"
-                    />
+                    android:hint="@string/topic" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

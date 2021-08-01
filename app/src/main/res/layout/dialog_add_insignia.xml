@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutNewInsignia"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextInsigniaName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/selector_ic_textfield"
+                    android:drawablePadding="12dp"
+                    android:hint="@string/name"
+                    android:imeOptions="flagNoExtractUi"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutProfessRolToInsignia"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutNewInsignia">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteProfessRolToInsignia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/selector_ic_rol"
+                    android:drawablePadding="12dp"
+                    android:editable="false"
+                    android:hint="@string/professional_rol" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/sliderAdvancePoints"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:value="1.0"
+                android:valueFrom="1.0"
+                android:valueTo="100.0"
+                app:labelBehavior="floating"
+                app:labelStyle="@style/tooltip"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewValue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/textViewValue"
+                app:layout_constraintTop_toTopOf="@+id/textViewValue" />
+
+            <TextView
+                android:id="@+id/textViewValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="16dp"
+                android:text="Puntos de Avance"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutProfessRolToInsignia" />
+
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/sliderGrantPoints"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:value="1.0"
+                android:valueFrom="1.0"
+                android:valueTo="100.0"
+                app:labelBehavior="floating"
+                app:labelStyle="@style/tooltip"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewValue3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/sliderAdvancePoints"
+                app:layout_constraintTop_toTopOf="@+id/textViewValue3" />
+
+            <TextView
+                android:id="@+id/textViewValue3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Puntos a Otorgar"
+                android:textSize="17sp"
+                app:layout_constraintStart_toStartOf="@+id/textViewValue"
+                app:layout_constraintTop_toBottomOf="@+id/textViewValue" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</LinearLayout>

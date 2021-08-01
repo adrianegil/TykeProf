@@ -23,5 +23,4 @@ public interface Gift_Type_Service {
 
     @DELETE("tyke-strategy-service/api/v1/tipo-regalo/delete/id")
     Call<ResponseBody> deleteGiftTypeByWeb(@Header("Authorization") String token, @Query("id") long id);
-
 }
