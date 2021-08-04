@@ -39,5 +39,4 @@ public interface Clue_Type_Dao {
 
     @Query("DELETE FROM clue_type")
     void deleteAll();
-
 }

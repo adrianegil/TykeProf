@@ -57,10 +57,9 @@ public class Insignia_Repository {
         listCallInsignia.enqueue(new Callback<List<Insignia>>() {
             @Override
             public void onResponse(Call<List<Insignia>> call, Response<List<Insignia>> response) {
+
                 if (response.isSuccessful()) {
-
                     ArrayList<Professional_Rol> professional_rol = new ArrayList<>();
-
                     ArrayList<Insignia> insigniasSave = new ArrayList<>();
                     List<Insignia> insigniasResponse;
                     insigniasResponse = response.body();
@@ -123,14 +122,11 @@ public class Insignia_Repository {
         callupdateInsignia.enqueue(new Callback<Insignia>() {
             @Override
             public void onResponse(Call<Insignia> call, Response<Insignia> response) {
-
                 if (response.isSuccessful()) {
-
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         insignia_dao.updateInsignia(insignia);
                     });
                     Toast.makeText(context, context.getString(R.string.edit_success), Toast.LENGTH_SHORT).show();
-
                 } else if (response.code() == 403) {
                     UserHelper.renovateToken(context);
                 } else

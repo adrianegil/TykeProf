@@ -46,7 +46,6 @@ public class ProfessionalRol_Adapter extends ListAdapter<Professional_Rol, Profe
         this.activity = activity;
         this.career_repository = new Career_Repository(application);
         this.topic_repository = new Topic_Repository(application);
-
     }
 
     @NotNull

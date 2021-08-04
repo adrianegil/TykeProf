@@ -14,10 +14,10 @@ import com.google.gson.annotations.SerializedName;
 @Entity(tableName = "gift", foreignKeys = {
         @ForeignKey(entity = Gift_Type.class,
                 parentColumns = "id_gift_type",
-                childColumns = "id_gift_type",onDelete = ForeignKey.CASCADE),
+                childColumns = "id_gift_type", onDelete = ForeignKey.CASCADE),
         @ForeignKey(entity = Grant.class,
                 parentColumns = "id_grant",
-                childColumns = "id_grant",onDelete = ForeignKey.CASCADE)},
+                childColumns = "id_grant", onDelete = ForeignKey.CASCADE)},
         indices = {@Index(value = {"id_gift_type"}), @Index(value = "id_grant")
         })
 public class Gift {

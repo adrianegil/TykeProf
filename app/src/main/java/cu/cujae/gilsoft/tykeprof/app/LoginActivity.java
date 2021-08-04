@@ -98,7 +98,6 @@ public class LoginActivity extends AppCompatActivity {
                         UserHelper.saveToken(token, LoginActivity.this);
                         UserHelper.saveUserLogin(login, LoginActivity.this);
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        ToastHelper.showCustomToast(LoginActivity.this, "success", getString(R.string.success_aut));
                         finish();
                     } else if (response.code() == 401 || response.code() == 500) {
                         progressBarLogin.setVisibility(View.INVISIBLE);
@@ -129,7 +128,6 @@ public class LoginActivity extends AppCompatActivity {
 
     //SALIR DE LA APP
     public void exitLoginActivity(View view) {
-
         AlertDialog.Builder dialog = new AlertDialog.Builder(LoginActivity.this);
         dialog.setTitle(R.string.exit_confirm);
         dialog.setMessage(R.string.exit_confirm_description);

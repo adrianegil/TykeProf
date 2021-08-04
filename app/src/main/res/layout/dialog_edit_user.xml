@@ -13,7 +13,7 @@
             android:layout_height="wrap_content">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutClueType"
+        android:id="@+id/textInputLayoutChangeNameUser"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,19 +25,19 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextClueType"
+            android:id="@+id/editTextChangeNameUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/selector_ic_textfield"
             android:drawablePadding="12dp"
-            android:hint="@string/clue_type"
+            android:hint="@string/name"
             android:imeOptions="flagNoExtractUi"
             android:inputType="text" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutGamePoints"
+        android:id="@+id/textInputLayoutChangeUserName"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,15 +46,15 @@
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutClueType">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutChangeNameUser">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextGamePoints"
+            android:id="@+id/editTextChangeUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/selector_ic_game_points"
+            android:drawableStart="@drawable/selector_ic_account"
             android:drawablePadding="12dp"
-            android:hint="@string/games_points"
+            android:hint="@string/user"
             android:imeOptions="flagNoExtractUi"
             android:inputType="number"
             android:maxLength="9" />
@@ -62,7 +62,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutCluePoints"
+        android:id="@+id/textInputLayoutChangeEmailUser"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -72,18 +72,45 @@
         app:counterMaxLength="9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutGamePoints">
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutChangeUserName">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextCluePoints"
+            android:id="@+id/editTextChangeEmailUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/selector_ic_clue_points"
+            android:drawableStart="@drawable/selector_ic_email"
             android:drawablePadding="12dp"
-            android:hint="@string/clue_points"
+            android:hint="@string/email_dialog"
             android:imeOptions="flagNoExtractUi"
-            android:inputType="number"
-            android:maxLength="9" />
+            android:inputType="textEmailAddress"
+             />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutChangeDobUser"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:counterMaxLength="9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutChangeEmailUser">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteChangeDobUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/selector_ic_calendar"
+            android:drawablePadding="12dp"
+            android:hint="Escoja una Fecha"
+            android:imeOptions="flagNoExtractUi"
+            android:editable="false"
+           />
 
     </com.google.android.material.textfield.TextInputLayout>
 

@@ -18,7 +18,7 @@ public interface Clue_Type_Service {
     Call<List<Clue_Type>> getAllClueTypeByWeb(@Header("Authorization") String token);
 
     @GET("question-service/api/tipo-pista/id")
-    Call<Clue_Type> getClueTypeByIdByWeb(@Header("Authorization") String token,@Query("id") long id);
+    Call<Clue_Type> getClueTypeByIdByWeb(@Header("Authorization") String token, @Query("id") long id);
 
     @POST("question-service/api/tipo-pista/save")
     Call<Clue_Type> saveClueTypeByWeb(@Header("Authorization") String token, @Body Clue_Type clue_type);

@@ -163,7 +163,6 @@ public class Professional_Rol_Repository {
         calldeleteProfessionalRol.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
                 if (response.isSuccessful()) {
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         professional_rol_dao.deleteProfessionalRolByID(id);

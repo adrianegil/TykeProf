@@ -95,5 +95,4 @@ public class UserHelper {
         SharedPreferences preferences = context.getSharedPreferences("autenticacion", Context.MODE_PRIVATE);
         return preferences.getString("token", "");
     }
-
 }

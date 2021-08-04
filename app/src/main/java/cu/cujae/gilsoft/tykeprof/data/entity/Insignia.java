@@ -12,7 +12,7 @@ import com.google.gson.annotations.SerializedName;
 @Entity(tableName = "insignia", foreignKeys = {
         @ForeignKey(entity = Professional_Rol.class,
                 parentColumns = "id_profess_rol",
-                childColumns = "id_profess_rol",onDelete = ForeignKey.CASCADE)},
+                childColumns = "id_profess_rol", onDelete = ForeignKey.CASCADE)},
         indices = {@Index(value = "id_profess_rol")
         })
 public class Insignia {

@@ -44,7 +44,6 @@ public class Insignia_Adapter extends ListAdapter<Insignia, Insignia_Adapter.Vie
     InsigniaViewModel insigniaViewModel;
     Activity activity;
 
-
     public Insignia_Adapter(@NonNull DiffUtil.ItemCallback<Insignia> diffCallback, InsigniaViewModel insigniaViewModel, Activity activity, Application application) {
         super(diffCallback);
         this.insigniaViewModel = insigniaViewModel;
@@ -66,7 +65,7 @@ public class Insignia_Adapter extends ListAdapter<Insignia, Insignia_Adapter.Vie
 
         holder.textViewInsigniaName.setText(insignia.getName());
         holder.textViewAdvancePointsOfInsignia.setText("Puntos de Avance: "+ insignia.getAdvance_points());
-        holder.textViewGrantPointsOfInsignia.setText("Puntos a Otorgar; " + insignia.getGrant_points());
+        holder.textViewGrantPointsOfInsignia.setText("Puntos a Otorgar: " + insignia.getGrant_points());
         holder.layoutExpanded.setVisibility(insignia.isContenExpandable() ? View.VISIBLE : View.GONE);
 
         holder.viewDeleteInsignia.setOnClickListener(v -> {
@@ -166,7 +165,6 @@ public class Insignia_Adapter extends ListAdapter<Insignia, Insignia_Adapter.Vie
                 dialog.dismiss();
             });
         });
-
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

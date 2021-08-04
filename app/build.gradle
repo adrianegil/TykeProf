@@ -29,6 +29,9 @@ android {
         viewBinding true
     }
 
+    buildFeatures {
+        dataBinding = true
+    }
 }
 
 dependencies {
@@ -51,12 +54,13 @@ dependencies {
     //NAVIGATION COMPONENTS
     implementation 'androidx.navigation:navigation-fragment:2.3.5'
     implementation 'androidx.navigation:navigation-ui:2.3.5'
+    //implementation 'androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5'
 
     // LIFECYCLE COMPONENTS
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.3.0"
     implementation "androidx.lifecycle:lifecycle-livedata:2.3.0"
     //implementation "androidx.lifecycle:lifecycle-common-java8:2.3.0"
-   // implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    // implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     //implementation 'androidx.lifecycle:lifecycle-runtime:2.2.0'
 
     //DATA PERSISTENCE WHIT ROOM COMPONENTS
@@ -74,4 +78,7 @@ dependencies {
     //USER PREFERENCES OR CONFIGURATIONS
     implementation 'androidx.preference:preference:1.1.1'
 
+    //IMAGE MANAGEMENT
+    implementation 'com.squareup.picasso:picasso:2.8'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

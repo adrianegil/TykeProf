@@ -70,7 +70,7 @@ public class Clue_Type_Repository {
         return clue_type_dao.getAllClueType();
     }
 
-    public Clue_Type getClueTypeByID(long id){
+    public Clue_Type getClueTypeByID(long id) {
 
         Call<Clue_Type> callClueType = clue_type_service.getClueTypeByIdByWeb("Bearer " + token, id);
         callClueType.enqueue(new Callback<Clue_Type>() {
@@ -122,7 +122,6 @@ public class Clue_Type_Repository {
 
                 } else if (response.code() == 403) {
                     UserHelper.renovateToken(context);
-                    //getAllQuestionTypeWeb();
                 } else
                     Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show();
             }
@@ -151,7 +150,6 @@ public class Clue_Type_Repository {
                         clue_type_dao.updateClueType(clueType);
                     });
                     Toast.makeText(context, context.getResources().getString(R.string.edit_success), Toast.LENGTH_SHORT).show();
-
                 } else if (response.code() == 403) {
                     UserHelper.renovateToken(context);
                     //getAllQuestionTypeWeb();
@@ -182,7 +180,6 @@ public class Clue_Type_Repository {
                         clue_type_dao.deleteClueType(clueType);
                     });
                     Toast.makeText(context, context.getResources().getString(R.string.delete_success), Toast.LENGTH_SHORT).show();
-
                 } else if (response.code() == 403) {
                     UserHelper.renovateToken(context);
                     //getAllQuestionTypeWeb();

@@ -53,7 +53,6 @@ public class GiftFragment extends Fragment {
     ArrayList<Gift_Type> gift_typeArrayList;
     ArrayList<Grant> grantArrayList;
 
-
     public static GiftFragment newInstance() {
         return new GiftFragment();
     }

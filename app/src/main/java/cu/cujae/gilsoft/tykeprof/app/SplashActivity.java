@@ -7,7 +7,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
 import java.io.IOException;
 
@@ -30,12 +29,11 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
         init();
     }
 
     //CONDICIONA EL LANZAMIENTO DE LA APP
-    public void init(){
+    public void init() {
         if (UserHelper.isFirstLaunch(this))
             firstLaunch();
         else
@@ -67,7 +65,6 @@ public class SplashActivity extends AppCompatActivity {
                         //Log.e("ERROR TOKEN:  ", e.getMessage());
                     }
                     UserHelper.saveToken(token, SplashActivity.this);
-                    ToastHelper.showCustomToast(SplashActivity.this,"success",getString(R.string.yes_connection));
                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
                     finish();
                 } else if (response.code() == 401 || response.code() == 500) {
@@ -81,7 +78,6 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                ToastHelper.showCustomToast(SplashActivity.this,"warning",getString(R.string.no_connection));
                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 finish();
             }

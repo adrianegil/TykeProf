@@ -57,4 +57,9 @@
         android:name="cu.cujae.gilsoft.tykeprof.app.fragment.RankingFragment"
         android:label="@string/ranking"
         tools:layout="@layout/ranking_fragment" />
+    <fragment
+        android:id="@+id/nav_userFragment"
+        android:name="cu.cujae.gilsoft.tykeprof.app.fragment.UserFragment"
+        android:label="@string/user"
+        tools:layout="@layout/user_fragment" />
 </navigation>

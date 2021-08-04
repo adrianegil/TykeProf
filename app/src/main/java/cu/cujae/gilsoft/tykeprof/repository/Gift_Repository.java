@@ -41,7 +41,6 @@ public class Gift_Repository {
     private Context context;
     private String token;
 
-
     public Gift_Repository(Application application) {
         this.db = AppDatabase.getDatabase(application);
         this.context = application;
@@ -51,7 +50,6 @@ public class Gift_Repository {
         this.gift_service = RetrofitClient.getRetrofit().create(Gift_Service.class);
         this.token = UserHelper.getToken(application);
     }
-
 
     public LiveData<List<Gift>> getAllGiftWeb() {
 
@@ -155,12 +153,10 @@ public class Gift_Repository {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
                 if (response.isSuccessful()) {
-
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         gift_dao.deleteGiftByID(id);
                     });
                     Toast.makeText(context, context.getString(R.string.delete_success), Toast.LENGTH_SHORT).show();
-
                 } else if (response.code() == 403) {
                     UserHelper.renovateToken(context);
                 } else
@@ -174,7 +170,7 @@ public class Gift_Repository {
         });
     }
 
-    public Gift getGiftbyId(long id){
+    public Gift getGiftbyId(long id) {
         return gift_dao.getGiftById(id);
     }
 }

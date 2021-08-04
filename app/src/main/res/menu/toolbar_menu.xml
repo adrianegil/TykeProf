@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/user_account_item"
+        android:id="@+id/nav_userFragment"
         android:icon="@drawable/ic_account_circle_white"
         app:showAsAction="ifRoom"
         android:title="@string/user" />

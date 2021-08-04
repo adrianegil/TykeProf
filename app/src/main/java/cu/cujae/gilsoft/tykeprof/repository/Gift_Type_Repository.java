@@ -82,7 +82,7 @@ public class Gift_Type_Repository {
             @Override
             public void onResponse(Call<List<Gift_Type>> call, Response<List<Gift_Type>> response) {
                 if (response.isSuccessful()) {
-                   // ArrayList<Gift_Type> giftTypeListLocal = (ArrayList<Gift_Type>) gift_type_dao.getAllGiftListType();
+                    // ArrayList<Gift_Type> giftTypeListLocal = (ArrayList<Gift_Type>) gift_type_dao.getAllGiftListType();
                     ArrayList<Gift_Type> giftTypeListResponse = (ArrayList<Gift_Type>) response.body();
 
                /*     for (int i = 0; i < giftTypeListLocal.size(); i++) {

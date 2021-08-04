@@ -45,7 +45,6 @@ public class Gift_Adapter extends ListAdapter<Gift, Gift_Adapter.ViewHolder> {
     Gift_Type_Repository gift_type_repository;
     Grant_Repository grant_repository;
 
-
     public Gift_Adapter(@NonNull DiffUtil.ItemCallback<Gift> diffCallback, GiftViewModel giftViewModel, Activity activity, Application application) {
         super(diffCallback);
         this.giftViewModel = giftViewModel;

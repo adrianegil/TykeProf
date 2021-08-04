@@ -46,16 +46,13 @@ public class Career_Repository {
             @Override
             public void onResponse(Call<List<Career>> call, Response<List<Career>> response) {
                 if (response.isSuccessful()) {
-
                     ArrayList<Career> careersSave = new ArrayList<>();
                     List<Career> careerList;
                     careerList = response.body();
-
                     for (Career career : careerList) {
-                        Career careerSave = new Career(career.getId_career(),career.getName(),career.getAcronyms());
+                        Career careerSave = new Career(career.getId_career(), career.getName(), career.getAcronyms());
                         careersSave.add(careerSave);
-
-                        Log.e("Career ", careerSave.getId_career() + " " + careerSave.getName() + "" + careerSave.getAcronyms() );
+                        Log.e("Career ", careerSave.getId_career() + " " + careerSave.getName() + "" + careerSave.getAcronyms());
                     }
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         career_dao.deleteAll();

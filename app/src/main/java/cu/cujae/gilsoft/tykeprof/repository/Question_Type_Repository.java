@@ -29,7 +29,6 @@ public class Question_Type_Repository {
     private Context context;
     private String token;
 
-
     public Question_Type_Repository(Application application) {
         this.db = AppDatabase.getDatabase(application);
         this.context = application;

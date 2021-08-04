@@ -40,7 +40,7 @@ public class Topic_Repository {
 
     public List<Topic> getAllTopicList() {
 
-        Call<List<Topic>> listCallTopic= topic_sevice.getAllTopicByWeb("Bearer " + token);
+        Call<List<Topic>> listCallTopic = topic_sevice.getAllTopicByWeb("Bearer " + token);
         listCallTopic.enqueue(new Callback<List<Topic>>() {
             @Override
             public void onResponse(Call<List<Topic>> call, Response<List<Topic>> response) {
@@ -51,10 +51,10 @@ public class Topic_Repository {
                     topicListResponse = response.body();
 
                     for (Topic topic : topicListResponse) {
-                        Topic topicSave = new Topic(topic.getId_topic(),topic.getName(),topic.getDescrip());
+                        Topic topicSave = new Topic(topic.getId_topic(), topic.getName(), topic.getDescrip());
                         topicsSave.add(topicSave);
 
-                        Log.e("Topic ", topicSave.getId_topic() + " " + topicSave.getName() + "" + topicSave.getDescrip() );
+                        Log.e("Topic ", topicSave.getId_topic() + " " + topicSave.getName() + "" + topicSave.getDescrip());
                     }
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         topic_dao.deleteAll();
