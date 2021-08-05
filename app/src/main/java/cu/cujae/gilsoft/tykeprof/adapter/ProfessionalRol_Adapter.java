@@ -1,5 +1,6 @@
 package cu.cujae.gilsoft.tykeprof.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.view.LayoutInflater;
@@ -52,8 +53,10 @@ public class ProfessionalRol_Adapter extends ListAdapter<Professional_Rol, Profe
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.professional_rol_itemlist, parent, false);
-        return new ProfessionalRol_Adapter.ViewHolder(v);    }
+        return new ProfessionalRol_Adapter.ViewHolder(v);
+    }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
@@ -75,8 +78,8 @@ public class ProfessionalRol_Adapter extends ListAdapter<Professional_Rol, Profe
 
         Topic topic = topic_repository.getTopicbyId(professional_rol.getId_topic());
         Career career = career_repository.getCareerbyId(professional_rol.getId_career());
-        holder.textViewCareerOfProfessRol.setText("Carrera: " + career.getName());
-        holder.textViewTopicOfProfessRol.setText("Tema: " + topic.getName());
+        holder.textViewCareerOfProfessRol.setText(activity.getString(R.string.career) + ": " + career.getName());
+        holder.textViewTopicOfProfessRol.setText(activity.getString(R.string.topic) + ": " + topic.getName());
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

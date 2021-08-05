@@ -26,7 +26,7 @@ public class GiftTypeViewModel extends AndroidViewModel {
         gift_type_repository.saveGiftType(gift_type);
     }
 
-    public  void deleteGiftType(Gift_Type gift_type){
+    public void deleteGiftType(Gift_Type gift_type) {
         gift_type_repository.deleteGiftType(gift_type);
     }
 

@@ -35,11 +35,11 @@ public class GiftViewModel extends AndroidViewModel {
         gift_repository.saveGift(gift_model);
     }
 
-    public  void updateGift(Gift_Model gift_model){
+    public void updateGift(Gift_Model gift_model) {
         gift_repository.updateGiftWeb(gift_model);
     }
 
-    public  void deleteGift(long id){
+    public void deleteGift(long id) {
         gift_repository.deleteGift(id);
     }
 

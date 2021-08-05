@@ -28,6 +28,7 @@
                     android:id="@+id/editTextInsigniaName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:importantForAutofill="noExcludeDescendants"
                     android:drawableStart="@drawable/selector_ic_textfield"
                     android:drawablePadding="12dp"
                     android:hint="@string/name"

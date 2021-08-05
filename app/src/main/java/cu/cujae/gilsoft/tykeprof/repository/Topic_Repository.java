@@ -35,11 +35,11 @@ public class Topic_Repository {
         this.context = application;
         this.topic_dao = db.topic_dao();
         this.topic_sevice = RetrofitClient.getRetrofit().create(Topic_Sevice.class);
-        this.token = UserHelper.getToken(application);
+        //this.token = UserHelper.getToken(application);
     }
 
     public List<Topic> getAllTopicList() {
-
+        token = UserHelper.getToken(context);
         Call<List<Topic>> listCallTopic = topic_sevice.getAllTopicByWeb("Bearer " + token);
         listCallTopic.enqueue(new Callback<List<Topic>>() {
             @Override
@@ -61,7 +61,7 @@ public class Topic_Repository {
                         topic_dao.saveAllTopic(topicsSave);
                     });
                 } else if (response.code() == 403) {
-                    UserHelper.renovateToken(context);
+                 //   UserHelper.renovateToken(context);
 
                 } else
                     Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show();

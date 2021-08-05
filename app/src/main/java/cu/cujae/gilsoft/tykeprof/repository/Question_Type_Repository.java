@@ -34,11 +34,12 @@ public class Question_Type_Repository {
         this.context = application;
         this.question_type_dao = db.question_type_dao();
         this.question_type_service = RetrofitClient.getRetrofit().create(Question_Type_Service.class);
-        this.token = UserHelper.getToken(application);
+       // this.token = UserHelper.getToken(application);
         this.allQuestionType = getAllQuestionTypeWeb();
     }
 
     public LiveData<List<Question_Type>> getAllQuestionTypeWeb() {
+        token = UserHelper.getToken(context);
         Call<List<Question_Type>> listCallQuestionType = question_type_service.getAllQuestionTypeByWeb("Bearer " + token);
         listCallQuestionType.enqueue(new Callback<List<Question_Type>>() {
             @Override
@@ -72,6 +73,7 @@ public class Question_Type_Repository {
     }
 
     public void saveQuestionType(Question_Type question_type){
+        token = UserHelper.getToken(context);
         Call<Question_Type> saveQuestionTypeCall = question_type_service.saveQuestionTypeByWeb("Bearer " + token, question_type);
         saveQuestionTypeCall.enqueue(new Callback<Question_Type>() {
             @Override
@@ -102,6 +104,7 @@ public class Question_Type_Repository {
     }
 
     public  void  deleteQuestionType(Question_Type question_type){
+        token = UserHelper.getToken(context);
         Call<Question_Type> deleteQuestionTypeCall = question_type_service.deleteQuestionTypeByWeb("Bearer " + token, question_type.getId());
         deleteQuestionTypeCall.enqueue(new Callback<Question_Type>() {
             @Override

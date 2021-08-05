@@ -47,8 +47,8 @@ public class GiftType_Adapter extends ListAdapter<Gift_Type, GiftType_Adapter.Vi
         holder.materialTextViewGiftType.setText(gift_type.getName());
         holder.viewDeleteGiftType.setOnClickListener(v -> {
             AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-            dialog.setTitle("Eliminar Tipo de Regalo");
-            dialog.setMessage("Desea realmente eliminar este Tipo de Regalo");
+            dialog.setTitle(R.string.delete_clue_type);
+            dialog.setMessage(R.string.confirm_delete_gift_type);
             dialog.setPositiveButton(R.string.yes, (dialog1, which) -> {
                 giftTypeViewModel.deleteGiftType(gift_type);
             });

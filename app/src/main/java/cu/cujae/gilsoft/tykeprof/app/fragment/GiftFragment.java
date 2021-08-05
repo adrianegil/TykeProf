@@ -137,7 +137,7 @@ public class GiftFragment extends Fragment {
             EditText editTextDescripOfGift = view1.findViewById(R.id.editTextDescripOfGift);
 
             AlertDialog dialog = new AlertDialog.Builder(getActivity())
-                    .setTitle("Nuevo Regalo")
+                    .setTitle(R.string.new_gift)
                     //.setMessage("Inserte el nombre de la Estrategia")
                     .setPositiveButton(R.string.accept, null)
                     .setNegativeButton(getString(R.string.cancel), null)
@@ -157,9 +157,6 @@ public class GiftFragment extends Fragment {
                         textInputLayoutGiftTypeOfGift.setError(getString(R.string.required));
                     if (stringGrantNameId.isEmpty())
                         textInputLayouGrantOfGift.setError(getString(R.string.required));
-                    Toast.makeText(getActivity(), gift_model.getId_gift_typeName() + "" + gift_model.getId_grant_Name(), Toast.LENGTH_SHORT).show();
-
-                    //ToastHelper.showCustomToast(getActivity(), "warning", getString(R.string.must_fill_fields));
                 } else {
                     gift_model.setDescrip(stringDescrip);
                     gift_model.setId_gift_typeName(autoCompleteGiftTypeOfGift.getText().toString());

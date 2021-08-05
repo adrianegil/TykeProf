@@ -1,5 +1,6 @@
 package cu.cujae.gilsoft.tykeprof.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.view.LayoutInflater;
@@ -60,11 +61,12 @@ public class Gift_Adapter extends ListAdapter<Gift, Gift_Adapter.ViewHolder> {
         return new Gift_Adapter.ViewHolder(v);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         Gift gift = getItem(position);
-        holder.textViewGiftDecrip.setText("Descripción: " + gift.getDescrip());
+        holder.textViewGiftDecrip.setText(activity.getString(R.string.description) + ": " + gift.getDescrip());
         holder.layoutExpanded.setVisibility(gift.isContenExpandable() ? View.VISIBLE : View.GONE);
 
         View view1 = activity.getLayoutInflater().inflate(R.layout.dialog_add_gift, null);
@@ -85,7 +87,7 @@ public class Gift_Adapter extends ListAdapter<Gift, Gift_Adapter.ViewHolder> {
         Grant grant = grant_repository.getGrantLocabyId(gift.getId_grant());
 
         holder.textViewGiftTypeofGift.setText(gift_type.getName());
-        holder.textViewGrantofGift.setText("Otorgamiento: " + grant.getGrant_name());
+        holder.textViewGrantofGift.setText(activity.getString(R.string.grant) + ": " + grant.getGrant_name());
 
         // Spinner spinner = view1.findViewById(R.id.textInputLayoutGiftTypeOfGift);
 
@@ -119,7 +121,7 @@ public class Gift_Adapter extends ListAdapter<Gift, Gift_Adapter.ViewHolder> {
             gift_model.setId_gift(gift.getId_gift());
 
             AlertDialog dialog = new AlertDialog.Builder(activity)
-                    .setTitle("Nuevo Regalo")
+                    .setTitle(R.string.edit_gift)
                     //.setMessage("Inserte el nombre de la Estrategia")
                     .setPositiveButton(R.string.accept, null)
                     .setNegativeButton(activity.getString(R.string.cancel), null)
@@ -132,7 +134,7 @@ public class Gift_Adapter extends ListAdapter<Gift, Gift_Adapter.ViewHolder> {
                 String stringGiftTypeNameId = autoCompleteGiftTypeOfGift.getText().toString();
                 String stringGrantNameId = autoCompleteGrantOfGift.getText().toString();
 
-                if (stringDescrip.isEmpty()||stringGiftTypeNameId.isEmpty()||stringGiftTypeNameId.isEmpty()) {
+                if (stringDescrip.isEmpty() || stringGiftTypeNameId.isEmpty() || stringGiftTypeNameId.isEmpty()) {
                     if (stringDescrip.isEmpty())
                         textInputLayoutDescripOfGift.setError(activity.getString(R.string.required));
                     if (stringGiftTypeNameId.isEmpty())

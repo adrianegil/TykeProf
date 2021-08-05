@@ -82,7 +82,7 @@ public class GrantFragment extends Fragment {
             TextInputLayout textInputLayoutNewGrant = view1.findViewById(R.id.textInputLayoutNewGrant);
             EditText editTextGrantName = view1.findViewById(R.id.editTextGrantName);
             AlertDialog dialog = new AlertDialog.Builder(getActivity())
-                    .setTitle("Nuevo Otorgamiento")
+                    .setTitle(R.string.new_grant)
                     .setPositiveButton(R.string.accept, null)
                     .setNegativeButton(getString(R.string.cancel), null)
                     .setView(view1)

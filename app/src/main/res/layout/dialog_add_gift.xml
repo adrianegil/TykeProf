@@ -92,8 +92,9 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/selector_ic_textfield"
                     android:drawablePadding="12dp"
-                    android:hint="Descripción"
+                    android:hint="@string/description"
                     android:imeOptions="flagNoExtractUi"
+                    android:importantForAutofill="noExcludeDescendants"
                     android:inputType="text"
                     android:maxLength="45" />
 

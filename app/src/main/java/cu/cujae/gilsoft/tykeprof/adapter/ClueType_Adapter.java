@@ -93,7 +93,7 @@ public class ClueType_Adapter extends ListAdapter<Clue_Type, ClueType_Adapter.Vi
             textInputLayoutClueType.setEnabled(false);
 
             AlertDialog dialog = new AlertDialog.Builder(activity)
-                    .setTitle("Editar Tipo de pista")
+                    .setTitle(R.string.edit_clue_type)
                     //.setMessage("Inserte el nombre de la Estrategia")
                     .setPositiveButton(R.string.accept, null)
                     .setNegativeButton(R.string.cancel, null)

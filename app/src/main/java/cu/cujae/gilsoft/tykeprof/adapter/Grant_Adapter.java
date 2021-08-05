@@ -1,5 +1,6 @@
 package cu.cujae.gilsoft.tykeprof.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -46,6 +47,7 @@ public class Grant_Adapter extends ListAdapter<Grant, Grant_Adapter.ViewHolder> 
         return new Grant_Adapter.ViewHolder(v);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
@@ -56,8 +58,8 @@ public class Grant_Adapter extends ListAdapter<Grant, Grant_Adapter.ViewHolder> 
 
         holder.viewDeleteGrant.setOnClickListener(v -> {
             AlertDialog.Builder dialog = new AlertDialog.Builder(activity);
-            dialog.setTitle("Eliminar Otorgamiento");
-            dialog.setMessage("Desea realmente eliminar este Otorgamiento");
+            dialog.setTitle(R.string.delete_grant);
+            dialog.setMessage(R.string.confirm_delete_grant);
             dialog.setPositiveButton(R.string.yes, (dialog1, which) -> {
                 grantViewModel.deleteGrant(grant);
             });
@@ -88,7 +90,7 @@ public class Grant_Adapter extends ListAdapter<Grant, Grant_Adapter.ViewHolder> 
             });
 
             AlertDialog dialog = new AlertDialog.Builder(activity)
-                    .setTitle("Editar Otorgamiento")
+                    .setTitle(R.string.edit_grant)
                     .setPositiveButton(R.string.accept, null)
                     .setNegativeButton(R.string.cancel, null)
                     .setView(view1)

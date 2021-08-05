@@ -37,11 +37,11 @@ public class Clue_Type_Repository {
         this.context = application;
         this.clue_type_dao = db.clue_type_dao();
         this.clue_type_service = RetrofitClient.getRetrofit().create(Clue_Type_Service.class);
-        this.token = UserHelper.getToken(application);
+        // this.token = UserHelper.getToken(application);
     }
 
     public LiveData<List<Clue_Type>> getAllClueTypeWeb() {
-
+        token = UserHelper.getToken(context);
         Call<List<Clue_Type>> listCallClueType = clue_type_service.getAllClueTypeByWeb("Bearer " + token);
         listCallClueType.enqueue(new Callback<List<Clue_Type>>() {
             @Override
@@ -71,7 +71,7 @@ public class Clue_Type_Repository {
     }
 
     public Clue_Type getClueTypeByID(long id) {
-
+        token = UserHelper.getToken(context);
         Call<Clue_Type> callClueType = clue_type_service.getClueTypeByIdByWeb("Bearer " + token, id);
         callClueType.enqueue(new Callback<Clue_Type>() {
             @Override
@@ -104,7 +104,7 @@ public class Clue_Type_Repository {
     }
 
     public void saveClueType(Clue_Type clue_type) {
-
+        token = UserHelper.getToken(context);
         Call<Clue_Type> callClueType = clue_type_service.saveClueTypeByWeb("Bearer " + token, clue_type);
         callClueType.enqueue(new Callback<Clue_Type>() {
             @Override
@@ -136,6 +136,7 @@ public class Clue_Type_Repository {
     }
 
     public void updateClueType(Clue_Type clue_type) {
+        token = UserHelper.getToken(context);
         Call<Clue_Type> callClueType = clue_type_service.updateClueTypeByWeb("Bearer " + token, clue_type);
         callClueType.enqueue(new Callback<Clue_Type>() {
             @Override
@@ -166,6 +167,7 @@ public class Clue_Type_Repository {
     }
 
     public void deleteClueType(Clue_Type clue_type) {
+        token = UserHelper.getToken(context);
         Call<Clue_Type> callClueType = clue_type_service.deleteClueTypeByWeb("Bearer " + token, clue_type.getId());
         callClueType.enqueue(new Callback<Clue_Type>() {
             @Override

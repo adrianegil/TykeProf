@@ -44,10 +44,11 @@ public class Grant_Repository {
         this.context = application;
         this.grant_dao = db.grant_dao();
         this.grant_service = RetrofitClient.getRetrofit().create(Grant_Service.class);
-        this.token = UserHelper.getToken(application);
+        // this.token = UserHelper.getToken(application);
     }
 
     public LiveData<List<Grant>> getAllGrantWeb() {
+        token = UserHelper.getToken(context);
         Call<List<Grant>> listCallGrant = grant_service.getAllGrantByWeb("Bearer " + token);
         listCallGrant.enqueue(new Callback<List<Grant>>() {
             @Override
@@ -76,6 +77,7 @@ public class Grant_Repository {
     }
 
     public List<Grant> getAllGrantList() {
+        token = UserHelper.getToken(context);
         Call<List<Grant>> listCallGrant = grant_service.getAllGrantByWeb("Bearer " + token);
         listCallGrant.enqueue(new Callback<List<Grant>>() {
             @Override
@@ -103,7 +105,7 @@ public class Grant_Repository {
                         grant_dao.saveAllGrantList(grantListResponse);
                     });
                 } else if (response.code() == 403) {
-                    UserHelper.renovateToken(context);
+                    // UserHelper.renovateToken(context);
                 } else
                     Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show();
             }
@@ -120,6 +122,7 @@ public class Grant_Repository {
     }
 
     public void saveGrant(Grant grant) {
+        token = UserHelper.getToken(context);
         Call<Grant> saveGrantCall = grant_service.saveGrantByWeb("Bearer " + token, grant);
         saveGrantCall.enqueue(new Callback<Grant>() {
             @Override
@@ -147,7 +150,7 @@ public class Grant_Repository {
     }
 
     public void updateGrant(Grant grant) {
-
+        token = UserHelper.getToken(context);
         Call<Grant> updateGrantCall = grant_service.updateGrantByWeb("Bearer " + token, grant);
         updateGrantCall.enqueue(new Callback<Grant>() {
             @Override
@@ -175,7 +178,7 @@ public class Grant_Repository {
     }
 
     public void deleteGrant(Grant grant) {
-
+        token = UserHelper.getToken(context);
         Call<ResponseBody> calldeleteGrant = grant_service.deleteGrantByWeb("Bearer " + token, grant.getId_grant());
         calldeleteGrant.enqueue(new Callback<ResponseBody>() {
             @Override

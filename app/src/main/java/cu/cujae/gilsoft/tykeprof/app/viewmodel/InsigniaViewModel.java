@@ -12,7 +12,7 @@ import cu.cujae.gilsoft.tykeprof.data.entity.Insignia;
 import cu.cujae.gilsoft.tykeprof.data.model.Insignia_Model;
 import cu.cujae.gilsoft.tykeprof.repository.Insignia_Repository;
 
-public class InsigniaViewModel extends AndroidViewModel{
+public class InsigniaViewModel extends AndroidViewModel {
 
     private Insignia_Repository insignia_repository;
     private final LiveData<List<Insignia>> allInsignias;

@@ -78,6 +78,7 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                ToastHelper.showCustomToast(SplashActivity.this, "warning", getResources().getString(R.string.no_connection));
                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 finish();
             }

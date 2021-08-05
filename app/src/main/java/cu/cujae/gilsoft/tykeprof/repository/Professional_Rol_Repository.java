@@ -31,8 +31,8 @@ import retrofit2.Response;
 public class Professional_Rol_Repository {
 
     private Career_Dao career_dao;
-   private Topic_Dao topic_dao;
-   private Professional_Rol_Dao professional_rol_dao;
+    private Topic_Dao topic_dao;
+    private Professional_Rol_Dao professional_rol_dao;
     private final AppDatabase db;
     private Professional_Rol_Service professional_rol_service;
     private Context context;
@@ -45,11 +45,11 @@ public class Professional_Rol_Repository {
         this.topic_dao = db.topic_dao();
         this.professional_rol_dao = db.professional_rol_dao();
         this.professional_rol_service = RetrofitClient.getRetrofit().create(Professional_Rol_Service.class);
-        this.token = UserHelper.getToken(application);
+        // this.token = UserHelper.getToken(application);
     }
 
     public LiveData<List<Professional_Rol>> getAllProfessionalRol() {
-
+        token = UserHelper.getToken(context);
         Call<List<Professional_Rol>> listCallProfessionalRol = professional_rol_service.getAllProfessionalRolByWeb("Bearer " + token);
         listCallProfessionalRol.enqueue(new Callback<List<Professional_Rol>>() {
             @Override
@@ -88,7 +88,7 @@ public class Professional_Rol_Repository {
     }
 
     public List<Professional_Rol> getAllProfessionalRolList() {
-
+        token = UserHelper.getToken(context);
         Call<List<Professional_Rol>> listCallProfessionalRol = professional_rol_service.getAllProfessionalRolByWeb("Bearer " + token);
         listCallProfessionalRol.enqueue(new Callback<List<Professional_Rol>>() {
             @Override
@@ -113,7 +113,7 @@ public class Professional_Rol_Repository {
                         professional_rol_dao.saveAllProfessionalRolList(professional_rolsSave);
                     });
                 } else if (response.code() == 403) {
-                    UserHelper.renovateToken(context);
+                   // UserHelper.renovateToken(context);
 
                 } else
                     Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show();
@@ -131,7 +131,7 @@ public class Professional_Rol_Repository {
     }
 
     public void saveProfessionalRol(Professional_Rol_Model professional_rol_model) {
-
+        token = UserHelper.getToken(context);
         Call<Professional_Rol> saveProfessionalRolCall = professional_rol_service.saveProfessionalRolByWeb("Bearer " + token, professional_rol_model);
         saveProfessionalRolCall.enqueue(new Callback<Professional_Rol>() {
             @Override
@@ -158,7 +158,7 @@ public class Professional_Rol_Repository {
     }
 
     public void deleteProfessionalRol(long id) {
-
+        token = UserHelper.getToken(context);
         Call<ResponseBody> calldeleteProfessionalRol = professional_rol_service.deleteProfessionalRolByWeb("Bearer " + token, id);
         calldeleteProfessionalRol.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -167,7 +167,7 @@ public class Professional_Rol_Repository {
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         professional_rol_dao.deleteProfessionalRolByID(id);
                     });
-                    Toast.makeText(context,context.getString(R.string.delete_success), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, context.getString(R.string.delete_success), Toast.LENGTH_SHORT).show();
 
                 } else if (response.code() == 403) {
                     UserHelper.renovateToken(context);

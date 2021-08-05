@@ -100,7 +100,7 @@ public class UserFragment extends Fragment {
                 dialogChangePasswordBinding = DialogChangePasswordBinding.inflate(getLayoutInflater(),null, false);
 
                 AlertDialog dialog = new AlertDialog.Builder(getActivity())
-                        .setTitle("Cambiar Contraseña")
+                        .setTitle(R.string.change_password)
                         //.setMessage("Inserte el nombre de la Estrategia")
                         .setPositiveButton(R.string.accept, null)
                         .setNegativeButton(getString(R.string.cancel), null)
@@ -117,7 +117,7 @@ public class UserFragment extends Fragment {
                         if (stringConfirmPassword.isEmpty())
                             dialogChangePasswordBinding.textInputLayoutConfirmPassword.setError(getString(R.string.required));
                         if (!stringNewPassword.equals(stringConfirmPassword))
-                            ToastHelper.showCustomToast(getActivity(),"error", "Las contraseñas no coinciden");
+                            ToastHelper.showCustomToast(getActivity(),"error", getString(R.string.password_dont_coincide));
                     } else {
                         user.setPassword(stringNewPassword);
                        userViewModel.changePassword(user);
@@ -136,7 +136,7 @@ public class UserFragment extends Fragment {
                 dialogEditUserBinding = DialogEditUserBinding.inflate(getLayoutInflater(), null, false);
 
                 AlertDialog dialog = new AlertDialog.Builder(getActivity())
-                        .setTitle("Editar datos personales")
+                        .setTitle(R.string.edit_data_personal)
                         //.setMessage("Inserte el nombre de la Estrategia")
                         .setPositiveButton(R.string.accept, null)
                         .setNegativeButton(getString(R.string.cancel), null)

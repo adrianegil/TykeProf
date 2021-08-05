@@ -80,15 +80,9 @@ public class MainActivity extends AppCompatActivity {
 
         UserViewModel userViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())).get(UserViewModel.class);
         userViewModel.getUser().observe(this, user -> {
-            try {
-                textViewUserEmailDrawer.setText(user.getEmail());
-                textViewUserFullNameDrawer.setText(user.getFullName());
-                loadUserImage(user.getImage_url());
-            } catch (Exception e) {
-                textViewUserEmailDrawer.setText(getString(R.string.email));
-                textViewUserFullNameDrawer.setText(getString(R.string.user));
-                loadUserImage("URL");
-            }
+            textViewUserEmailDrawer.setText(user.getEmail());
+            textViewUserFullNameDrawer.setText(user.getFullName());
+            loadUserImage(user.getImage_url());
         });
     }
 

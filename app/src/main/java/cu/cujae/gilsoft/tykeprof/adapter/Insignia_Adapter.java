@@ -1,5 +1,6 @@
 package cu.cujae.gilsoft.tykeprof.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.view.LayoutInflater;
@@ -58,14 +59,15 @@ public class Insignia_Adapter extends ListAdapter<Insignia, Insignia_Adapter.Vie
         return new Insignia_Adapter.ViewHolder(v);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         Insignia insignia = getItem(position);
 
         holder.textViewInsigniaName.setText(insignia.getName());
-        holder.textViewAdvancePointsOfInsignia.setText("Puntos de Avance: "+ insignia.getAdvance_points());
-        holder.textViewGrantPointsOfInsignia.setText("Puntos a Otorgar: " + insignia.getGrant_points());
+        holder.textViewAdvancePointsOfInsignia.setText(activity.getString(R.string.advance_points) + ": " + insignia.getAdvance_points());
+        holder.textViewGrantPointsOfInsignia.setText(activity.getString(R.string.grant_points)  + ": " + insignia.getGrant_points());
         holder.layoutExpanded.setVisibility(insignia.isContenExpandable() ? View.VISIBLE : View.GONE);
 
         holder.viewDeleteInsignia.setOnClickListener(v -> {
@@ -82,7 +84,7 @@ public class Insignia_Adapter extends ListAdapter<Insignia, Insignia_Adapter.Vie
 
         Professional_Rol professional_rol = professional_rol_repository.getProfessRolLocalbyId(insignia.getId_profess_rol());
 
-        holder.textViewProfessRolOfInsignia.setText("Rol Profesional: "+ professional_rol.getName());
+        holder.textViewProfessRolOfInsignia.setText(activity.getString(R.string.professional_rol)  + ": " + professional_rol.getName());
 
         holder.viewEditInsignia.setOnClickListener(v -> {
 
@@ -118,7 +120,7 @@ public class Insignia_Adapter extends ListAdapter<Insignia, Insignia_Adapter.Vie
             });
             sliderGrantPoints.setValue(insignia.getGrant_points());
 
-           ArrayList professional_rols = (ArrayList<Professional_Rol>) professional_rol_repository.getAllProfessionalRolList();
+            ArrayList professional_rols = (ArrayList<Professional_Rol>) professional_rol_repository.getAllProfessionalRolList();
 
             ArrayAdapter<Professional_Rol> professRolAdapter = new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, professional_rols);
             autoCompleteProfessRolToInsignia.setAdapter(professRolAdapter);
@@ -132,7 +134,7 @@ public class Insignia_Adapter extends ListAdapter<Insignia, Insignia_Adapter.Vie
             });
 
             AlertDialog dialog = new AlertDialog.Builder(activity)
-                    .setTitle(R.string.new_insignia)
+                    .setTitle(R.string.edit_insignia)
                     .setPositiveButton(R.string.accept, null)
                     .setNegativeButton(activity.getString(R.string.cancel), null)
                     .setView(view1)

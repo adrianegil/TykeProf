@@ -89,7 +89,6 @@ public class User_Repository {
     }
 
     public void updateUser(User user) {
-
         token = UserHelper.getToken(context);
         user.setRoles(role_dao.getAllRoleList(user.getId_user()));
 
@@ -120,11 +119,9 @@ public class User_Repository {
     }
 
     public void changePassword(User user) {
-
         token = UserHelper.getToken(context);
         List<Role> roleList = role_dao.getAllRoleList(user.getId_user());
         user.setRoles(roleList);
-
         Login login = UserHelper.getUserLogin(context);
 
         Call<Integer> callchangePasswordUser = user_service.changePasswordByWeb("Bearer " + token, user);

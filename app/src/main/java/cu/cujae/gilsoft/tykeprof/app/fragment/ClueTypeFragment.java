@@ -80,7 +80,7 @@ public class ClueTypeFragment extends Fragment {
             EditText editTextCluePoints = view1.findViewById(R.id.editTextCluePoints);
 
             AlertDialog dialog = new AlertDialog.Builder(getActivity())
-                    .setTitle("Nuevo Tipo de pista")
+                    .setTitle(R.string.new_clue_type)
                     //.setMessage("Inserte el nombre de la Estrategia")
                     .setPositiveButton(R.string.accept, null)
                     .setNegativeButton(getString(R.string.cancel), null)

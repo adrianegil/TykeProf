@@ -18,9 +18,15 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import cu.cujae.gilsoft.tykeprof.R;
+import cu.cujae.gilsoft.tykeprof.data.AppDatabase;
+import cu.cujae.gilsoft.tykeprof.data.dao.User_Dao;
+import cu.cujae.gilsoft.tykeprof.data.entity.Role;
+import cu.cujae.gilsoft.tykeprof.data.entity.User;
 import cu.cujae.gilsoft.tykeprof.service.Login_Service;
+import cu.cujae.gilsoft.tykeprof.service.User_Service;
 import cu.cujae.gilsoft.tykeprof.util.Login;
 import cu.cujae.gilsoft.tykeprof.util.RetrofitClient;
 import cu.cujae.gilsoft.tykeprof.util.ToastHelper;
@@ -33,12 +39,18 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
 
     private Login_Service login_service = RetrofitClient.getRetrofit().create(Login_Service.class);
+    private User_Service user_service = RetrofitClient.getRetrofit().create(User_Service.class);
+
     private int cont;
+    ProgressBar progressBarLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        progressBarLogin = findViewById(R.id.progressBarLogin);
+
     }
 
     //PRESIONAR DOS VECES ATRAS PARA SALIR
@@ -54,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
             }
+
             @Override
             public void onFinish() {
                 cont = 0;
@@ -65,7 +78,6 @@ public class LoginActivity extends AppCompatActivity {
     public void logIn(View view) {
         MaterialCardView materialCardViewIncorrectLogin = findViewById(R.id.cardViewIncorrectLogin);
         materialCardViewIncorrectLogin.setVisibility(View.INVISIBLE);
-        ProgressBar progressBarLogin = findViewById(R.id.progressBarLogin);
         // TextInputLayout textInputLayoutUserName = findViewById(R.id.textInputLayoutUserName);
         //TextInputLayout textInputLayoutUserPassword = findViewById(R.id.textInputLayoutUserPassword);
         EditText editTextUserName = findViewById(R.id.editTextUserName);
@@ -93,12 +105,11 @@ public class LoginActivity extends AppCompatActivity {
                             Log.e("Json Web Token ", token);
                         } catch (IOException e) {
                             e.printStackTrace();
-                           // Log.e("ERROR TOKEN:  ", e.getMessage());
+                            // Log.e("ERROR TOKEN:  ", e.getMessage());
                         }
                         UserHelper.saveToken(token, LoginActivity.this);
                         UserHelper.saveUserLogin(login, LoginActivity.this);
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                        finish();
+                        checkRole(login.getUserCredential());
                     } else if (response.code() == 401 || response.code() == 500) {
                         progressBarLogin.setVisibility(View.INVISIBLE);
                         materialCardViewIncorrectLogin.setVisibility(View.VISIBLE);
@@ -125,6 +136,54 @@ public class LoginActivity extends AppCompatActivity {
             });
         }
     }
+
+    public void checkRole(String username) {
+
+        User_Dao user_dao = AppDatabase.getDatabase(this).user_dao();
+        Call<User> getUser = user_service.getUserByWeb(username);
+        getUser.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.isSuccessful()) {
+                    boolean isTeacher = false;
+                    User user = response.body();
+                    for (Role role : user.getRoles()) {
+                        if (role.getId_role() == 2) {
+                            isTeacher = true;
+                            AppDatabase.databaseWriteExecutor.execute(() -> {
+                                //  user_dao.deleteAll();
+                                user_dao.saveUser(user);
+                            });
+                        }
+                    }
+                    goToMainAvtivity(isTeacher);
+                    Log.e("User: ", user.getUserName() + " " + user.getFullName() + "" + user.getImage_url());
+                } else if (response.code() == 403) {
+                    UserHelper.renovateToken(LoginActivity.this);
+
+                } else
+                    Toast.makeText(LoginActivity.this, "ERROR", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+            }
+        });
+
+    }
+
+    public void goToMainAvtivity(boolean isTeacher) {
+
+        if (isTeacher) {
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+        } else {
+            progressBarLogin.setVisibility(View.INVISIBLE);
+            ToastHelper.showCustomToast(LoginActivity.this, "error", "Debe estar registrado como Profesor");
+        }
+
+    }
+
 
     //SALIR DE LA APP
     public void exitLoginActivity(View view) {

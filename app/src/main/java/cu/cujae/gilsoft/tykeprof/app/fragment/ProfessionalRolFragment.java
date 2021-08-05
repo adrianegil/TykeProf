@@ -138,7 +138,7 @@ public class ProfessionalRolFragment extends Fragment {
             TextInputLayout textInputLayoutTopicOfProfessRol = view1.findViewById(R.id.textInputLayoutTopicOfProfessRol);
 
             AlertDialog dialog = new AlertDialog.Builder(getActivity())
-                    .setTitle("Nuevo Rol Profesional")
+                    .setTitle(R.string.new_professional_rol)
                     //.setMessage("Inserte el nombre de la Estrategia")
                     .setPositiveButton(R.string.accept, null)
                     .setNegativeButton(getString(R.string.cancel), null)
@@ -158,9 +158,6 @@ public class ProfessionalRolFragment extends Fragment {
                         textInputLayoutNameOfProfessRol.setError(getString(R.string.required));
                     if (stringCareer.isEmpty())
                         textInputLayoutCareerOfProfessRol.setError(getString(R.string.required));
-                    Toast.makeText(getActivity(), professional_rol_model.getName_profess_rol() + "" + professional_rol_model.getId_career() + " " + professional_rol_model.getId_topic(), Toast.LENGTH_SHORT).show();
-
-                    //ToastHelper.showCustomToast(getActivity(), "warning", getString(R.string.must_fill_fields));
                 } else {
                     professional_rol_model.setName_profess_rol(stringNameOfProfessRol);
                     professionalRolViewModel.saveProfessionalRol(professional_rol_model);

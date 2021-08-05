@@ -36,11 +36,11 @@ public class Career_Repository {
         this.context = application;
         this.career_dao = db.career_dao();
         this.career_service = RetrofitClient.getRetrofit().create(Career_Service.class);
-        this.token = UserHelper.getToken(application);
+        //this.token = UserHelper.getToken(application);
     }
 
     public List<Career> getAllCareerList() {
-
+        token = UserHelper.getToken(context);
         Call<List<Career>> listCallCareer = career_service.getAllCareerByWeb("Bearer " + token);
         listCallCareer.enqueue(new Callback<List<Career>>() {
             @Override
@@ -59,7 +59,7 @@ public class Career_Repository {
                         career_dao.saveAllCareer(careersSave);
                     });
                 } else if (response.code() == 403) {
-                    UserHelper.renovateToken(context);
+                    //UserHelper.renovateToken(context);
                     //getAllQuestionTypeWeb();
                 } else
                     Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show();

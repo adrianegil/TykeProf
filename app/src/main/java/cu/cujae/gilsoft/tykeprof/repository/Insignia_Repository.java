@@ -48,11 +48,11 @@ public class Insignia_Repository {
         this.insignia_dao = db.insignia_dao();
         this.professional_rol_dao = db.professional_rol_dao();
         this.insignia_service = RetrofitClient.getRetrofit().create(Insignia_Service.class);
-        this.token = UserHelper.getToken(application);
+        // this.token = UserHelper.getToken(application);
     }
 
     public LiveData<List<Insignia>> getAllInsignias() {
-
+        token = UserHelper.getToken(context);
         Call<List<Insignia>> listCallInsignia = insignia_service.getAllInsigniasByWeb("Bearer " + token);
         listCallInsignia.enqueue(new Callback<List<Insignia>>() {
             @Override
@@ -94,13 +94,12 @@ public class Insignia_Repository {
     }
 
     public void saveInsignia(Insignia_Model insignia_model) {
-
+        token = UserHelper.getToken(context);
         Call<Integer> saveInsignia = insignia_service.saveInsigniaByWeb("Bearer " + token, insignia_model);
         saveInsignia.enqueue(new Callback<Integer>() {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
                 if (response.isSuccessful()) {
-
                     getAllInsignias();
                     Toast.makeText(context, context.getResources().getString(R.string.save_success), Toast.LENGTH_SHORT).show();
                 } else if (response.code() == 403) {
@@ -117,7 +116,7 @@ public class Insignia_Repository {
     }
 
     public void updateInsignia(Insignia insignia) {
-
+        token = UserHelper.getToken(context);
         Call<Insignia> callupdateInsignia = insignia_service.updateInsignialByWeb("Bearer " + token, insignia);
         callupdateInsignia.enqueue(new Callback<Insignia>() {
             @Override
@@ -141,7 +140,7 @@ public class Insignia_Repository {
     }
 
     public void deleteInsignia(long id) {
-
+        token = UserHelper.getToken(context);
         Call<ResponseBody> calldeleteInsignia = insignia_service.deleteInsigniaByWeb("Bearer " + token, id);
         calldeleteInsignia.enqueue(new Callback<ResponseBody>() {
             @Override

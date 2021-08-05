@@ -26,7 +26,7 @@ public class QuestionTypeViewModel extends AndroidViewModel {
         question_type_repository.saveQuestionType(question_type);
     }
 
-    public  void deleteQuestionType(Question_Type question_type){
+    public void deleteQuestionType(Question_Type question_type) {
         question_type_repository.deleteQuestionType(question_type);
     }
 

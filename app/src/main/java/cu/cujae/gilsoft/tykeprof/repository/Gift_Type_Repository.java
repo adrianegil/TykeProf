@@ -43,11 +43,11 @@ public class Gift_Type_Repository {
         this.context = application;
         this.gift_type_dao = db.gift_type_dao();
         this.gift_type_service = RetrofitClient.getRetrofit().create(Gift_Type_Service.class);
-        this.token = UserHelper.getToken(application);
+      //  this.token = UserHelper.getToken(application);
     }
 
     public LiveData<List<Gift_Type>> getAllGiftTypeWeb() {
-
+        token = UserHelper.getToken(context);
         Call<List<Gift_Type>> listCallQuestionType = gift_type_service.getAllGiftTypeByWeb("Bearer " + token);
         listCallQuestionType.enqueue(new Callback<List<Gift_Type>>() {
             @Override
@@ -76,7 +76,7 @@ public class Gift_Type_Repository {
     }
 
     public List<Gift_Type> getAllGiftTypeList() {
-
+        token = UserHelper.getToken(context);
         Call<List<Gift_Type>> listCallQuestionType = gift_type_service.getAllGiftTypeByWeb("Bearer " + token);
         listCallQuestionType.enqueue(new Callback<List<Gift_Type>>() {
             @Override
@@ -102,7 +102,7 @@ public class Gift_Type_Repository {
                         gift_type_dao.saveAllGiftTypelist(giftTypeListResponse);
                     });
                 } else if (response.code() == 403) {
-                    UserHelper.renovateToken(context);
+                   // UserHelper.renovateToken(context);
                 } else
                     Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show();
             }
@@ -124,7 +124,7 @@ public class Gift_Type_Repository {
     }
 
     public void saveGiftType(Gift_Type gift_type) {
-
+        token = UserHelper.getToken(context);
         Call<Gift_Type> saveGiftTypeCall = gift_type_service.saveGiftTypeByWeb("Bearer " + token, gift_type);
         saveGiftTypeCall.enqueue(new Callback<Gift_Type>() {
             @Override
@@ -151,7 +151,7 @@ public class Gift_Type_Repository {
     }
 
     public void deleteGiftType(Gift_Type gift_type) {
-
+        token = UserHelper.getToken(context);
         Call<ResponseBody> calldeleteGiftType = gift_type_service.deleteGiftTypeByWeb("Bearer " + token, gift_type.getId_gift_type());
         calldeleteGiftType.enqueue(new Callback<ResponseBody>() {
             @Override

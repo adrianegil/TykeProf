@@ -49,10 +49,14 @@
     <string name="delete_question_type">Eliminar Tipo de Pregunta</string>
     <string name="confirm_delete_cuestion_type">Desea realmente eliminar este Tipo de Pregunta</string>
     <string name="delete_clue_type">Eliminar Tipo de Pista</string>
+    <string name="delete_gift_type">Eliminar Tipo de Regalo</string>
     <string name="delete_gift">Eliminar Regalo</string>
+    <string name="delete_grant">Eliminar Otorgamiento</string>
     <string name="delete_insignia">Eliminar Insignia</string>
     <string name="delete_profess_rol">Eliminar Rol Profesional</string>
     <string name="confirm_delete_gift">Desea realmente eliminar este Regalo</string>
+    <string name="confirm_delete_gift_type">Desea realmente eliminar este Tipo de Regalo</string>
+    <string name="confirm_delete_grant">Desea realmente eliminar este Otorgamiento</string>
     <string name="confirm_delete_insignia">Desea realmente eliminar esta Insignia</string>
     <string name="confirm_delete_profess_rol">Desea realmente eliminar este Rol Professional</string>
     <string name="confirm_delete_cluetype">Desea realmente eliminar este Tipo de Pista</string>
@@ -60,7 +64,20 @@
     <string name="topic">Tema</string>
     <string name="career">Carrera</string>
     <string name="name">Nombre</string>
+    <string name="edit_data_personal">Editar datos personales</string>
+    <string name="change_password">Cambiar Contraseña</string>
+    <string name="password_dont_coincide">Las contraseñas no coinciden</string>
     <string name="new_insignia">Nueva Insignia</string>
+    <string name="new_gift">Nuevo Regalo</string>
+    <string name="new_grant">Nuevo Otorgamiento</string>
+    <string name="new_professional_rol">Nuevo Rol Profesional</string>
+    <string name="new_clue_type">Nuevo Tipo de Pista</string>
+    <string name="edit_gift">Editar Regalo</string>
+    <string name="edit_insignia">Editar Insignia</string>
+    <string name="edit_grant">Editar Otorgamiento</string>
+    <string name="edit_clue_type">Editar Tipo de Pista</string>
+    <string name="advance_points">Puntos de Avance</string>
+    <string name="grant_points">Puntos a Otorgar</string>
     <string name="user_concat">Usuario: %s</string>
     <string name="email">Correo: %s</string>
     <string name="dob">Nacimiento: %s</string>
@@ -68,5 +85,9 @@
     <string name="new_password">Nueva Contraseña</string>
     <string name="confirm_password">Confirmar Contraseña</string>
     <string name="email_dialog">Correo</string>
+    <string name="description">Descripción</string>
+    <string name="select_dob">Escoja una Fecha</string>
+    <string name="edit_data">Editar Datos</string>
+
 
 </resources>

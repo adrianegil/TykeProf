@@ -35,11 +35,11 @@ public class ClueTypeViewModel extends AndroidViewModel {
         clue_type_repository.saveClueType(clue_type);
     }
 
-    public  void updateClueType(Clue_Type clue_type){
+    public void updateClueType(Clue_Type clue_type) {
         clue_type_repository.updateClueType(clue_type);
     }
 
-    public  void deleteClueType(Clue_Type clue_type){
+    public void deleteClueType(Clue_Type clue_type) {
         clue_type_repository.deleteClueType(clue_type);
     }
 
