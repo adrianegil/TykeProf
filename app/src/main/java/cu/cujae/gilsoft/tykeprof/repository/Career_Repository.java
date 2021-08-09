@@ -29,19 +29,16 @@ public class Career_Repository {
     private final AppDatabase db;
     private Career_Service career_service;
     private Context context;
-    private String token;
 
     public Career_Repository(Application application) {
         this.db = AppDatabase.getDatabase(application);
         this.context = application;
         this.career_dao = db.career_dao();
         this.career_service = RetrofitClient.getRetrofit().create(Career_Service.class);
-        //this.token = UserHelper.getToken(application);
     }
 
     public List<Career> getAllCareerList() {
-        token = UserHelper.getToken(context);
-        Call<List<Career>> listCallCareer = career_service.getAllCareerByWeb("Bearer " + token);
+        Call<List<Career>> listCallCareer = career_service.getAllCareerByWeb("Bearer " + UserHelper.getToken(context));
         listCallCareer.enqueue(new Callback<List<Career>>() {
             @Override
             public void onResponse(Call<List<Career>> call, Response<List<Career>> response) {

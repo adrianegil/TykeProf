@@ -36,19 +36,16 @@ public class Gift_Type_Repository {
     private final AppDatabase db;
     private Gift_Type_Service gift_type_service;
     private Context context;
-    private String token;
 
     public Gift_Type_Repository(Application application) {
         this.db = AppDatabase.getDatabase(application);
         this.context = application;
         this.gift_type_dao = db.gift_type_dao();
         this.gift_type_service = RetrofitClient.getRetrofit().create(Gift_Type_Service.class);
-      //  this.token = UserHelper.getToken(application);
     }
 
     public LiveData<List<Gift_Type>> getAllGiftTypeWeb() {
-        token = UserHelper.getToken(context);
-        Call<List<Gift_Type>> listCallQuestionType = gift_type_service.getAllGiftTypeByWeb("Bearer " + token);
+        Call<List<Gift_Type>> listCallQuestionType = gift_type_service.getAllGiftTypeByWeb("Bearer " + UserHelper.getToken(context));
         listCallQuestionType.enqueue(new Callback<List<Gift_Type>>() {
             @Override
             public void onResponse(Call<List<Gift_Type>> call, Response<List<Gift_Type>> response) {
@@ -76,8 +73,7 @@ public class Gift_Type_Repository {
     }
 
     public List<Gift_Type> getAllGiftTypeList() {
-        token = UserHelper.getToken(context);
-        Call<List<Gift_Type>> listCallQuestionType = gift_type_service.getAllGiftTypeByWeb("Bearer " + token);
+        Call<List<Gift_Type>> listCallQuestionType = gift_type_service.getAllGiftTypeByWeb("Bearer " + UserHelper.getToken(context));
         listCallQuestionType.enqueue(new Callback<List<Gift_Type>>() {
             @Override
             public void onResponse(Call<List<Gift_Type>> call, Response<List<Gift_Type>> response) {
@@ -124,8 +120,7 @@ public class Gift_Type_Repository {
     }
 
     public void saveGiftType(Gift_Type gift_type) {
-        token = UserHelper.getToken(context);
-        Call<Gift_Type> saveGiftTypeCall = gift_type_service.saveGiftTypeByWeb("Bearer " + token, gift_type);
+        Call<Gift_Type> saveGiftTypeCall = gift_type_service.saveGiftTypeByWeb("Bearer " + UserHelper.getToken(context), gift_type);
         saveGiftTypeCall.enqueue(new Callback<Gift_Type>() {
             @Override
             public void onResponse(Call<Gift_Type> call, Response<Gift_Type> response) {
@@ -151,8 +146,7 @@ public class Gift_Type_Repository {
     }
 
     public void deleteGiftType(Gift_Type gift_type) {
-        token = UserHelper.getToken(context);
-        Call<ResponseBody> calldeleteGiftType = gift_type_service.deleteGiftTypeByWeb("Bearer " + token, gift_type.getId_gift_type());
+        Call<ResponseBody> calldeleteGiftType = gift_type_service.deleteGiftTypeByWeb("Bearer " + UserHelper.getToken(context), gift_type.getId_gift_type());
         calldeleteGiftType.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

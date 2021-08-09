@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
+    app:cardCornerRadius="10dp"
     app:cardElevation="5dp"
-    tools:viewBindingIgnore="true"
-    app:cardCornerRadius="10dp">
+    tools:viewBindingIgnore="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -104,7 +104,6 @@
                 app:layout_constraintStart_toEndOf="@+id/imageView5"
                 app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
-
             <ImageView
                 android:id="@+id/imageView6"
                 android:layout_width="20dp"
@@ -131,6 +130,7 @@
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
                 app:cornerRadius="16dp"
@@ -140,7 +140,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textViewTopicOfProfessRol" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

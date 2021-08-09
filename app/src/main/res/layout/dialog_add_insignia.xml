@@ -20,6 +20,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
+                app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -28,15 +29,14 @@
                     android:id="@+id/editTextInsigniaName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:importantForAutofill="noExcludeDescendants"
                     android:drawableStart="@drawable/selector_ic_textfield"
                     android:drawablePadding="12dp"
                     android:hint="@string/name"
                     android:imeOptions="flagNoExtractUi"
+                    android:importantForAutofill="noExcludeDescendants"
                     android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayoutProfessRolToInsignia"
@@ -60,7 +60,6 @@
                     android:hint="@string/professional_rol" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
 
             <com.google.android.material.slider.Slider
                 android:id="@+id/sliderAdvancePoints"
@@ -88,7 +87,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayoutProfessRolToInsignia" />
 
-
             <com.google.android.material.slider.Slider
                 android:id="@+id/sliderGrantPoints"
                 android:layout_width="0dp"
@@ -113,8 +111,6 @@
                 app:layout_constraintStart_toStartOf="@+id/textViewValue"
                 app:layout_constraintTop_toBottomOf="@+id/textViewValue" />
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </ScrollView>
 </LinearLayout>

@@ -27,20 +27,17 @@ public class Question_Type_Repository {
     private final AppDatabase db;
     private Question_Type_Service question_type_service;
     private Context context;
-    private String token;
 
     public Question_Type_Repository(Application application) {
         this.db = AppDatabase.getDatabase(application);
         this.context = application;
         this.question_type_dao = db.question_type_dao();
         this.question_type_service = RetrofitClient.getRetrofit().create(Question_Type_Service.class);
-       // this.token = UserHelper.getToken(application);
         this.allQuestionType = getAllQuestionTypeWeb();
     }
 
     public LiveData<List<Question_Type>> getAllQuestionTypeWeb() {
-        token = UserHelper.getToken(context);
-        Call<List<Question_Type>> listCallQuestionType = question_type_service.getAllQuestionTypeByWeb("Bearer " + token);
+        Call<List<Question_Type>> listCallQuestionType = question_type_service.getAllQuestionTypeByWeb("Bearer " + UserHelper.getToken(context));
         listCallQuestionType.enqueue(new Callback<List<Question_Type>>() {
             @Override
             public void onResponse(Call<List<Question_Type>> call, Response<List<Question_Type>> response) {
@@ -73,8 +70,7 @@ public class Question_Type_Repository {
     }
 
     public void saveQuestionType(Question_Type question_type){
-        token = UserHelper.getToken(context);
-        Call<Question_Type> saveQuestionTypeCall = question_type_service.saveQuestionTypeByWeb("Bearer " + token, question_type);
+        Call<Question_Type> saveQuestionTypeCall = question_type_service.saveQuestionTypeByWeb("Bearer " + UserHelper.getToken(context), question_type);
         saveQuestionTypeCall.enqueue(new Callback<Question_Type>() {
             @Override
             public void onResponse(Call<Question_Type> call, Response<Question_Type> response) {
@@ -104,8 +100,7 @@ public class Question_Type_Repository {
     }
 
     public  void  deleteQuestionType(Question_Type question_type){
-        token = UserHelper.getToken(context);
-        Call<Question_Type> deleteQuestionTypeCall = question_type_service.deleteQuestionTypeByWeb("Bearer " + token, question_type.getId());
+        Call<Question_Type> deleteQuestionTypeCall = question_type_service.deleteQuestionTypeByWeb("Bearer " + UserHelper.getToken(context), question_type.getId());
         deleteQuestionTypeCall.enqueue(new Callback<Question_Type>() {
             @Override
             public void onResponse(Call<Question_Type> call, Response<Question_Type> response) {

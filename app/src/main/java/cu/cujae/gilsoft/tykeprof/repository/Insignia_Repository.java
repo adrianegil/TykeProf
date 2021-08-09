@@ -40,7 +40,6 @@ public class Insignia_Repository {
     private final AppDatabase db;
     private Insignia_Service insignia_service;
     private Context context;
-    private String token;
 
     public Insignia_Repository(Application application) {
         this.db = AppDatabase.getDatabase(application);
@@ -48,12 +47,10 @@ public class Insignia_Repository {
         this.insignia_dao = db.insignia_dao();
         this.professional_rol_dao = db.professional_rol_dao();
         this.insignia_service = RetrofitClient.getRetrofit().create(Insignia_Service.class);
-        // this.token = UserHelper.getToken(application);
     }
 
     public LiveData<List<Insignia>> getAllInsignias() {
-        token = UserHelper.getToken(context);
-        Call<List<Insignia>> listCallInsignia = insignia_service.getAllInsigniasByWeb("Bearer " + token);
+        Call<List<Insignia>> listCallInsignia = insignia_service.getAllInsigniasByWeb("Bearer " + UserHelper.getToken(context));
         listCallInsignia.enqueue(new Callback<List<Insignia>>() {
             @Override
             public void onResponse(Call<List<Insignia>> call, Response<List<Insignia>> response) {
@@ -94,8 +91,7 @@ public class Insignia_Repository {
     }
 
     public void saveInsignia(Insignia_Model insignia_model) {
-        token = UserHelper.getToken(context);
-        Call<Integer> saveInsignia = insignia_service.saveInsigniaByWeb("Bearer " + token, insignia_model);
+        Call<Integer> saveInsignia = insignia_service.saveInsigniaByWeb("Bearer " + UserHelper.getToken(context), insignia_model);
         saveInsignia.enqueue(new Callback<Integer>() {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
@@ -116,8 +112,7 @@ public class Insignia_Repository {
     }
 
     public void updateInsignia(Insignia insignia) {
-        token = UserHelper.getToken(context);
-        Call<Insignia> callupdateInsignia = insignia_service.updateInsignialByWeb("Bearer " + token, insignia);
+        Call<Insignia> callupdateInsignia = insignia_service.updateInsignialByWeb("Bearer " + UserHelper.getToken(context), insignia);
         callupdateInsignia.enqueue(new Callback<Insignia>() {
             @Override
             public void onResponse(Call<Insignia> call, Response<Insignia> response) {
@@ -140,8 +135,7 @@ public class Insignia_Repository {
     }
 
     public void deleteInsignia(long id) {
-        token = UserHelper.getToken(context);
-        Call<ResponseBody> calldeleteInsignia = insignia_service.deleteInsigniaByWeb("Bearer " + token, id);
+        Call<ResponseBody> calldeleteInsignia = insignia_service.deleteInsigniaByWeb("Bearer " + UserHelper.getToken(context), id);
         calldeleteInsignia.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

@@ -88,6 +88,7 @@
     <string name="description">Descripción</string>
     <string name="select_dob">Escoja una Fecha</string>
     <string name="edit_data">Editar Datos</string>
+    <string name="should_register_asteacher">Debe estar registrado como Profesor</string>
 
 
 </resources>

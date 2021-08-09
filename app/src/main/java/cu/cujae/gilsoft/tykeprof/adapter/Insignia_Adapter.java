@@ -67,7 +67,7 @@ public class Insignia_Adapter extends ListAdapter<Insignia, Insignia_Adapter.Vie
 
         holder.textViewInsigniaName.setText(insignia.getName());
         holder.textViewAdvancePointsOfInsignia.setText(activity.getString(R.string.advance_points) + ": " + insignia.getAdvance_points());
-        holder.textViewGrantPointsOfInsignia.setText(activity.getString(R.string.grant_points)  + ": " + insignia.getGrant_points());
+        holder.textViewGrantPointsOfInsignia.setText(activity.getString(R.string.grant_points) + ": " + insignia.getGrant_points());
         holder.layoutExpanded.setVisibility(insignia.isContenExpandable() ? View.VISIBLE : View.GONE);
 
         holder.viewDeleteInsignia.setOnClickListener(v -> {
@@ -84,7 +84,7 @@ public class Insignia_Adapter extends ListAdapter<Insignia, Insignia_Adapter.Vie
 
         Professional_Rol professional_rol = professional_rol_repository.getProfessRolLocalbyId(insignia.getId_profess_rol());
 
-        holder.textViewProfessRolOfInsignia.setText(activity.getString(R.string.professional_rol)  + ": " + professional_rol.getName());
+        holder.textViewProfessRolOfInsignia.setText(activity.getString(R.string.professional_rol) + ": " + professional_rol.getName());
 
         holder.viewEditInsignia.setOnClickListener(v -> {
 
@@ -95,12 +95,14 @@ public class Insignia_Adapter extends ListAdapter<Insignia, Insignia_Adapter.Vie
                 parent.removeAllViews();*/
 
             TextInputLayout textInputLayoutNewInsignia = view1.findViewById(R.id.textInputLayoutNewInsignia);
-            EditText editTextInsigniaName = view1.findViewById(R.id.editTextInsigniaName);
+            //EditText editTextInsigniaName = view1.findViewById(R.id.editTextInsigniaName);
+            textInputLayoutNewInsignia.setVisibility(View.GONE);
+            // textInputLayoutNewInsignia.setEnabled(false);
 
             TextInputLayout textInputLayoutProfessRolToInsignia = view1.findViewById(R.id.textInputLayoutProfessRolToInsignia);
             AutoCompleteTextView autoCompleteProfessRolToInsignia = view1.findViewById(R.id.autoCompleteProfessRolToInsignia);
 
-            editTextInsigniaName.setText(insignia.getName());
+            //editTextInsigniaName.setText(insignia.getName());
 
             Slider sliderAdvancePoints = view1.findViewById(R.id.sliderAdvancePoints);
             sliderAdvancePoints.addOnChangeListener(new Slider.OnChangeListener() {
@@ -134,7 +136,7 @@ public class Insignia_Adapter extends ListAdapter<Insignia, Insignia_Adapter.Vie
             });
 
             AlertDialog dialog = new AlertDialog.Builder(activity)
-                    .setTitle(R.string.edit_insignia)
+                    .setTitle(activity.getString(R.string.edit_insignia) + ": " + insignia.getName())
                     .setPositiveButton(R.string.accept, null)
                     .setNegativeButton(activity.getString(R.string.cancel), null)
                     .setView(view1)
@@ -142,16 +144,11 @@ public class Insignia_Adapter extends ListAdapter<Insignia, Insignia_Adapter.Vie
 
             Button buttonPos = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
             buttonPos.setOnClickListener(v1 -> {
-                String stringInsigniaName = editTextInsigniaName.getText().toString();
                 String stringProfessRol = autoCompleteProfessRolToInsignia.getText().toString();
-
-                if (stringInsigniaName.isEmpty() || stringProfessRol.isEmpty()) {
-                    if (stringInsigniaName.isEmpty())
-                        textInputLayoutNewInsignia.setError(activity.getString(R.string.required));
+                if (stringProfessRol.isEmpty()) {
                     if (stringProfessRol.isEmpty())
                         textInputLayoutProfessRolToInsignia.setError(activity.getString(R.string.required));
                 } else {
-                    insignia.setName(stringInsigniaName);
                     insignia.setAdvance_points((int) sliderAdvancePoints.getValue());
                     insignia.setGrant_points((int) sliderGrantPoints.getValue());
                     insigniaViewModel.updateInsignia(insignia);

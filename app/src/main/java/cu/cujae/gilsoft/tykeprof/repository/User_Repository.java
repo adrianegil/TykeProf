@@ -8,20 +8,14 @@ import android.widget.Toast;
 import androidx.lifecycle.LiveData;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import cu.cujae.gilsoft.tykeprof.R;
-import cu.cujae.gilsoft.tykeprof.app.MainActivity;
 import cu.cujae.gilsoft.tykeprof.data.AppDatabase;
-import cu.cujae.gilsoft.tykeprof.data.dao.Insignia_Dao;
-import cu.cujae.gilsoft.tykeprof.data.dao.Professional_Rol_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Role_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.User_Dao;
 import cu.cujae.gilsoft.tykeprof.data.entity.Role;
 import cu.cujae.gilsoft.tykeprof.data.entity.User;
-import cu.cujae.gilsoft.tykeprof.databinding.ActivityMainBinding;
-import cu.cujae.gilsoft.tykeprof.service.Insignia_Service;
 import cu.cujae.gilsoft.tykeprof.service.User_Service;
 import cu.cujae.gilsoft.tykeprof.util.Login;
 import cu.cujae.gilsoft.tykeprof.util.RetrofitClient;
@@ -37,7 +31,6 @@ public class User_Repository {
     private final AppDatabase db;
     private User_Service user_service;
     private Context context;
-    private String token;
 
     public User_Repository(Application application) {
         this.db = AppDatabase.getDatabase(application);
@@ -45,12 +38,9 @@ public class User_Repository {
         this.role_dao = db.role_dao();
         this.user_dao = db.user_dao();
         this.user_service = RetrofitClient.getRetrofit().create(User_Service.class);
-        // this.token = UserHelper.getToken(application);
     }
 
     public LiveData<User> getUser() {
-
-        token = UserHelper.getToken(context);
         Call<User> getUser = user_service.getUserByWeb(UserHelper.getUserLogin(context).getUserCredential());
         getUser.enqueue(new Callback<User>() {
             @Override
@@ -89,7 +79,6 @@ public class User_Repository {
     }
 
     public void updateUser(User user) {
-        token = UserHelper.getToken(context);
         user.setRoles(role_dao.getAllRoleList(user.getId_user()));
 
        /* user.setFullName("Humberto Cabrera Dominguez");
@@ -98,7 +87,7 @@ public class User_Repository {
         String fech = String.valueOf(date.getTime());
         user.setDob(fech);*/
 
-        Call<Integer> callupdateUser = user_service.updateUserByWeb("Bearer " + token, user);
+        Call<Integer> callupdateUser = user_service.updateUserByWeb("Bearer " + UserHelper.getToken(context), user);
         callupdateUser.enqueue(new Callback<Integer>() {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
@@ -119,12 +108,11 @@ public class User_Repository {
     }
 
     public void changePassword(User user) {
-        token = UserHelper.getToken(context);
         List<Role> roleList = role_dao.getAllRoleList(user.getId_user());
         user.setRoles(roleList);
         Login login = UserHelper.getUserLogin(context);
 
-        Call<Integer> callchangePasswordUser = user_service.changePasswordByWeb("Bearer " + token, user);
+        Call<Integer> callchangePasswordUser = user_service.changePasswordByWeb("Bearer " + UserHelper.getToken(context), user);
         callchangePasswordUser.enqueue(new Callback<Integer>() {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {

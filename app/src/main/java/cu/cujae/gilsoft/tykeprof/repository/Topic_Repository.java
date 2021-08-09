@@ -28,19 +28,16 @@ public class Topic_Repository {
     private final AppDatabase db;
     private Topic_Sevice topic_sevice;
     private Context context;
-    private String token;
 
     public Topic_Repository(Application application) {
         this.db = AppDatabase.getDatabase(application);
         this.context = application;
         this.topic_dao = db.topic_dao();
         this.topic_sevice = RetrofitClient.getRetrofit().create(Topic_Sevice.class);
-        //this.token = UserHelper.getToken(application);
     }
 
     public List<Topic> getAllTopicList() {
-        token = UserHelper.getToken(context);
-        Call<List<Topic>> listCallTopic = topic_sevice.getAllTopicByWeb("Bearer " + token);
+        Call<List<Topic>> listCallTopic = topic_sevice.getAllTopicByWeb("Bearer " + UserHelper.getToken(context));
         listCallTopic.enqueue(new Callback<List<Topic>>() {
             @Override
             public void onResponse(Call<List<Topic>> call, Response<List<Topic>> response) {

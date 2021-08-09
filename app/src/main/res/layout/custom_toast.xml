@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/imageViewIconToast"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
@@ -35,7 +35,7 @@
             android:layout_marginBottom="8dp"
             android:text="Bienvenido"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageViewIconToast"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageViewIconToast"

@@ -31,7 +31,8 @@ public class RankingFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = RankingFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        return root;    }
+        return root;
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

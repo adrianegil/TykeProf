@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="User"
             type="cu.cujae.gilsoft.tykeprof.data.entity.User" />
@@ -64,9 +65,9 @@
                                     android:id="@+id/imageViewUser"
                                     android:layout_width="160dp"
                                     android:layout_height="160dp"
-                                    app:civ_border_width="2dp"
-                                    app:civ_border_color="@android:color/darker_gray"
                                     android:src="@drawable/ic_account_circle_primary"
+                                    app:civ_border_color="@android:color/darker_gray"
+                                    app:civ_border_width="2dp"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"

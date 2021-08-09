@@ -39,7 +39,6 @@ public class Gift_Repository {
     private final AppDatabase db;
     private Gift_Service gift_service;
     private Context context;
-    private String token;
 
     public Gift_Repository(Application application) {
         this.db = AppDatabase.getDatabase(application);
@@ -48,12 +47,10 @@ public class Gift_Repository {
         this.gift_type_dao = db.gift_type_dao();
         this.grant_dao = db.grant_dao();
         this.gift_service = RetrofitClient.getRetrofit().create(Gift_Service.class);
-        //this.token = UserHelper.getToken(application);
     }
 
     public LiveData<List<Gift>> getAllGiftWeb() {
-        token = UserHelper.getToken(context);
-        Call<List<Gift>> listCallGift = gift_service.getAllGiftByWeb("Bearer " + token);
+        Call<List<Gift>> listCallGift = gift_service.getAllGiftByWeb("Bearer " + UserHelper.getToken(context));
         listCallGift.enqueue(new Callback<List<Gift>>() {
             @Override
             public void onResponse(Call<List<Gift>> call, Response<List<Gift>> response) {
@@ -92,8 +89,7 @@ public class Gift_Repository {
     }
 
     public void saveGift(Gift_Model gift_model) {
-        token = UserHelper.getToken(context);
-        Call<ResponseBody> saveGiftCall = gift_service.saveGiftByWeb("Bearer " + token, gift_model);
+        Call<ResponseBody> saveGiftCall = gift_service.saveGiftByWeb("Bearer " + UserHelper.getToken(context), gift_model);
         saveGiftCall.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -114,8 +110,7 @@ public class Gift_Repository {
     }
 
     public void updateGiftWeb(Gift_Model gift_model) {
-        token = UserHelper.getToken(context);
-        Call<Gift> updateGiftCall = gift_service.updateGiftByWeb("Bearer " + token, gift_model);
+        Call<Gift> updateGiftCall = gift_service.updateGiftByWeb("Bearer " + UserHelper.getToken(context), gift_model);
         updateGiftCall.enqueue(new Callback<Gift>() {
             @Override
             public void onResponse(Call<Gift> call, Response<Gift> response) {
@@ -146,8 +141,7 @@ public class Gift_Repository {
     }
 
     public void deleteGift(long id) {
-        token = UserHelper.getToken(context);
-        Call<ResponseBody> calldeleteGift = gift_service.deleteGiftByWeb("Bearer " + token, id);
+        Call<ResponseBody> calldeleteGift = gift_service.deleteGiftByWeb("Bearer " + UserHelper.getToken(context), id);
         calldeleteGift.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

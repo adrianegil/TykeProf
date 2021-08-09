@@ -37,19 +37,16 @@ public class Grant_Repository {
     private final AppDatabase db;
     private Grant_Service grant_service;
     private Context context;
-    private String token;
 
     public Grant_Repository(Application application) {
         this.db = AppDatabase.getDatabase(application);
         this.context = application;
         this.grant_dao = db.grant_dao();
         this.grant_service = RetrofitClient.getRetrofit().create(Grant_Service.class);
-        // this.token = UserHelper.getToken(application);
     }
 
     public LiveData<List<Grant>> getAllGrantWeb() {
-        token = UserHelper.getToken(context);
-        Call<List<Grant>> listCallGrant = grant_service.getAllGrantByWeb("Bearer " + token);
+        Call<List<Grant>> listCallGrant = grant_service.getAllGrantByWeb("Bearer " + UserHelper.getToken(context));
         listCallGrant.enqueue(new Callback<List<Grant>>() {
             @Override
             public void onResponse(Call<List<Grant>> call, Response<List<Grant>> response) {
@@ -77,8 +74,7 @@ public class Grant_Repository {
     }
 
     public List<Grant> getAllGrantList() {
-        token = UserHelper.getToken(context);
-        Call<List<Grant>> listCallGrant = grant_service.getAllGrantByWeb("Bearer " + token);
+        Call<List<Grant>> listCallGrant = grant_service.getAllGrantByWeb("Bearer " + UserHelper.getToken(context));
         listCallGrant.enqueue(new Callback<List<Grant>>() {
             @Override
             public void onResponse(Call<List<Grant>> call, Response<List<Grant>> response) {
@@ -122,8 +118,7 @@ public class Grant_Repository {
     }
 
     public void saveGrant(Grant grant) {
-        token = UserHelper.getToken(context);
-        Call<Grant> saveGrantCall = grant_service.saveGrantByWeb("Bearer " + token, grant);
+        Call<Grant> saveGrantCall = grant_service.saveGrantByWeb("Bearer " + UserHelper.getToken(context), grant);
         saveGrantCall.enqueue(new Callback<Grant>() {
             @Override
             public void onResponse(Call<Grant> call, Response<Grant> response) {
@@ -150,8 +145,7 @@ public class Grant_Repository {
     }
 
     public void updateGrant(Grant grant) {
-        token = UserHelper.getToken(context);
-        Call<Grant> updateGrantCall = grant_service.updateGrantByWeb("Bearer " + token, grant);
+        Call<Grant> updateGrantCall = grant_service.updateGrantByWeb("Bearer " + UserHelper.getToken(context), grant);
         updateGrantCall.enqueue(new Callback<Grant>() {
             @Override
             public void onResponse(Call<Grant> call, Response<Grant> response) {
@@ -178,8 +172,7 @@ public class Grant_Repository {
     }
 
     public void deleteGrant(Grant grant) {
-        token = UserHelper.getToken(context);
-        Call<ResponseBody> calldeleteGrant = grant_service.deleteGrantByWeb("Bearer " + token, grant.getId_grant());
+        Call<ResponseBody> calldeleteGrant = grant_service.deleteGrantByWeb("Bearer " + UserHelper.getToken(context), grant.getId_grant());
         calldeleteGrant.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

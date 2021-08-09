@@ -36,7 +36,6 @@ public class Professional_Rol_Repository {
     private final AppDatabase db;
     private Professional_Rol_Service professional_rol_service;
     private Context context;
-    private String token;
 
     public Professional_Rol_Repository(Application application) {
         this.db = AppDatabase.getDatabase(application);
@@ -45,12 +44,10 @@ public class Professional_Rol_Repository {
         this.topic_dao = db.topic_dao();
         this.professional_rol_dao = db.professional_rol_dao();
         this.professional_rol_service = RetrofitClient.getRetrofit().create(Professional_Rol_Service.class);
-        // this.token = UserHelper.getToken(application);
     }
 
     public LiveData<List<Professional_Rol>> getAllProfessionalRol() {
-        token = UserHelper.getToken(context);
-        Call<List<Professional_Rol>> listCallProfessionalRol = professional_rol_service.getAllProfessionalRolByWeb("Bearer " + token);
+        Call<List<Professional_Rol>> listCallProfessionalRol = professional_rol_service.getAllProfessionalRolByWeb("Bearer " + UserHelper.getToken(context));
         listCallProfessionalRol.enqueue(new Callback<List<Professional_Rol>>() {
             @Override
             public void onResponse(Call<List<Professional_Rol>> call, Response<List<Professional_Rol>> response) {
@@ -88,8 +85,7 @@ public class Professional_Rol_Repository {
     }
 
     public List<Professional_Rol> getAllProfessionalRolList() {
-        token = UserHelper.getToken(context);
-        Call<List<Professional_Rol>> listCallProfessionalRol = professional_rol_service.getAllProfessionalRolByWeb("Bearer " + token);
+        Call<List<Professional_Rol>> listCallProfessionalRol = professional_rol_service.getAllProfessionalRolByWeb("Bearer " + UserHelper.getToken(context));
         listCallProfessionalRol.enqueue(new Callback<List<Professional_Rol>>() {
             @Override
             public void onResponse(Call<List<Professional_Rol>> call, Response<List<Professional_Rol>> response) {
@@ -131,8 +127,7 @@ public class Professional_Rol_Repository {
     }
 
     public void saveProfessionalRol(Professional_Rol_Model professional_rol_model) {
-        token = UserHelper.getToken(context);
-        Call<Professional_Rol> saveProfessionalRolCall = professional_rol_service.saveProfessionalRolByWeb("Bearer " + token, professional_rol_model);
+        Call<Professional_Rol> saveProfessionalRolCall = professional_rol_service.saveProfessionalRolByWeb("Bearer " + UserHelper.getToken(context), professional_rol_model);
         saveProfessionalRolCall.enqueue(new Callback<Professional_Rol>() {
             @Override
             public void onResponse(Call<Professional_Rol> call, Response<Professional_Rol> response) {
@@ -158,8 +153,7 @@ public class Professional_Rol_Repository {
     }
 
     public void deleteProfessionalRol(long id) {
-        token = UserHelper.getToken(context);
-        Call<ResponseBody> calldeleteProfessionalRol = professional_rol_service.deleteProfessionalRolByWeb("Bearer " + token, id);
+        Call<ResponseBody> calldeleteProfessionalRol = professional_rol_service.deleteProfessionalRolByWeb("Bearer " + UserHelper.getToken(context), id);
         calldeleteProfessionalRol.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

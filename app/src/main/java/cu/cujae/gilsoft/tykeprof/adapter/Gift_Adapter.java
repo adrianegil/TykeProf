@@ -203,5 +203,4 @@ public class Gift_Adapter extends ListAdapter<Gift, Gift_Adapter.ViewHolder> {
         }
     }
 
-
 }

@@ -1,10 +1,12 @@
 package cu.cujae.gilsoft.tykeprof.app;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -50,7 +52,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         progressBarLogin = findViewById(R.id.progressBarLogin);
-
     }
 
     //PRESIONAR DOS VECES ATRAS PARA SALIR
@@ -156,7 +157,7 @@ public class LoginActivity extends AppCompatActivity {
                             });
                         }
                     }
-                    goToMainAvtivity(isTeacher);
+                    goToMainActivity(isTeacher);
                     Log.e("User: ", user.getUserName() + " " + user.getFullName() + "" + user.getImage_url());
                 } else if (response.code() == 403) {
                     UserHelper.renovateToken(LoginActivity.this);
@@ -172,18 +173,16 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void goToMainAvtivity(boolean isTeacher) {
+    public void goToMainActivity(boolean isTeacher) {
 
         if (isTeacher) {
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
         } else {
             progressBarLogin.setVisibility(View.INVISIBLE);
-            ToastHelper.showCustomToast(LoginActivity.this, "error", "Debe estar registrado como Profesor");
+            ToastHelper.showCustomToast(LoginActivity.this, "error", getString(R.string.should_register_asteacher));
         }
-
     }
-
 
     //SALIR DE LA APP
     public void exitLoginActivity(View view) {

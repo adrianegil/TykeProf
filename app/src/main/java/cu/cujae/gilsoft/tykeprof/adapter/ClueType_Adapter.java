@@ -80,6 +80,7 @@ public class ClueType_Adapter extends ListAdapter<Clue_Type, ClueType_Adapter.Vi
                 parent.removeAllViews();
 
             TextInputLayout textInputLayoutClueType = view1.findViewById(R.id.textInputLayoutClueType);
+            textInputLayoutClueType.setVisibility(View.GONE);
 
             TextInputLayout textInputLayoutGamePoints = view1.findViewById(R.id.textInputLayoutGamePoints);
             EditText editTextGamePoints = view1.findViewById(R.id.editTextGamePoints);
@@ -89,11 +90,11 @@ public class ClueType_Adapter extends ListAdapter<Clue_Type, ClueType_Adapter.Vi
             EditText editTextCluePoints = view1.findViewById(R.id.editTextCluePoints);
             editTextCluePoints.setText(clue_type.getCluePoints().toString());
 
-            textInputLayoutClueType.setHint(clue_type.getType());
-            textInputLayoutClueType.setEnabled(false);
+            // textInputLayoutClueType.setHint(clue_type.getType());
+            // textInputLayoutClueType.setEnabled(false);
 
             AlertDialog dialog = new AlertDialog.Builder(activity)
-                    .setTitle(R.string.edit_clue_type)
+                    .setTitle(activity.getString(R.string.edit_clue_type) + ": " + clue_type.getType())
                     //.setMessage("Inserte el nombre de la Estrategia")
                     .setPositiveButton(R.string.accept, null)
                     .setNegativeButton(R.string.cancel, null)
@@ -109,7 +110,6 @@ public class ClueType_Adapter extends ListAdapter<Clue_Type, ClueType_Adapter.Vi
                         textInputLayoutGamePoints.setError(activity.getString(R.string.required));
                     if (stringCluePoints.isEmpty())
                         textInputLayoutCluePoints.setError(activity.getString(R.string.required));
-                   // ToastHelper.showCustomToast(activity, "warning", activity.getString(R.string.must_fill_fields));
                 } else {
                     clue_type.setGamePoints(Integer.valueOf(stringGamePoints));
                     clue_type.setCluePoints(Integer.valueOf(stringCluePoints));

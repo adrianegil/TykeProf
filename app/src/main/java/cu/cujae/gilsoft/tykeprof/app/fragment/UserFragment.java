@@ -97,7 +97,7 @@ public class UserFragment extends Fragment {
 
                 User user = binding.getUser();
 
-                dialogChangePasswordBinding = DialogChangePasswordBinding.inflate(getLayoutInflater(),null, false);
+                dialogChangePasswordBinding = DialogChangePasswordBinding.inflate(getLayoutInflater(), null, false);
 
                 AlertDialog dialog = new AlertDialog.Builder(getActivity())
                         .setTitle(R.string.change_password)
@@ -117,10 +117,10 @@ public class UserFragment extends Fragment {
                         if (stringConfirmPassword.isEmpty())
                             dialogChangePasswordBinding.textInputLayoutConfirmPassword.setError(getString(R.string.required));
                         if (!stringNewPassword.equals(stringConfirmPassword))
-                            ToastHelper.showCustomToast(getActivity(),"error", getString(R.string.password_dont_coincide));
+                            ToastHelper.showCustomToast(getActivity(), "error", getString(R.string.password_dont_coincide));
                     } else {
                         user.setPassword(stringNewPassword);
-                       userViewModel.changePassword(user);
+                        userViewModel.changePassword(user);
                         dialog.dismiss();
                     }
                 });
@@ -146,17 +146,16 @@ public class UserFragment extends Fragment {
                 dialogEditUserBinding.autoCompleteChangeDobUser.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                       MaterialDatePicker.Builder datePickerBuilder = MaterialDatePicker.Builder.datePicker();
-                       MaterialDatePicker materialDatePicker = datePickerBuilder.build();
-                       materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
-                           @Override
-                           public void onPositiveButtonClick(Object selection) {
-                              dialogEditUserBinding.autoCompleteChangeDobUser.setText(materialDatePicker.getHeaderText());
-                              user.setDob(selection.toString());
-                           }
-                       });
-
-                       materialDatePicker.show(getParentFragmentManager(),"DOB");
+                        MaterialDatePicker.Builder datePickerBuilder = MaterialDatePicker.Builder.datePicker();
+                        MaterialDatePicker materialDatePicker = datePickerBuilder.build();
+                        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+                            @Override
+                            public void onPositiveButtonClick(Object selection) {
+                                dialogEditUserBinding.autoCompleteChangeDobUser.setText(materialDatePicker.getHeaderText());
+                                user.setDob(selection.toString());
+                            }
+                        });
+                        materialDatePicker.show(getParentFragmentManager(), "DOB");
                     }
                 });
 
@@ -171,7 +170,7 @@ public class UserFragment extends Fragment {
                     String stringEmailUser = dialogEditUserBinding.editTextChangeEmailUser.getText().toString();
                     String stringDobUser = dialogEditUserBinding.autoCompleteChangeDobUser.getText().toString();
 
-                    if (stringNameUser.isEmpty() || stringEmailUser.isEmpty()|| stringDobUser.isEmpty()) {
+                    if (stringNameUser.isEmpty() || stringEmailUser.isEmpty() || stringDobUser.isEmpty()) {
                         if (stringNameUser.isEmpty())
                             dialogEditUserBinding.textInputLayoutChangeNameUser.setError(getString(R.string.required));
                         if (stringEmailUser.isEmpty())
@@ -181,7 +180,7 @@ public class UserFragment extends Fragment {
                     } else {
                         user.setFullName(stringNameUser);
                         user.setEmail(stringEmailUser);
-                       userViewModel.updateUser(user);
+                        userViewModel.updateUser(user);
                         dialog.dismiss();
                     }
                 });

@@ -77,8 +77,9 @@ public class Grant_Adapter extends ListAdapter<Grant, Grant_Adapter.ViewHolder> 
                 parent.removeAllViews();
 
             TextInputLayout textInputLayoutNewGrant = view1.findViewById(R.id.textInputLayoutNewGrant);
-            textInputLayoutNewGrant.setHint(grant.getGrant_name());
-            textInputLayoutNewGrant.setEnabled(false);
+            // textInputLayoutNewGrant.setHint(grant.getGrant_name());
+            //  textInputLayoutNewGrant.setEnabled(false);
+            textInputLayoutNewGrant.setVisibility(View.GONE);
 
             Slider slider = view1.findViewById(R.id.sliderGrantPoints);
             slider.setValue(grant.getCant_points());
@@ -90,7 +91,7 @@ public class Grant_Adapter extends ListAdapter<Grant, Grant_Adapter.ViewHolder> 
             });
 
             AlertDialog dialog = new AlertDialog.Builder(activity)
-                    .setTitle(R.string.edit_grant)
+                    .setTitle(activity.getString(R.string.edit_grant) + ": " + grant.getGrant_name())
                     .setPositiveButton(R.string.accept, null)
                     .setNegativeButton(R.string.cancel, null)
                     .setView(view1)

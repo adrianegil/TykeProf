@@ -53,7 +53,6 @@ public class ProfessionalRolFragment extends Fragment {
     ArrayList<Topic> topics;
     ArrayList<Career> careers;
 
-
     public static ProfessionalRolFragment newInstance() {
         return new ProfessionalRolFragment();
     }
