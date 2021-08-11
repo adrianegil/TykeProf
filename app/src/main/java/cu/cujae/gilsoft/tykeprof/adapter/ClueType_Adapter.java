@@ -32,8 +32,8 @@ import cu.cujae.gilsoft.tykeprof.util.ToastHelper;
 
 public class ClueType_Adapter extends ListAdapter<Clue_Type, ClueType_Adapter.ViewHolder> {
 
-    ClueTypeViewModel clueTypeViewModel;
-    Activity activity;
+    private ClueTypeViewModel clueTypeViewModel;
+    private Activity activity;
 
     public ClueType_Adapter(@NonNull DiffUtil.ItemCallback<Clue_Type> diffCallback, ClueTypeViewModel clueTypeViewModel, Activity activity) {
         super(diffCallback);

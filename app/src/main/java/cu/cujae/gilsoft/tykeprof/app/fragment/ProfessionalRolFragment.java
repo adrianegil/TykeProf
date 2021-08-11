@@ -48,10 +48,10 @@ public class ProfessionalRolFragment extends Fragment {
 
     private ProfessionalRolViewModel professionalRolViewModel;
     private ProfessionalRolFragmentBinding binding;
-    Topic_Repository topic_repository;
-    Career_Repository career_repository;
-    ArrayList<Topic> topics;
-    ArrayList<Career> careers;
+    private Topic_Repository topic_repository;
+    private Career_Repository career_repository;
+    private ArrayList<Topic> topics;
+    private ArrayList<Career> careers;
 
     public static ProfessionalRolFragment newInstance() {
         return new ProfessionalRolFragment();
@@ -108,9 +108,6 @@ public class ProfessionalRolFragment extends Fragment {
 
             ArrayAdapter<Topic> topicsAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, topics);
             ArrayAdapter<Career> careersAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, careers);
-
-            // spinner.setAdapter(adapterGiftType);
-            // Spinner spinner = view1.findViewById(R.id.textInputLayoutGiftTypeOfGift);
 
             autoCompleteCareerOfProfessRol.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override

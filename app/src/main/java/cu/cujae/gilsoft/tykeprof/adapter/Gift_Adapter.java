@@ -41,10 +41,10 @@ import cu.cujae.gilsoft.tykeprof.repository.Grant_Repository;
 
 public class Gift_Adapter extends ListAdapter<Gift, Gift_Adapter.ViewHolder> {
 
-    GiftViewModel giftViewModel;
-    Activity activity;
-    Gift_Type_Repository gift_type_repository;
-    Grant_Repository grant_repository;
+    private GiftViewModel giftViewModel;
+    private Activity activity;
+    private Gift_Type_Repository gift_type_repository;
+    private Grant_Repository grant_repository;
 
     public Gift_Adapter(@NonNull DiffUtil.ItemCallback<Gift> diffCallback, GiftViewModel giftViewModel, Activity activity, Application application) {
         super(diffCallback);

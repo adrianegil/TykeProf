@@ -23,8 +23,8 @@ import cu.cujae.gilsoft.tykeprof.data.entity.Question_Type;
 
 public class QuestionType_Adapter extends ListAdapter<Question_Type, QuestionType_Adapter.ViewHolder> {
 
-    QuestionTypeViewModel questionTypeViewModel;
-    Context context;
+    private QuestionTypeViewModel questionTypeViewModel;
+    private Context context;
 
     public QuestionType_Adapter(@NonNull DiffUtil.ItemCallback<Question_Type> diffCallback, QuestionTypeViewModel questionTypeViewModel, Context context) {
         super(diffCallback);

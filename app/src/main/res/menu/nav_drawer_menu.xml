@@ -15,7 +15,7 @@
         <menu>
             <group android:checkableBehavior="single">
                 <item
-                    android:id="@+id/nav_Question"
+                    android:id="@+id/nav_questionFragment"
                     android:icon="@drawable/ic_question"
                     android:title="@string/question" />
                 <item

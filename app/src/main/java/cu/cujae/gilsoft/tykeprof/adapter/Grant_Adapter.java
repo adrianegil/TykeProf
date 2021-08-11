@@ -31,8 +31,8 @@ import cu.cujae.gilsoft.tykeprof.data.entity.Grant;
 
 public class Grant_Adapter extends ListAdapter<Grant, Grant_Adapter.ViewHolder> {
 
-    GrantViewModel grantViewModel;
-    Activity activity;
+    private GrantViewModel grantViewModel;
+    private Activity activity;
 
     public Grant_Adapter(@NonNull DiffUtil.ItemCallback<Grant> diffCallback, GrantViewModel grantViewModel, Activity activity) {
         super(diffCallback);

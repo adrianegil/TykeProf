@@ -24,8 +24,8 @@ import cu.cujae.gilsoft.tykeprof.data.entity.Question_Type;
 
 public class GiftType_Adapter extends ListAdapter<Gift_Type, GiftType_Adapter.ViewHolder> {
 
-    GiftTypeViewModel giftTypeViewModel;
-    Context context;
+    private GiftTypeViewModel giftTypeViewModel;
+    private Context context;
 
     public GiftType_Adapter(@NonNull DiffUtil.ItemCallback<Gift_Type> diffCallback, GiftTypeViewModel giftTypeViewModel, Context context) {
         super(diffCallback);

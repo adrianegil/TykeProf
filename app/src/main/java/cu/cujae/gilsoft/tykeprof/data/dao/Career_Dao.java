@@ -27,4 +27,5 @@ public interface Career_Dao {
 
     @Query("DELETE FROM career")
     void deleteAll();
+
 }

@@ -45,4 +45,5 @@ public interface Grant_Dao {
 
     @Query("DELETE FROM grant")
     void deleteAll();
+
 }

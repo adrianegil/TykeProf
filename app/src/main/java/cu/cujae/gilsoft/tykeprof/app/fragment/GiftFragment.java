@@ -48,10 +48,10 @@ public class GiftFragment extends Fragment {
 
     private GiftViewModel giftViewModel;
     private GiftFragmentBinding binding;
-    Gift_Type_Repository gift_type_repository;
-    Grant_Repository grant_repository;
-    ArrayList<Gift_Type> gift_typeArrayList;
-    ArrayList<Grant> grantArrayList;
+    private Gift_Type_Repository gift_type_repository;
+    private Grant_Repository grant_repository;
+    private ArrayList<Gift_Type> gift_typeArrayList;
+    private ArrayList<Grant> grantArrayList;
 
     public static GiftFragment newInstance() {
         return new GiftFragment();

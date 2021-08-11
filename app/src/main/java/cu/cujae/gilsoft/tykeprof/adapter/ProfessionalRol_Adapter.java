@@ -35,14 +35,13 @@ import cu.cujae.gilsoft.tykeprof.repository.Topic_Repository;
 
 public class ProfessionalRol_Adapter extends ListAdapter<Professional_Rol, ProfessionalRol_Adapter.ViewHolder> {
 
-    ProfessionalRolViewModel professionalRolViewModel;
-    Activity activity;
-    Career_Repository career_repository;
-    Topic_Repository topic_repository;
+    private ProfessionalRolViewModel professionalRolViewModel;
+    private Activity activity;
+    private Career_Repository career_repository;
+    private Topic_Repository topic_repository;
 
     public ProfessionalRol_Adapter(@NonNull DiffUtil.ItemCallback<Professional_Rol> diffCallback, ProfessionalRolViewModel professionalRolViewModel, Activity activity, Application application) {
         super(diffCallback);
-
         this.professionalRolViewModel = professionalRolViewModel;
         this.activity = activity;
         this.career_repository = new Career_Repository(application);

@@ -78,7 +78,6 @@ public class GrantFragment extends Fragment {
                 }
             });
 
-
             TextInputLayout textInputLayoutNewGrant = view1.findViewById(R.id.textInputLayoutNewGrant);
             EditText editTextGrantName = view1.findViewById(R.id.editTextGrantName);
             AlertDialog dialog = new AlertDialog.Builder(getActivity())

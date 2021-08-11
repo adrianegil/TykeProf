@@ -43,4 +43,5 @@ public interface Professional_Rol_Dao {
 
     @Query("DELETE FROM professional_rol")
     void deleteAll();
+
 }

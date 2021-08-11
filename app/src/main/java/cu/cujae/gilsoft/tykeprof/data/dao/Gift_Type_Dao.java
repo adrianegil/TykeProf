@@ -42,4 +42,5 @@ public interface Gift_Type_Dao {
 
     @Query("DELETE FROM gift_type")
     void deleteAll();
+
 }

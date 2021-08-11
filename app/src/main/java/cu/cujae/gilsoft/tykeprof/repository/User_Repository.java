@@ -53,7 +53,6 @@ public class User_Repository {
                         roles.add(role);
                     }
                     Log.e("User: ", user.getUserName() + " " + user.getFullName() + "" + user.getImage_url());
-
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         //  user_dao.deleteAll();
                         user_dao.saveUser(user);
@@ -62,7 +61,6 @@ public class User_Repository {
                     });
                 } else if (response.code() == 403) {
                     UserHelper.renovateToken(context);
-
                 } else
                     Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show();
             }

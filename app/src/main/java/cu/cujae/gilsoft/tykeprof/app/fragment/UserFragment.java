@@ -50,9 +50,9 @@ import cu.cujae.gilsoft.tykeprof.util.ToastHelper;
 public class UserFragment extends Fragment {
 
     private UserViewModel userViewModel;
-    UserFragmentBinding binding;
-    DialogChangePasswordBinding dialogChangePasswordBinding;
-    DialogEditUserBinding dialogEditUserBinding;
+    private UserFragmentBinding binding;
+    private DialogChangePasswordBinding dialogChangePasswordBinding;
+    private DialogEditUserBinding dialogEditUserBinding;
 
     public static UserFragment newInstance() {
         return new UserFragment();

@@ -45,9 +45,9 @@ import cu.cujae.gilsoft.tykeprof.repository.Topic_Repository;
 public class InsigniaFragment extends Fragment {
 
     private InsigniaViewModel insigniaViewModel;
-    InsigniaFragmentBinding binding;
-    Professional_Rol_Repository professional_rol_repository;
-    ArrayList<Professional_Rol> professional_rols;
+    private InsigniaFragmentBinding binding;
+    private Professional_Rol_Repository professional_rol_repository;
+    private ArrayList<Professional_Rol> professional_rols;
 
     public static InsigniaFragment newInstance() {
         return new InsigniaFragment();
@@ -64,6 +64,7 @@ public class InsigniaFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         professional_rol_repository = new Professional_Rol_Repository(getActivity().getApplication());
         professional_rols = (ArrayList<Professional_Rol>) professional_rol_repository.getAllProfessionalRolList();
 
@@ -88,10 +89,6 @@ public class InsigniaFragment extends Fragment {
             View view1 = getLayoutInflater().inflate(R.layout.dialog_add_insignia, null);
 
             Insignia_Model insignia_model = new Insignia_Model();
-
-            /*ViewGroup parent = (ViewGroup) view1.getParent();
-            if (parent != null)
-                parent.removeAllViews();*/
 
             Slider sliderAdvancePoints = view1.findViewById(R.id.sliderAdvancePoints);
             sliderAdvancePoints.addOnChangeListener(new Slider.OnChangeListener() {
@@ -154,8 +151,6 @@ public class InsigniaFragment extends Fragment {
             });
             Button buttonNeg = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
             buttonNeg.setOnClickListener(v12 -> {
-                //editTextInsigniaName.setText("");
-                //autoCompleteProfessRolToInsignia.setText("");
                 sliderAdvancePoints.setValue(1);
                 sliderGrantPoints.setValue(1);
                 dialog.dismiss();

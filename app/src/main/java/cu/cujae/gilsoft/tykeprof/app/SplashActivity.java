@@ -8,9 +8,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.io.IOException;
 
 import cu.cujae.gilsoft.tykeprof.R;
+import cu.cujae.gilsoft.tykeprof.databinding.ActivityMainBinding;
 import cu.cujae.gilsoft.tykeprof.service.Login_Service;
 import cu.cujae.gilsoft.tykeprof.util.Login;
 import cu.cujae.gilsoft.tykeprof.util.RetrofitClient;
@@ -78,8 +81,11 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                ToastHelper.showCustomToast(SplashActivity.this, "warning", getResources().getString(R.string.no_connection));
-                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putBoolean("connected", false);
+                intent.putExtras(bundle);
+                startActivity(intent);
                 finish();
             }
         });

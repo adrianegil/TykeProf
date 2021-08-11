@@ -39,4 +39,5 @@ public interface Insignia_Dao {
 
     @Query("DELETE FROM insignia")
     void deleteAll();
+
 }

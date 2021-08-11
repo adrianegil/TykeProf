@@ -19,7 +19,7 @@ public class QuestionTypeViewModel extends AndroidViewModel {
     public QuestionTypeViewModel(@NonNull Application application) {
         super(application);
         this.question_type_repository = new Question_Type_Repository(application);
-        this.allQuestionType = question_type_repository.getAllQuestionType();
+        this.allQuestionType = question_type_repository.getAllQuestionTypeWeb();
     }
 
     public void saveQuestionType(Question_Type question_type) {

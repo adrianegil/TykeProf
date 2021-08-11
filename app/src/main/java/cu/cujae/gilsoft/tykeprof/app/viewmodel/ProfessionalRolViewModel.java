@@ -15,6 +15,7 @@ import cu.cujae.gilsoft.tykeprof.data.model.Professional_Rol_Model;
 import cu.cujae.gilsoft.tykeprof.repository.Professional_Rol_Repository;
 
 public class ProfessionalRolViewModel extends AndroidViewModel {
+
     private Professional_Rol_Repository professional_rol_repository;
     private final LiveData<List<Professional_Rol>> allProfessionalRol;
 

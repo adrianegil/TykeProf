@@ -17,11 +17,17 @@ public interface Question_Type_Dao {
     @Query("SELECT * FROM question_type")
     LiveData<List<Question_Type>> getAllQuestionType();
 
+    @Query("SELECT * FROM question_type")
+    List<Question_Type> getAllQuestionTypeList();
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void saveQuestionType(Question_Type question_type);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void saveAllQuestionType(List<Question_Type> question_typeList);
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void saveAllQuestionTypelist(List<Question_Type> question_typeList);
 
     @Delete
     void deleteQuestionType(Question_Type question_type);

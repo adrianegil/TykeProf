@@ -19,11 +19,17 @@ public interface Clue_Type_Dao {
     @Query("SELECT * FROM clue_type")
     LiveData<List<Clue_Type>> getAllClueType();
 
+    @Query("SELECT * FROM clue_type")
+    List<Clue_Type> getAllClueTypeList();
+
     @Query("SELECT * FROM clue_type WHERE id =:id")
     Clue_Type getClueTypeById(long id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void saveAllClueType(List<Clue_Type> clue_typeList);
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void saveAllClueTypeList(List<Clue_Type> clue_typeList);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void saveClueType(Clue_Type clue_type);

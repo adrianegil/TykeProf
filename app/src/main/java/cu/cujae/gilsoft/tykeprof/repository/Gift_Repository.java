@@ -34,8 +34,8 @@ import retrofit2.Response;
 public class Gift_Repository {
 
     private Gift_Dao gift_dao;
-    Gift_Type_Dao gift_type_dao;
-    Grant_Dao grant_dao;
+    private Gift_Type_Dao gift_type_dao;
+    private Grant_Dao grant_dao;
     private final AppDatabase db;
     private Gift_Service gift_service;
     private Context context;
@@ -145,7 +145,6 @@ public class Gift_Repository {
         calldeleteGift.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
                 if (response.isSuccessful()) {
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         gift_dao.deleteGiftByID(id);

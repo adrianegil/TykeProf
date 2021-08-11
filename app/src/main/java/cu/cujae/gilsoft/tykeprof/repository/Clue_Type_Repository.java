@@ -67,6 +67,34 @@ public class Clue_Type_Repository {
         return clue_type_dao.getAllClueType();
     }
 
+    public List<Clue_Type> getAllClueTypeList() {
+        Call<List<Clue_Type>> listCallClueType = clue_type_service.getAllClueTypeByWeb("Bearer " + UserHelper.getToken(context));
+        listCallClueType.enqueue(new Callback<List<Clue_Type>>() {
+            @Override
+            public void onResponse(Call<List<Clue_Type>> call, Response<List<Clue_Type>> response) {
+
+                if (response.isSuccessful()) {
+                    List<Clue_Type> clue_typeList;
+                    clue_typeList = response.body();
+                    for (Clue_Type clue_type : clue_typeList) {
+                        Log.e("Clue Type ", clue_type.getId() + " " + clue_type.getType());
+                    }
+                    AppDatabase.databaseWriteExecutor.execute(() -> {
+                        clue_type_dao.saveAllClueTypeList(clue_typeList);
+                    });
+                } else if (response.code() == 403) {
+                    UserHelper.renovateToken(context);
+                } else
+                    Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<List<Clue_Type>> call, Throwable t) {
+            }
+        });
+        return clue_type_dao.getAllClueTypeList();
+    }
+
     public Clue_Type getClueTypeByID(long id) {
         Call<Clue_Type> callClueType = clue_type_service.getClueTypeByIdByWeb("Bearer " + UserHelper.getToken(context), id);
         callClueType.enqueue(new Callback<Clue_Type>() {
@@ -100,7 +128,6 @@ public class Clue_Type_Repository {
     }
 
     public void saveClueType(Clue_Type clue_type) {
-       // token = UserHelper.getToken(context);
         Call<Clue_Type> callClueType = clue_type_service.saveClueTypeByWeb("Bearer " + UserHelper.getToken(context), clue_type);
         callClueType.enqueue(new Callback<Clue_Type>() {
             @Override
@@ -166,12 +193,10 @@ public class Clue_Type_Repository {
         callClueType.enqueue(new Callback<Clue_Type>() {
             @Override
             public void onResponse(Call<Clue_Type> call, Response<Clue_Type> response) {
-
                 if (response.isSuccessful()) {
                     Clue_Type clueType;
                     clueType = response.body();
                     Log.e("Clue Type Delete ", clueType.getId() + " " + clueType.getType());
-
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         clue_type_dao.deleteClueType(clueType);
                     });

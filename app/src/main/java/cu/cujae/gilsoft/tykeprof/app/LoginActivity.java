@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     private User_Service user_service = RetrofitClient.getRetrofit().create(User_Service.class);
 
     private int cont;
-    ProgressBar progressBarLogin;
+    private ProgressBar progressBarLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
         }.start();
     }
 
-    //AUTENTICACIÓN DEL PROFESOR EN LA PLATAFORMA TYKE
+    //AUTENTICACIÓN DEL USUARIO EN LA PLATAFORMA TYKE
     public void logIn(View view) {
         MaterialCardView materialCardViewIncorrectLogin = findViewById(R.id.cardViewIncorrectLogin);
         materialCardViewIncorrectLogin.setVisibility(View.INVISIBLE);
@@ -138,6 +138,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    //REVISAR SI EL USUARIO ES PROFESOR
     public void checkRole(String username) {
 
         User_Dao user_dao = AppDatabase.getDatabase(this).user_dao();
@@ -173,8 +174,8 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    //SI ES PROFESOR ACCEDE AL MENÚ PRINCIPAL
     public void goToMainActivity(boolean isTeacher) {
-
         if (isTeacher) {
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();

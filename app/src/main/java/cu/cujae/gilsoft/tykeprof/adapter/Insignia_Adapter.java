@@ -42,8 +42,8 @@ import cu.cujae.gilsoft.tykeprof.repository.Professional_Rol_Repository;
 public class Insignia_Adapter extends ListAdapter<Insignia, Insignia_Adapter.ViewHolder> {
 
     private Professional_Rol_Repository professional_rol_repository;
-    InsigniaViewModel insigniaViewModel;
-    Activity activity;
+    private InsigniaViewModel insigniaViewModel;
+    private Activity activity;
 
     public Insignia_Adapter(@NonNull DiffUtil.ItemCallback<Insignia> diffCallback, InsigniaViewModel insigniaViewModel, Activity activity, Application application) {
         super(diffCallback);
@@ -83,26 +83,17 @@ public class Insignia_Adapter extends ListAdapter<Insignia, Insignia_Adapter.Vie
         });
 
         Professional_Rol professional_rol = professional_rol_repository.getProfessRolLocalbyId(insignia.getId_profess_rol());
-
         holder.textViewProfessRolOfInsignia.setText(activity.getString(R.string.professional_rol) + ": " + professional_rol.getName());
 
         holder.viewEditInsignia.setOnClickListener(v -> {
 
             View view1 = activity.getLayoutInflater().inflate(R.layout.dialog_add_insignia, null);
 
-            /*ViewGroup parent = (ViewGroup) view1.getParent();
-            if (parent != null)
-                parent.removeAllViews();*/
-
             TextInputLayout textInputLayoutNewInsignia = view1.findViewById(R.id.textInputLayoutNewInsignia);
-            //EditText editTextInsigniaName = view1.findViewById(R.id.editTextInsigniaName);
             textInputLayoutNewInsignia.setVisibility(View.GONE);
-            // textInputLayoutNewInsignia.setEnabled(false);
 
             TextInputLayout textInputLayoutProfessRolToInsignia = view1.findViewById(R.id.textInputLayoutProfessRolToInsignia);
             AutoCompleteTextView autoCompleteProfessRolToInsignia = view1.findViewById(R.id.autoCompleteProfessRolToInsignia);
-
-            //editTextInsigniaName.setText(insignia.getName());
 
             Slider sliderAdvancePoints = view1.findViewById(R.id.sliderAdvancePoints);
             sliderAdvancePoints.addOnChangeListener(new Slider.OnChangeListener() {
@@ -157,8 +148,6 @@ public class Insignia_Adapter extends ListAdapter<Insignia, Insignia_Adapter.Vie
             });
             Button buttonNeg = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
             buttonNeg.setOnClickListener(v12 -> {
-                //editTextInsigniaName.setText("");
-                //autoCompleteProfessRolToInsignia.setText("");
                 sliderAdvancePoints.setValue(1);
                 sliderGrantPoints.setValue(1);
                 dialog.dismiss();
@@ -172,7 +161,6 @@ public class Insignia_Adapter extends ListAdapter<Insignia, Insignia_Adapter.Vie
         private final MaterialTextView textViewProfessRolOfInsignia;
         private final MaterialTextView textViewGrantPointsOfInsignia;
         private final MaterialTextView textViewAdvancePointsOfInsignia;
-
         private final MaterialButton viewLookInsigniaContent;
         private final MaterialButton viewEditInsignia;
         private final MaterialButton viewDeleteInsignia;
@@ -180,7 +168,6 @@ public class Insignia_Adapter extends ListAdapter<Insignia, Insignia_Adapter.Vie
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             textViewInsigniaName = itemView.findViewById(R.id.textViewInsigniaName);
             textViewProfessRolOfInsignia = itemView.findViewById(R.id.textViewProfessRolOfInsignia);
             textViewGrantPointsOfInsignia = itemView.findViewById(R.id.textViewGrantPointsOfInsignia);

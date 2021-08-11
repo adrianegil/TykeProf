@@ -139,9 +139,7 @@ public class Insignia_Repository {
         calldeleteInsignia.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
                 if (response.isSuccessful()) {
-
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         insignia_dao.deleteInsigniaByID(id);
                     });

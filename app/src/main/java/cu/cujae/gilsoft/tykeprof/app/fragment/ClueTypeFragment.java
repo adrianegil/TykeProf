@@ -51,7 +51,6 @@ public class ClueTypeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         // clueTypeViewModel = new ViewModelProvider(this).get(ClueTypeViewModel.class);
         clueTypeViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(ClueTypeViewModel.class);
         RecyclerView recyclerView = binding.RecyclerViewClueType;
