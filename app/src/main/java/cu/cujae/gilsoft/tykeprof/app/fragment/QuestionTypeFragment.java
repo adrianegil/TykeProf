@@ -1,33 +1,28 @@
 package cu.cujae.gilsoft.tykeprof.app.fragment;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
 
 import cu.cujae.gilsoft.tykeprof.R;
 import cu.cujae.gilsoft.tykeprof.adapter.QuestionType_Adapter;
-import cu.cujae.gilsoft.tykeprof.app.LoginActivity;
 import cu.cujae.gilsoft.tykeprof.app.viewmodel.QuestionTypeViewModel;
 import cu.cujae.gilsoft.tykeprof.data.entity.Question_Type;
 import cu.cujae.gilsoft.tykeprof.databinding.QuestionTypeFragmentBinding;
-import cu.cujae.gilsoft.tykeprof.util.ToastHelper;
 
 public class QuestionTypeFragment extends Fragment {
 
@@ -49,14 +44,11 @@ public class QuestionTypeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        //myQuestionTypeViewModel = new ViewModelProvider(this).get(QuestionTypeViewModel.class);
         myQuestionTypeViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(QuestionTypeViewModel.class);
         RecyclerView recyclerView = binding.RecyclerViewQuestionType;
         final QuestionType_Adapter adapter = new QuestionType_Adapter(new QuestionType_Adapter.QuestionTypeDiff(), myQuestionTypeViewModel, getActivity());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         myQuestionTypeViewModel.getAllQuestionType().observe(getViewLifecycleOwner(), questionTypeList -> {
             adapter.submitList(questionTypeList);
         });
@@ -84,7 +76,6 @@ public class QuestionTypeFragment extends Fragment {
             buttonPos.setOnClickListener(v1 -> {
                 String string = editText.getText().toString();
                 if (string.isEmpty()) {
-                    //ToastHelper.showCustomToast(getActivity(), "warning", getString(R.string.must_fill_fields));
                     textInputLayoutNewQuestionType.setError(getString(R.string.required));
                 } else {
                     myQuestionTypeViewModel.saveQuestionType(new Question_Type(string));

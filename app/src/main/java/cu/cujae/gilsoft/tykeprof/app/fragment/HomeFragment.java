@@ -2,6 +2,9 @@ package cu.cujae.gilsoft.tykeprof.app.fragment;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -9,28 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import org.jetbrains.annotations.NotNull;
 
 import cu.cujae.gilsoft.tykeprof.R;
-import cu.cujae.gilsoft.tykeprof.adapter.Question_Adapter;
+import cu.cujae.gilsoft.tykeprof.app.viewmodel.ProfessionalRolViewModel;
 import cu.cujae.gilsoft.tykeprof.app.viewmodel.QuestionViewModel;
-import cu.cujae.gilsoft.tykeprof.databinding.ClueTypeFragmentBinding;
 import cu.cujae.gilsoft.tykeprof.databinding.FragmentHomeBinding;
-import cu.cujae.gilsoft.tykeprof.repository.Question_Repository;
+import cu.cujae.gilsoft.tykeprof.repository.Strategy_Repository;
+import cu.cujae.gilsoft.tykeprof.util.ToastHelper;
+import cu.cujae.gilsoft.tykeprof.util.UserHelper;
+
+import static android.content.Context.MODE_PRIVATE;
 
 
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private QuestionViewModel questionViewModel;
-    private Question_Repository question_repository;
+    private Strategy_Repository strategy_repository;
     private NavController navController;
 
     public HomeFragment() {
@@ -45,7 +43,6 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         return root;
@@ -55,8 +52,16 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        question_repository = new Question_Repository(getActivity().getApplication());
-        binding.textViewCantsQuestions.setText(getString(R.string.question_cant) + question_repository.getQuestionListSize());
+
+        strategy_repository = new Strategy_Repository(getActivity().getApplication());
+        strategy_repository.getAllStrategiesList();
+
+        questionViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(QuestionViewModel.class);
+        questionViewModel.getAllQuestion().observe(getViewLifecycleOwner(), questionList -> {
+            binding.textViewCantsStrategies.setText(getString(R.string.strategy_cant) + " " + strategy_repository.getStrategiesListSize());
+            binding.textViewCantsQuestions.setText(getString(R.string.question_cant) + " " + questionList.size());
+        });
+
     }
 
     @Override
@@ -75,6 +80,13 @@ public class HomeFragment extends Fragment {
             //  navController.navigate(R.id.nav_questionTypeFragment, null);
             navController.navigate(R.id.go_QuestionTypeFragment);
         });
+
+        //COMPROBANDO SI ES LA PRIMERA VEZ QUE EL USUARIO ENTRA EN LA APP
+        if (getActivity().getSharedPreferences("autenticacion", MODE_PRIVATE).getBoolean("firstLaunch", true)) {
+            ToastHelper.showCustomToast(getActivity(), "success", getString(R.string.success_aut));
+            ProfessionalRolViewModel professionalRolViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(ProfessionalRolViewModel.class);
+            UserHelper.changefirstLaunch(getContext());
+        }
     }
 
     @Override

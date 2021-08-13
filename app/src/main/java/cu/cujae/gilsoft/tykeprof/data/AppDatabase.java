@@ -22,13 +22,16 @@ import cu.cujae.gilsoft.tykeprof.data.dao.Feedback_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Gift_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Gift_Type_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Grant_Dao;
+import cu.cujae.gilsoft.tykeprof.data.dao.Group_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Insignia_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Professional_Rol_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Profile_Answer_Question_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Question_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Question_Type_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Role_Dao;
+import cu.cujae.gilsoft.tykeprof.data.dao.Strategy_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Subject_Dao;
+import cu.cujae.gilsoft.tykeprof.data.dao.Teacher_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Topic_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.User_Dao;
 import cu.cujae.gilsoft.tykeprof.data.entity.Bonus;
@@ -39,20 +42,29 @@ import cu.cujae.gilsoft.tykeprof.data.entity.Feedback;
 import cu.cujae.gilsoft.tykeprof.data.entity.Gift;
 import cu.cujae.gilsoft.tykeprof.data.entity.Gift_Type;
 import cu.cujae.gilsoft.tykeprof.data.entity.Grant;
+import cu.cujae.gilsoft.tykeprof.data.entity.Group;
 import cu.cujae.gilsoft.tykeprof.data.entity.Insignia;
+import cu.cujae.gilsoft.tykeprof.data.entity.Player_Challenge;
+import cu.cujae.gilsoft.tykeprof.data.entity.Player_Strategy;
 import cu.cujae.gilsoft.tykeprof.data.entity.Professional_Rol;
 import cu.cujae.gilsoft.tykeprof.data.entity.Profile_Answer_Question;
 import cu.cujae.gilsoft.tykeprof.data.entity.Question;
 import cu.cujae.gilsoft.tykeprof.data.entity.Question_Type;
 import cu.cujae.gilsoft.tykeprof.data.entity.Answer;
 import cu.cujae.gilsoft.tykeprof.data.entity.Role;
+import cu.cujae.gilsoft.tykeprof.data.entity.Strategy;
+import cu.cujae.gilsoft.tykeprof.data.entity.Strategy_Group;
+import cu.cujae.gilsoft.tykeprof.data.entity.Strategy_Question;
+import cu.cujae.gilsoft.tykeprof.data.entity.Strategy_Topic;
 import cu.cujae.gilsoft.tykeprof.data.entity.Subject;
+import cu.cujae.gilsoft.tykeprof.data.entity.Teacher;
 import cu.cujae.gilsoft.tykeprof.data.entity.Topic;
 import cu.cujae.gilsoft.tykeprof.data.entity.User;
 
 @Database(entities = {Question_Type.class, Clue_Type.class, Gift_Type.class, Grant.class, Gift.class, Career.class, Topic.class,
         Professional_Rol.class, Insignia.class, Role.class, User.class, Subject.class, Bonus.class, Clue.class, Answer.class,
-        Feedback.class, Profile_Answer_Question.class, Question.class}, version = 1, exportSchema = false)
+        Feedback.class, Profile_Answer_Question.class, Question.class, Group.class, Player_Challenge.class, Player_Strategy.class,
+        Strategy.class, Strategy_Group.class, Strategy_Question.class, Strategy_Topic.class, Teacher.class}, version = 1, exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -92,6 +104,11 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract Question_Dao question_dao();
 
+    public abstract Group_Dao group_dao();
+
+    public abstract Strategy_Dao strategy_dao();
+
+    public abstract Teacher_Dao teacher_dao();
 
     private static volatile AppDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;

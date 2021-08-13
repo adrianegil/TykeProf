@@ -10,7 +10,6 @@ import androidx.room.Update;
 
 import java.util.List;
 
-import cu.cujae.gilsoft.tykeprof.data.entity.Gift;
 import cu.cujae.gilsoft.tykeprof.data.entity.Insignia;
 
 @Dao

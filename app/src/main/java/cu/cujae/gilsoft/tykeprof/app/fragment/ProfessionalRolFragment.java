@@ -1,16 +1,6 @@
 package cu.cujae.gilsoft.tykeprof.app.fragment;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +9,14 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
@@ -27,21 +24,13 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.ArrayList;
 
 import cu.cujae.gilsoft.tykeprof.R;
-import cu.cujae.gilsoft.tykeprof.adapter.Gift_Adapter;
 import cu.cujae.gilsoft.tykeprof.adapter.ProfessionalRol_Adapter;
-import cu.cujae.gilsoft.tykeprof.app.viewmodel.GiftViewModel;
 import cu.cujae.gilsoft.tykeprof.app.viewmodel.ProfessionalRolViewModel;
 import cu.cujae.gilsoft.tykeprof.data.entity.Career;
-import cu.cujae.gilsoft.tykeprof.data.entity.Gift_Type;
-import cu.cujae.gilsoft.tykeprof.data.entity.Grant;
 import cu.cujae.gilsoft.tykeprof.data.entity.Topic;
-import cu.cujae.gilsoft.tykeprof.data.model.Gift_Model;
 import cu.cujae.gilsoft.tykeprof.data.model.Professional_Rol_Model;
 import cu.cujae.gilsoft.tykeprof.databinding.ProfessionalRolFragmentBinding;
-import cu.cujae.gilsoft.tykeprof.databinding.QuestionTypeFragmentBinding;
 import cu.cujae.gilsoft.tykeprof.repository.Career_Repository;
-import cu.cujae.gilsoft.tykeprof.repository.Gift_Type_Repository;
-import cu.cujae.gilsoft.tykeprof.repository.Grant_Repository;
 import cu.cujae.gilsoft.tykeprof.repository.Topic_Repository;
 
 public class ProfessionalRolFragment extends Fragment {

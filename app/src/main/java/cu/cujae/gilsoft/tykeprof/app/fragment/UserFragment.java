@@ -1,47 +1,25 @@
 package cu.cujae.gilsoft.tykeprof.app.fragment;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.view.menu.ActionMenuItemView;
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.DialogFragment;
-import androidx.lifecycle.ViewModelProvider;
-
-import android.app.DatePickerDialog;
-import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.Toast;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.squareup.picasso.Picasso;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.time.format.ResolverStyle;
-import java.util.Date;
-
 import cu.cujae.gilsoft.tykeprof.R;
-import cu.cujae.gilsoft.tykeprof.app.LoginActivity;
-import cu.cujae.gilsoft.tykeprof.app.MainActivity;
-import cu.cujae.gilsoft.tykeprof.app.viewmodel.GiftViewModel;
 import cu.cujae.gilsoft.tykeprof.app.viewmodel.UserViewModel;
-import cu.cujae.gilsoft.tykeprof.data.entity.Clue_Type;
 import cu.cujae.gilsoft.tykeprof.data.entity.User;
-import cu.cujae.gilsoft.tykeprof.databinding.ClueTypeFragmentBinding;
 import cu.cujae.gilsoft.tykeprof.databinding.DialogChangePasswordBinding;
 import cu.cujae.gilsoft.tykeprof.databinding.DialogEditUserBinding;
 import cu.cujae.gilsoft.tykeprof.databinding.UserFragmentBinding;
@@ -70,7 +48,6 @@ public class UserFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         Toast.makeText(getContext(), getString(R.string.user_profile), Toast.LENGTH_SHORT).show();
         userViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(UserViewModel.class);
         userViewModel.getUser().observe(getViewLifecycleOwner(), user -> {
@@ -215,7 +192,6 @@ public class UserFragment extends Fragment {
                     .into(binding.imageViewUser);
         }
     }
-
 
     public void exitApp(View view) {
         AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());

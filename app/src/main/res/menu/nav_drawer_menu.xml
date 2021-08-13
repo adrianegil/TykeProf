@@ -34,7 +34,7 @@
         <menu>
             <group android:checkableBehavior="single">
                 <item
-                    android:id="@+id/nav_Strategy"
+                    android:id="@+id/nav_strategyFragment"
                     android:icon="@drawable/ic_strategy"
                     android:title="@string/strategy" />
                 <item

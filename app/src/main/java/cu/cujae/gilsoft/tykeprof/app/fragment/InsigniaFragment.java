@@ -1,16 +1,6 @@
 package cu.cujae.gilsoft.tykeprof.app.fragment;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +10,14 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.slider.Slider;
 import com.google.android.material.textfield.TextInputLayout;
@@ -27,20 +25,12 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.util.ArrayList;
 
 import cu.cujae.gilsoft.tykeprof.R;
-import cu.cujae.gilsoft.tykeprof.adapter.Gift_Adapter;
 import cu.cujae.gilsoft.tykeprof.adapter.Insignia_Adapter;
-import cu.cujae.gilsoft.tykeprof.app.viewmodel.GiftViewModel;
 import cu.cujae.gilsoft.tykeprof.app.viewmodel.InsigniaViewModel;
-import cu.cujae.gilsoft.tykeprof.data.entity.Gift_Type;
-import cu.cujae.gilsoft.tykeprof.data.entity.Grant;
 import cu.cujae.gilsoft.tykeprof.data.entity.Professional_Rol;
-import cu.cujae.gilsoft.tykeprof.data.entity.Topic;
 import cu.cujae.gilsoft.tykeprof.data.model.Insignia_Model;
 import cu.cujae.gilsoft.tykeprof.databinding.InsigniaFragmentBinding;
-import cu.cujae.gilsoft.tykeprof.databinding.ProfessionalRolFragmentBinding;
-import cu.cujae.gilsoft.tykeprof.repository.Career_Repository;
 import cu.cujae.gilsoft.tykeprof.repository.Professional_Rol_Repository;
-import cu.cujae.gilsoft.tykeprof.repository.Topic_Repository;
 
 public class InsigniaFragment extends Fragment {
 
@@ -87,7 +77,6 @@ public class InsigniaFragment extends Fragment {
         materialButtonAddGrant.setOnClickListener(v -> {
 
             View view1 = getLayoutInflater().inflate(R.layout.dialog_add_insignia, null);
-
             Insignia_Model insignia_model = new Insignia_Model();
 
             Slider sliderAdvancePoints = view1.findViewById(R.id.sliderAdvancePoints);

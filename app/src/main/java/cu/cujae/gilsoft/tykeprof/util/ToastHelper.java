@@ -1,16 +1,12 @@
 package cu.cujae.gilsoft.tykeprof.util;
 
 import android.app.Activity;
-import android.app.Application;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textview.MaterialTextView;
 
 import cu.cujae.gilsoft.tykeprof.R;

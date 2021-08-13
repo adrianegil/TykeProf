@@ -19,7 +19,7 @@ public interface Answer_Dao {
     Answer getAnswerById(long id);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void saveAllAnswerList(List<Answer> responseList);
+    void saveAllAnswerList(List<Answer> answerList);
 
     @Query("DELETE FROM answer WHERE id_answer = :id")
     void deleteAnswerByID(long id);

@@ -33,18 +33,32 @@ import cu.cujae.gilsoft.tykeprof.data.AppDatabase;
 import cu.cujae.gilsoft.tykeprof.data.dao.Answer_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Bonus_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Clue_Dao;
+import cu.cujae.gilsoft.tykeprof.data.dao.Group_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Question_Dao;
+import cu.cujae.gilsoft.tykeprof.data.dao.Strategy_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Subject_Dao;
+import cu.cujae.gilsoft.tykeprof.data.dao.Teacher_Dao;
+import cu.cujae.gilsoft.tykeprof.data.dao.Topic_Dao;
 import cu.cujae.gilsoft.tykeprof.data.entity.Answer;
 import cu.cujae.gilsoft.tykeprof.data.entity.Bonus;
 import cu.cujae.gilsoft.tykeprof.data.entity.Career;
 import cu.cujae.gilsoft.tykeprof.data.entity.Clue;
+import cu.cujae.gilsoft.tykeprof.data.entity.Group;
 import cu.cujae.gilsoft.tykeprof.data.entity.Professional_Rol;
 import cu.cujae.gilsoft.tykeprof.data.entity.Question;
+import cu.cujae.gilsoft.tykeprof.data.entity.Strategy;
+import cu.cujae.gilsoft.tykeprof.data.entity.Strategy_Group;
+import cu.cujae.gilsoft.tykeprof.data.entity.Strategy_Question;
+import cu.cujae.gilsoft.tykeprof.data.entity.Strategy_Topic;
 import cu.cujae.gilsoft.tykeprof.data.entity.Subject;
+import cu.cujae.gilsoft.tykeprof.data.entity.Teacher;
 import cu.cujae.gilsoft.tykeprof.data.entity.Topic;
+import cu.cujae.gilsoft.tykeprof.data.model.GroupList_Model;
+import cu.cujae.gilsoft.tykeprof.data.model.QuestionID_Model;
+import cu.cujae.gilsoft.tykeprof.data.model.TopicList_Model;
 import cu.cujae.gilsoft.tykeprof.databinding.ActivityMainBinding;
 import cu.cujae.gilsoft.tykeprof.service.Question_Service;
+import cu.cujae.gilsoft.tykeprof.service.Strategy_Service;
 import cu.cujae.gilsoft.tykeprof.service.Subject_Service;
 import cu.cujae.gilsoft.tykeprof.service.User_Service;
 import cu.cujae.gilsoft.tykeprof.util.Login;
@@ -66,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
     Subject_Service subject_service = RetrofitClient.getRetrofit().create(Subject_Service.class);
     Question_Service question_service = RetrofitClient.getRetrofit().create(Question_Service.class);
+    Strategy_Service strategy_service = RetrofitClient.getRetrofit().create(Strategy_Service.class);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,19 +103,13 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         myAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home_Fragment, R.id.nav_questionTypeFragment,
                 R.id.nav_clueTypeFragment, R.id.nav_giftTypeFragment, R.id.nav_grantFragment, R.id.nav_giftFragment, R.id.nav_professionalRolFragment,
-                R.id.nav_insigniaFragment, R.id.nav_rankingFragment, R.id.nav_questionFragment)
+                R.id.nav_insigniaFragment, R.id.nav_rankingFragment, R.id.nav_questionFragment, R.id.nav_strategyFragment)
                 .setOpenableLayout(drawer)
                 .build();
         navController = Navigation.findNavController(this, R.id.nav_host_fragment_container);
         NavigationUI.setupActionBarWithNavController(this, navController, myAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        //COMPROBANDO SI ES LA PRIMERA VEZ QUE EL USUARIO ENTRA EN LA APP
-        if (getSharedPreferences("autenticacion", MODE_PRIVATE).getBoolean("firstLaunch", true)) {
-            ProfessionalRolViewModel professionalRolViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())).get(ProfessionalRolViewModel.class);
-            ToastHelper.showCustomToast(MainActivity.this, "success", getString(R.string.success_aut));
-            UserHelper.changefirstLaunch(this);
-        }
 
         //ACTUALIZANDO INFORMACIÓN EN EL NAVIGATION DRAWER
         view1 = binding.navView.getHeaderView(0);
@@ -122,6 +131,8 @@ public class MainActivity extends AppCompatActivity {
                 //
             }).show();
         }
+
+        // getAllStrategies();
     }
 
     @Override
@@ -216,51 +227,61 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void getAllQuestions() {
+    public void getAllStrategies() {
 
-        Question_Dao question_dao = AppDatabase.getDatabase(this).question_dao();
-        Answer_Dao answer_dao = AppDatabase.getDatabase(this).answer_dao();
-        Bonus_Dao bonus_dao = AppDatabase.getDatabase(this).bonus_dao();
-        Clue_Dao clue_dao = AppDatabase.getDatabase(this).clue_dao();
+        Strategy_Dao strategy_dao = AppDatabase.getDatabase(this).strategy_dao();
+        Topic_Dao topic_dao = AppDatabase.getDatabase(this).topic_dao();
+        Group_Dao group_dao = AppDatabase.getDatabase(this).group_dao();
+        Teacher_Dao teacher_dao = AppDatabase.getDatabase(this).teacher_dao();
 
-        Call<List<Question>> listCallQuestions = question_service.getAllQuestionsByWeb("Bearer " + UserHelper.getToken(MainActivity.this));
-        listCallQuestions.enqueue(new Callback<List<Question>>() {
+
+        Call<List<Strategy>> listCallQuestions = strategy_service.getAllStrategiesByWeb("Bearer " + UserHelper.getToken(MainActivity.this));
+        listCallQuestions.enqueue(new Callback<List<Strategy>>() {
             @Override
-            public void onResponse(Call<List<Question>> call, Response<List<Question>> response) {
+            public void onResponse(Call<List<Strategy>> call, Response<List<Strategy>> response) {
                 if (response.isSuccessful()) {
-                    ArrayList<Answer> answers = new ArrayList<>();
-                    ArrayList<Bonus> bonuses = new ArrayList<>();
-                    ArrayList<Clue> clues = new ArrayList<>();
+                    ArrayList<Topic> topics = new ArrayList<>();
+                    ArrayList<Group> groups = new ArrayList<>();
+                    ArrayList<Teacher> teachers = new ArrayList<>();
+                    ArrayList<Strategy_Topic> strategy_topics = new ArrayList<>();
+                    ArrayList<Strategy_Group> strategy_groups = new ArrayList<>();
+                    ArrayList<Strategy_Question> strategy_questions = new ArrayList<>();
 
-                    ArrayList<Question> questionsSave = new ArrayList<>();
-                    List<Question> questionsResponse;
-                    questionsResponse = response.body();
+                    ArrayList<Strategy> strategiesSave = new ArrayList<>();
+                    List<Strategy> strategiesResponse;
+                    strategiesResponse = response.body();
 
-                    for (Question question : questionsResponse) {
-                        question.setId_question_type(question.getQuestion_type().getId());
-                        questionsSave.add(question);
-                        for (Bonus bonus : question.getBonusList()) {
-                            bonus.setId_question(question.getId_question());
-                            bonuses.add(bonus);
+                    for (Strategy strategy : strategiesResponse) {
+                        strategy.setId_teacher(strategy.getTeacher().getId_teacher());
+                        strategiesSave.add(strategy);
+                        Teacher teacher = strategy.getTeacher();
+                        teacher.setFullName(strategy.getTeacher().getUser().getFullName());
+                        teachers.add(teacher);
+                        for (GroupList_Model group : strategy.getGroupList_models()) {
+                            groups.add(group.getGroup());
+                            strategy_groups.add(new Strategy_Group(group.getGroup().getId_group(), strategy.getId_strategy()));
                         }
-                        for (Answer answer : question.getAnswerList()) {
-                            answer.setId_question((int) question.getId_question());
-                            answers.add(answer);
+                        for (TopicList_Model topic : strategy.getTopicList_models()) {
+                            topics.add(topic.getTopic());
+                            strategy_topics.add(new Strategy_Topic(topic.getTopic().getId_topic(), strategy.getId_strategy()));
                         }
-                        for (Clue clue : question.getClueList()) {
-                            clue.setId_question((int) question.getId_question());
-                            clue.setId_clue_type(clue.getClue_type().getId());
-                            clues.add(clue);
+                        for (QuestionID_Model questionID_model : strategy.getQuestionID_models()) {
+                            strategy_questions.add(new Strategy_Question(questionID_model.getId_Question(), strategy.getId_strategy()));
                         }
-                        Log.e("Question ", question.getId_question() + " " + question.getQuestion_title() + "" + question.getPoints_complete_correctly() + " " + question.getTime_second());
+                        Log.e("Strategy ", strategy.getId_strategy() + " " + strategy.getName() + " " + strategy.getDate() + " " + strategy.getPoints());
                     }
                     AppDatabase.databaseWriteExecutor.execute(() -> {
-                        question_dao.deleteAll();
-                        question_dao.saveAllQuestionList(questionsSave);
-                        bonus_dao.saveAllBonuses(bonuses);
-                        answer_dao.saveAllAnswerList(answers);
-                        clue_dao.saveAllClueList(clues);
+                        strategy_dao.deleteAll();
+                        topic_dao.saveAllTopic(topics);
+                        group_dao.saveAllGroups(groups);
+                        strategy_dao.saveStrategy_GroupList(strategy_groups);
+                        strategy_dao.saveStrategy_TopicList(strategy_topics);
+                        strategy_dao.saveStrategy_QuestionList(strategy_questions);
+                        teacher_dao.saveAllTeacher(teachers);
+                        strategy_dao.saveAllStrategiesList(strategiesSave);
                     });
+                    Toast.makeText(MainActivity.this, "onResponse", Toast.LENGTH_SHORT).show();
+
                 } else if (response.code() == 403) {
                     UserHelper.renovateToken(MainActivity.this);
 
@@ -269,7 +290,10 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<List<Question>> call, Throwable t) {
+            public void onFailure(Call<List<Strategy>> call, Throwable t) {
+
+                Toast.makeText(MainActivity.this, "onFailure", Toast.LENGTH_SHORT).show();
+
             }
         });
     }

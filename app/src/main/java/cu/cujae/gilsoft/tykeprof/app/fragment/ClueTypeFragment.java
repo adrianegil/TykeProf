@@ -22,14 +22,9 @@ import org.jetbrains.annotations.NotNull;
 
 import cu.cujae.gilsoft.tykeprof.R;
 import cu.cujae.gilsoft.tykeprof.adapter.ClueType_Adapter;
-import cu.cujae.gilsoft.tykeprof.adapter.QuestionType_Adapter;
 import cu.cujae.gilsoft.tykeprof.app.viewmodel.ClueTypeViewModel;
-import cu.cujae.gilsoft.tykeprof.app.viewmodel.QuestionTypeViewModel;
 import cu.cujae.gilsoft.tykeprof.data.entity.Clue_Type;
-import cu.cujae.gilsoft.tykeprof.data.entity.Question_Type;
 import cu.cujae.gilsoft.tykeprof.databinding.ClueTypeFragmentBinding;
-import cu.cujae.gilsoft.tykeprof.databinding.QuestionTypeFragmentBinding;
-import cu.cujae.gilsoft.tykeprof.util.ToastHelper;
 
 public class ClueTypeFragment extends Fragment {
 

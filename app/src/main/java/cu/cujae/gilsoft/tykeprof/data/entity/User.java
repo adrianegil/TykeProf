@@ -5,7 +5,6 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import java.util.Date;
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;

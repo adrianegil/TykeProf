@@ -2,7 +2,6 @@ package cu.cujae.gilsoft.tykeprof.repository;
 
 import android.app.Application;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.util.Log;
 import android.widget.Toast;
@@ -14,20 +13,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cu.cujae.gilsoft.tykeprof.R;
-import cu.cujae.gilsoft.tykeprof.app.MainActivity;
 import cu.cujae.gilsoft.tykeprof.data.AppDatabase;
 import cu.cujae.gilsoft.tykeprof.data.dao.Answer_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Bonus_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Clue_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Question_Dao;
-import cu.cujae.gilsoft.tykeprof.data.dao.Subject_Dao;
 import cu.cujae.gilsoft.tykeprof.data.entity.Answer;
 import cu.cujae.gilsoft.tykeprof.data.entity.Bonus;
 import cu.cujae.gilsoft.tykeprof.data.entity.Clue;
 import cu.cujae.gilsoft.tykeprof.data.entity.Question;
-import cu.cujae.gilsoft.tykeprof.data.entity.Subject;
 import cu.cujae.gilsoft.tykeprof.service.Question_Service;
-import cu.cujae.gilsoft.tykeprof.service.Subject_Service;
 import cu.cujae.gilsoft.tykeprof.util.RetrofitClient;
 import cu.cujae.gilsoft.tykeprof.util.UserHelper;
 import retrofit2.Call;
@@ -119,6 +114,10 @@ public class Question_Repository {
             size = getAllQuestionLocalList().size();
         }
         return size;
+    }
+
+    public LiveData<List<Question>> getAllLiveQuestionLocalList() {
+        return question_dao.getAllQuestions();
     }
 
     public List<Question> getAllQuestionLocalList() {

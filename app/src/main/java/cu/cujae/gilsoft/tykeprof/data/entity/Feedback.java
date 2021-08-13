@@ -6,8 +6,6 @@ import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-import com.google.gson.annotations.SerializedName;
-
 @Entity(tableName = "feedback", foreignKeys = {
         @ForeignKey(entity = Question.class,
                 parentColumns = "id_question",

@@ -1,20 +1,16 @@
 package cu.cujae.gilsoft.tykeprof.app.fragment;
 
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import cu.cujae.gilsoft.tykeprof.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
 import cu.cujae.gilsoft.tykeprof.app.viewmodel.RankingViewModel;
-import cu.cujae.gilsoft.tykeprof.databinding.InsigniaFragmentBinding;
 import cu.cujae.gilsoft.tykeprof.databinding.RankingFragmentBinding;
 
 public class RankingFragment extends Fragment {

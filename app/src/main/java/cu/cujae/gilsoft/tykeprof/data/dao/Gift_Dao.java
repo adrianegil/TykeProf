@@ -11,7 +11,6 @@ import androidx.room.Update;
 
 import java.util.List;
 
-import cu.cujae.gilsoft.tykeprof.data.entity.Clue_Type;
 import cu.cujae.gilsoft.tykeprof.data.entity.Gift;
 
 @Dao

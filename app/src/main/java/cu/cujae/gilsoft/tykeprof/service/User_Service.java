@@ -1,10 +1,6 @@
 package cu.cujae.gilsoft.tykeprof.service;
 
-import java.util.List;
-
-import cu.cujae.gilsoft.tykeprof.data.entity.Insignia;
 import cu.cujae.gilsoft.tykeprof.data.entity.User;
-import cu.cujae.gilsoft.tykeprof.data.model.Insignia_Model;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;

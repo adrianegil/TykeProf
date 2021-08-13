@@ -5,24 +5,16 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LiveData;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cu.cujae.gilsoft.tykeprof.R;
-import cu.cujae.gilsoft.tykeprof.app.MainActivity;
 import cu.cujae.gilsoft.tykeprof.data.AppDatabase;
-import cu.cujae.gilsoft.tykeprof.data.dao.Clue_Type_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Gift_Type_Dao;
-import cu.cujae.gilsoft.tykeprof.data.entity.Clue_Type;
-import cu.cujae.gilsoft.tykeprof.data.entity.Gift;
 import cu.cujae.gilsoft.tykeprof.data.entity.Gift_Type;
-import cu.cujae.gilsoft.tykeprof.data.entity.Grant;
-import cu.cujae.gilsoft.tykeprof.service.Clue_Type_Service;
 import cu.cujae.gilsoft.tykeprof.service.Gift_Type_Service;
-import cu.cujae.gilsoft.tykeprof.service.Question_Type_Service;
 import cu.cujae.gilsoft.tykeprof.util.RetrofitClient;
 import cu.cujae.gilsoft.tykeprof.util.UserHelper;
 import okhttp3.ResponseBody;

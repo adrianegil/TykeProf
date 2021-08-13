@@ -24,7 +24,7 @@ allprojects {
         jcenter()
         mavenCentral()
         google()
-     // Warning: this repository is going to shut down soon
+        // Warning: this repository is going to shut down soon
     }
 }
 

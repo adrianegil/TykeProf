@@ -7,14 +7,10 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.preference.PreferenceManager;
-
 import java.io.IOException;
 
 import cu.cujae.gilsoft.tykeprof.R;
 import cu.cujae.gilsoft.tykeprof.app.LoginActivity;
-import cu.cujae.gilsoft.tykeprof.app.MainActivity;
-import cu.cujae.gilsoft.tykeprof.app.SplashActivity;
 import cu.cujae.gilsoft.tykeprof.service.Login_Service;
 import okhttp3.ResponseBody;
 import retrofit2.Call;

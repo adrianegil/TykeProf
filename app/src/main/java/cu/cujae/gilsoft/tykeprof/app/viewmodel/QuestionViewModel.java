@@ -5,7 +5,6 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 
 import java.util.List;
 
@@ -39,6 +38,10 @@ public class QuestionViewModel extends AndroidViewModel {
 
     public LiveData<List<Question>> getAllQuestion() {
         return question_repository.getAllQuestionList();
+    }
+
+    public LiveData<List<Question>> getAllLiveQuestionLocalList() {
+        return question_repository.getAllLiveQuestionLocalList();
     }
 
     public List<Question> getAllQuestionLocalList() {

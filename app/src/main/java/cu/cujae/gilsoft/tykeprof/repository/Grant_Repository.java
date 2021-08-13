@@ -9,20 +9,11 @@ import androidx.lifecycle.LiveData;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 import cu.cujae.gilsoft.tykeprof.R;
-import cu.cujae.gilsoft.tykeprof.app.MainActivity;
 import cu.cujae.gilsoft.tykeprof.data.AppDatabase;
-import cu.cujae.gilsoft.tykeprof.data.dao.Gift_Type_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Grant_Dao;
-import cu.cujae.gilsoft.tykeprof.data.entity.Gift;
-import cu.cujae.gilsoft.tykeprof.data.entity.Gift_Type;
 import cu.cujae.gilsoft.tykeprof.data.entity.Grant;
-import cu.cujae.gilsoft.tykeprof.service.Gift_Type_Service;
 import cu.cujae.gilsoft.tykeprof.service.Grant_Service;
 import cu.cujae.gilsoft.tykeprof.util.RetrofitClient;
 import cu.cujae.gilsoft.tykeprof.util.UserHelper;

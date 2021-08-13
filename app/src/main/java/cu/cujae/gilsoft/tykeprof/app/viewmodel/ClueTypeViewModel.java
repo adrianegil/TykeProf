@@ -5,16 +5,11 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
 import cu.cujae.gilsoft.tykeprof.data.entity.Clue_Type;
-import cu.cujae.gilsoft.tykeprof.data.entity.Question_Type;
 import cu.cujae.gilsoft.tykeprof.repository.Clue_Type_Repository;
-import cu.cujae.gilsoft.tykeprof.repository.Question_Type_Repository;
 
 public class ClueTypeViewModel extends AndroidViewModel {
 

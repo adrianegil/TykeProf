@@ -8,7 +8,6 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import cu.cujae.gilsoft.tykeprof.data.entity.Answer;
 import cu.cujae.gilsoft.tykeprof.data.entity.Question;
 
 @Dao

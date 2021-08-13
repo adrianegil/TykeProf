@@ -22,6 +22,9 @@ public interface Career_Dao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void saveAllCareer(List<Career> careerList);
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void saveAllCareerReplace(List<Career> careerList);
+
     @Query("DELETE FROM career WHERE id_career = :id")
     void deleteCareerByID(long id);
 

@@ -3,9 +3,7 @@ package cu.cujae.gilsoft.tykeprof.service;
 import java.util.List;
 
 import cu.cujae.gilsoft.tykeprof.data.entity.Insignia;
-import cu.cujae.gilsoft.tykeprof.data.entity.Professional_Rol;
 import cu.cujae.gilsoft.tykeprof.data.model.Insignia_Model;
-import cu.cujae.gilsoft.tykeprof.data.model.Professional_Rol_Model;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;

@@ -1,34 +1,28 @@
 package cu.cujae.gilsoft.tykeprof.app.fragment;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.slider.Slider;
 import com.google.android.material.textfield.TextInputLayout;
 
 import cu.cujae.gilsoft.tykeprof.R;
-import cu.cujae.gilsoft.tykeprof.adapter.ClueType_Adapter;
 import cu.cujae.gilsoft.tykeprof.adapter.Grant_Adapter;
-import cu.cujae.gilsoft.tykeprof.app.viewmodel.ClueTypeViewModel;
 import cu.cujae.gilsoft.tykeprof.app.viewmodel.GrantViewModel;
-import cu.cujae.gilsoft.tykeprof.data.entity.Gift_Type;
 import cu.cujae.gilsoft.tykeprof.data.entity.Grant;
-import cu.cujae.gilsoft.tykeprof.databinding.ClueTypeFragmentBinding;
 import cu.cujae.gilsoft.tykeprof.databinding.GrantFragmentBinding;
 
 public class GrantFragment extends Fragment {
@@ -51,7 +45,6 @@ public class GrantFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         grantViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(GrantViewModel.class);
         RecyclerView recyclerView = binding.RecyclerViewGrant;
         final Grant_Adapter adapter = new Grant_Adapter(new Grant_Adapter.GrantDiff(), grantViewModel, getActivity());

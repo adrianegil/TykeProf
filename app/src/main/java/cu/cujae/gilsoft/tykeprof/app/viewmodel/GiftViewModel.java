@@ -5,19 +5,14 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import cu.cujae.gilsoft.tykeprof.data.entity.Clue_Type;
 import cu.cujae.gilsoft.tykeprof.data.entity.Gift;
-import cu.cujae.gilsoft.tykeprof.data.entity.Gift_Type;
 import cu.cujae.gilsoft.tykeprof.data.model.Gift_Model;
 import cu.cujae.gilsoft.tykeprof.repository.Gift_Repository;
-import cu.cujae.gilsoft.tykeprof.repository.Gift_Type_Repository;
-import cu.cujae.gilsoft.tykeprof.util.Login;
 
 public class GiftViewModel extends AndroidViewModel {
 

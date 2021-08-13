@@ -5,13 +5,8 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 
-import java.util.List;
-
-import cu.cujae.gilsoft.tykeprof.data.entity.Insignia;
 import cu.cujae.gilsoft.tykeprof.data.entity.User;
-import cu.cujae.gilsoft.tykeprof.repository.Insignia_Repository;
 import cu.cujae.gilsoft.tykeprof.repository.User_Repository;
 
 public class UserViewModel extends AndroidViewModel {

@@ -1,13 +1,10 @@
 package cu.cujae.gilsoft.tykeprof.data.entity;
 
-
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
-
-import com.google.gson.annotations.SerializedName;
 
 @Entity(tableName = "profile_answer_question", foreignKeys = {
         @ForeignKey(entity = Answer.class,

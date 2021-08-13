@@ -2,9 +2,7 @@ package cu.cujae.gilsoft.tykeprof.service;
 
 import java.util.List;
 
-import cu.cujae.gilsoft.tykeprof.data.entity.Clue_Type;
 import cu.cujae.gilsoft.tykeprof.data.entity.Gift;
-import cu.cujae.gilsoft.tykeprof.data.entity.Gift_Type;
 import cu.cujae.gilsoft.tykeprof.data.model.Gift_Model;
 import okhttp3.ResponseBody;
 import retrofit2.Call;

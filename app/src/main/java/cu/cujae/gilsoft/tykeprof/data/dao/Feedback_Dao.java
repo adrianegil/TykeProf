@@ -7,7 +7,6 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import cu.cujae.gilsoft.tykeprof.data.entity.Bonus;
 import cu.cujae.gilsoft.tykeprof.data.entity.Feedback;
 
 @Dao

@@ -55,7 +55,9 @@
     <string name="delete_insignia">Eliminar Insignia</string>
     <string name="delete_profess_rol">Eliminar Rol Profesional</string>
     <string name="delete_question">Eliminar Pregunta</string>
+    <string name="delete_strategy">Eliminar Estrategia</string>
     <string name="confirm_delete_gift">Desea realmente eliminar este Regalo</string>
+    <string name="confirm_delete_strategy">Desea realmente eliminar esta Estrategia</string>
     <string name="confirm_delete_question">Desea realmente eliminar esta Pregunta</string>
     <string name="confirm_delete_gift_type">Desea realmente eliminar este Tipo de Regalo</string>
     <string name="confirm_delete_grant">Desea realmente eliminar este Otorgamiento</string>
@@ -75,6 +77,7 @@
     <string name="new_professional_rol">Nuevo Rol Profesional</string>
     <string name="new_clue_type">Nuevo Tipo de Pista</string>
     <string name="new_question">Nueva Pregunta</string>
+    <string name="new_strategy">Nueva Estrategia</string>
     <string name="edit_gift">Editar Regalo</string>
     <string name="edit_insignia">Editar Insignia</string>
     <string name="edit_grant">Editar Otorgamiento</string>
@@ -84,6 +87,7 @@
     <string name="user_concat">Usuario: %s</string>
     <string name="email">Correo: %s</string>
     <string name="subject_concat">Asignatura: %s</string>
+    <string name="points_concat">Puntos: %s</string>
     <string name="punctuation_concat">Puntuación: %s</string>
     <string name="time_for_answer">Tiempo para responder(s): %s</string>
     <string name="dob">Nacimiento: %s</string>
@@ -94,11 +98,13 @@
     <string name="description">Descripción</string>
     <string name="select_dob">Escoja una Fecha</string>
     <string name="edit_data">Editar Datos</string>
-    <string name="should_register_asteacher">Debe estar registrado como Profesor</string>
+    <string name="should_register_asteacher">Debe registrarse como Profesor</string>
     <string name="answer_cant">Cant. de respuestas: </string>
+    <string name="creator">Creador: </string>
     <string name="clue_cant">Cant. de pistas: </string>
-    <string name="strategy_cant">Cantidad de estrategias:</string>
-    <string name="question_cant">"Cantidad de preguntas: "</string>
-
+    <string name="questions_cant">Cant. de pistas: </string>
+    <string name="strategy_cant">Cant. de estrategias:</string>
+    <string name="topics_cant">Cant. de Temas: </string>
+    <string name="question_cant">Cant. de preguntas: </string>
 
 </resources>

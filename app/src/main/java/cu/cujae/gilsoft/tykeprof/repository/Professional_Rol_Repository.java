@@ -16,7 +16,6 @@ import cu.cujae.gilsoft.tykeprof.data.dao.Career_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Professional_Rol_Dao;
 import cu.cujae.gilsoft.tykeprof.data.dao.Topic_Dao;
 import cu.cujae.gilsoft.tykeprof.data.entity.Career;
-import cu.cujae.gilsoft.tykeprof.data.entity.Insignia;
 import cu.cujae.gilsoft.tykeprof.data.entity.Professional_Rol;
 import cu.cujae.gilsoft.tykeprof.data.entity.Topic;
 import cu.cujae.gilsoft.tykeprof.data.model.Professional_Rol_Model;
@@ -105,11 +104,10 @@ public class Professional_Rol_Repository {
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         career_dao.saveAllCareer(careers);
                         topic_dao.saveAllTopic(topics);
-                        //professional_rol_dao.deleteAll();
                         professional_rol_dao.saveAllProfessionalRolList(professional_rolsSave);
                     });
                 } else if (response.code() == 403) {
-                   // UserHelper.renovateToken(context);
+                    // UserHelper.renovateToken(context);
 
                 } else
                     Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show();

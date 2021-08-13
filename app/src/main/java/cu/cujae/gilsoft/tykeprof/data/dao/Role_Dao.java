@@ -7,7 +7,6 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import cu.cujae.gilsoft.tykeprof.data.entity.Career;
 import cu.cujae.gilsoft.tykeprof.data.entity.Role;
 
 @Dao

@@ -67,4 +67,9 @@
         android:name="cu.cujae.gilsoft.tykeprof.app.fragment.QuestionFragment"
         android:label="@string/questions"
         tools:layout="@layout/question_fragment" />
+    <fragment
+        android:id="@+id/nav_strategyFragment"
+        android:name="cu.cujae.gilsoft.tykeprof.app.fragment.StrategyFragment"
+        android:label="@string/strategies"
+        tools:layout="@layout/strategy_fragment" />
 </navigation>

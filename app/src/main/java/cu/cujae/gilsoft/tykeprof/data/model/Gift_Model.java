@@ -1,7 +1,5 @@
 package cu.cujae.gilsoft.tykeprof.data.model;
 
-import androidx.room.ColumnInfo;
-
 import com.google.gson.annotations.SerializedName;
 
 public class Gift_Model {

@@ -8,15 +8,10 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import cu.cujae.gilsoft.tykeprof.app.MainActivity;
 import cu.cujae.gilsoft.tykeprof.data.AppDatabase;
 import cu.cujae.gilsoft.tykeprof.data.dao.Career_Dao;
-import cu.cujae.gilsoft.tykeprof.data.dao.Clue_Type_Dao;
 import cu.cujae.gilsoft.tykeprof.data.entity.Career;
-import cu.cujae.gilsoft.tykeprof.data.entity.Grant;
-import cu.cujae.gilsoft.tykeprof.data.entity.Topic;
 import cu.cujae.gilsoft.tykeprof.service.Career_Service;
-import cu.cujae.gilsoft.tykeprof.service.Clue_Type_Service;
 import cu.cujae.gilsoft.tykeprof.util.RetrofitClient;
 import cu.cujae.gilsoft.tykeprof.util.UserHelper;
 import retrofit2.Call;

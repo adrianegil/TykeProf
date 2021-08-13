@@ -6,8 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
 
 import cu.cujae.gilsoft.tykeprof.data.entity.Professional_Rol;

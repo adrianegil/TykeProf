@@ -7,11 +7,7 @@ import java.util.List;
 
 import cu.cujae.gilsoft.tykeprof.data.AppDatabase;
 import cu.cujae.gilsoft.tykeprof.data.dao.Answer_Dao;
-import cu.cujae.gilsoft.tykeprof.data.dao.Clue_Type_Dao;
 import cu.cujae.gilsoft.tykeprof.data.entity.Answer;
-import cu.cujae.gilsoft.tykeprof.data.entity.Clue;
-import cu.cujae.gilsoft.tykeprof.service.Clue_Type_Service;
-import cu.cujae.gilsoft.tykeprof.util.RetrofitClient;
 
 public class Answer_Repository {
 
