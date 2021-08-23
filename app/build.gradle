@@ -51,6 +51,11 @@ dependencies {
     //VIEW
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation 'com.shuhart.stepview:stepview:1.5.1'
+
+    //IMAGE MANAGEMENT
+    implementation 'com.squareup.picasso:picasso:2.8'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     //NAVIGATION COMPONENTS
     implementation 'androidx.navigation:navigation-fragment:2.3.5'
@@ -78,8 +83,4 @@ dependencies {
 
     //USER PREFERENCES OR CONFIGURATIONS
     implementation 'androidx.preference:preference:1.1.1'
-
-    //IMAGE MANAGEMENT
-    implementation 'com.squareup.picasso:picasso:2.8'
-    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

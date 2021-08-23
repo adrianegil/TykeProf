@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/new_question_navigation"
+    app:startDestination="@id/newQuestionFragment">
+
+    <fragment
+        android:id="@+id/newQuestionFragment"
+        android:name="cu.cujae.gilsoft.tykeprof.app.fragment.NewQuestionFragment"
+        tools:layout="@layout/new_question_fragment">
+        <argument
+            android:name="stepNumber"
+            android:defaultValue="1"
+            app:argType="integer" />
+        <action
+            android:id="@+id/go_newQuestion2Step"
+            app:destination="@id/newQuestion2StepFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newQuestion2StepFragment"
+        android:name="cu.cujae.gilsoft.tykeprof.app.fragment.NewQuestionFragment"
+        tools:layout="@layout/new_question_2step_fragment">
+
+        <argument
+            android:name="stepNumber"
+            android:defaultValue="2"
+            app:argType="integer" />
+        <action
+            android:id="@+id/go_newQuestionBack1Step"
+            app:destination="@id/newQuestionFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/go_newQuestion3Step"
+            app:destination="@id/newQuestion3StepFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newQuestion3StepFragment"
+        android:name="cu.cujae.gilsoft.tykeprof.app.fragment.NewQuestionFragment"
+        tools:layout="@layout/new_question_3step_fragment">
+        <argument
+            android:name="stepNumber"
+            android:defaultValue="3"
+            app:argType="integer" />
+        <action
+            android:id="@+id/go_newQuestionBack2Step"
+            app:destination="@id/newQuestion2StepFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/go_newQuestion4Step"
+            app:destination="@id/newQuestion4StepFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newQuestion4StepFragment"
+        android:name="cu.cujae.gilsoft.tykeprof.app.fragment.NewQuestionFragment"
+        tools:layout="@layout/new_question_4step_fragment">
+        <argument
+            android:name="stepNumber"
+            android:defaultValue="4"
+            app:argType="integer" />
+        <action
+            android:id="@+id/go_newQuestionBack3Step"
+            app:destination="@id/newQuestion3StepFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/go_newQuestion5Step"
+            app:destination="@id/newQuestion5StepFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newQuestion5StepFragment"
+        android:name="cu.cujae.gilsoft.tykeprof.app.fragment.NewQuestionFragment"
+        tools:layout="@layout/new_question_5step_fragment">
+        <argument
+            android:name="stepNumber"
+            android:defaultValue="5"
+            app:argType="integer" />
+        <action
+            android:id="@+id/go_newQuestionBack4Step"
+            app:destination="@id/newQuestion4StepFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
+
+</navigation>

@@ -1,5 +1,6 @@
 package cu.cujae.gilsoft.tykeprof.data.dao;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -14,6 +15,9 @@ public interface Subject_Dao {
 
     @Query("SELECT * FROM subject")
     List<Subject> getAllSubjectList();
+
+    @Query("SELECT * FROM subject")
+    LiveData<List<Subject>> getLiveSubjectList();
 
     @Query("SELECT * FROM subject WHERE id_subject =:id")
     Subject getSubjectById(long id);

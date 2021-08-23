@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.card.MaterialCardView;
@@ -24,6 +23,7 @@ import cu.cujae.gilsoft.tykeprof.data.entity.Role;
 import cu.cujae.gilsoft.tykeprof.data.entity.User;
 import cu.cujae.gilsoft.tykeprof.service.Login_Service;
 import cu.cujae.gilsoft.tykeprof.service.User_Service;
+import cu.cujae.gilsoft.tykeprof.util.DialogHelper;
 import cu.cujae.gilsoft.tykeprof.util.Login;
 import cu.cujae.gilsoft.tykeprof.util.RetrofitClient;
 import cu.cujae.gilsoft.tykeprof.util.ToastHelper;
@@ -45,7 +45,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         progressBarLogin = findViewById(R.id.progressBarLogin);
     }
 
@@ -53,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (cont == 0) {
-            Toast.makeText(LoginActivity.this, getString(R.string.exit_again_toast), Toast.LENGTH_SHORT).show();
+            ToastHelper.showCustomToast(LoginActivity.this,"warning",getString(R.string.exit_again_toast));
             cont++;
         } else {
             super.onBackPressed();
@@ -126,16 +125,14 @@ public class LoginActivity extends AppCompatActivity {
                     progressBarLogin.setVisibility(View.INVISIBLE);
                     Snackbar.make(view, getResources().getString(R.string.no_connection), Snackbar.LENGTH_INDEFINITE).setAction("Ok", v -> {
                         Toast.makeText(LoginActivity.this, getResources().getString(R.string.check_connection), Toast.LENGTH_SHORT).show();
-                        // Snackbar.make(v, "Por favor conéctese", Snackbar.LENGTH_LONG).show();
                     }).show();
                 }
             });
         }
     }
 
-    //REVISAR SI EL USUARIO ES PROFESOR
+    //CHEQUEAR SI EL USUARIO ES PROFESOR
     public void checkRole(String username) {
-
         User_Dao user_dao = AppDatabase.getDatabase(this).user_dao();
         Call<User> getUser = user_service.getUserByWeb(username);
         getUser.enqueue(new Callback<User>() {
@@ -148,7 +145,6 @@ public class LoginActivity extends AppCompatActivity {
                         if (role.getId_role() == 2) {
                             isTeacher = true;
                             AppDatabase.databaseWriteExecutor.execute(() -> {
-                                //  user_dao.deleteAll();
                                 user_dao.saveUser(user);
                             });
                         }
@@ -182,14 +178,6 @@ public class LoginActivity extends AppCompatActivity {
 
     //SALIR DE LA APP
     public void exitLoginActivity(View view) {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(LoginActivity.this);
-        dialog.setTitle(R.string.exit_confirm);
-        dialog.setMessage(R.string.exit_confirm_description);
-        dialog.setPositiveButton(R.string.yes, (dialog12, which) -> {
-            finish();
-        });
-        dialog.setNegativeButton("No", (dialog13, which) -> dialog13.dismiss());
-        dialog.setNeutralButton(R.string.cancel, (dialog1, which) -> dialog1.dismiss());
-        dialog.show();
+        DialogHelper.showExitDialog(LoginActivity.this);
     }
 }

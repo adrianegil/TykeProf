@@ -19,5 +19,6 @@
     <color name="colorPrimaryDark">#337E45</color>
     <color name="colorPink">#CEEF2368</color>
     <color name="colorOrange">#FF5722</color>
+    <color name="gray_dark">#6C6B6B</color>
 
 </resources>

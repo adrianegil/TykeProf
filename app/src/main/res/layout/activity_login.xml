@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    tools:viewBindingIgnore="true"
     android:layout_height="match_parent"
     tools:context=".app.LoginActivity">
 
@@ -27,10 +26,11 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardViewIncorrectLogin"
         android:layout_width="0dp"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:minHeight="56dp"
         android:visibility="invisible"
         app:cardBackgroundColor="@color/colorRedTyke"
         app:cardCornerRadius="10dp"
@@ -40,7 +40,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:minHeight="56dp">
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
@@ -131,8 +132,8 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/selector_ic_key"
                     android:drawablePadding="12dp"
-                    android:imeOptions="flagNoExtractUi"
                     android:hint="@string/password"
+                    android:imeOptions="flagNoExtractUi"
                     android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>

@@ -27,6 +27,12 @@ public class Clue_Type {
     @SerializedName("puntosJuego")
     private Integer GamePoints;
 
+    @Ignore
+    @Override
+    public String toString() {
+        return type;
+    }
+
     public Clue_Type() {
     }
 

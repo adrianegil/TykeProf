@@ -81,7 +81,6 @@ public class Question_Type_Repository {
                     });
                 } else if (response.code() == 403) {
                     UserHelper.renovateToken(context);
-                    //getAllQuestionTypeWeb();
                 } else
                     Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show();
             }
@@ -91,6 +90,10 @@ public class Question_Type_Repository {
             }
         });
 
+        return question_type_dao.getAllQuestionTypeList();
+    }
+
+    public List<Question_Type> getQuestionTypeLocalList() {
         return question_type_dao.getAllQuestionTypeList();
     }
 
@@ -110,7 +113,6 @@ public class Question_Type_Repository {
                     Toast.makeText(context, context.getResources().getString(R.string.save_success), Toast.LENGTH_SHORT).show();
                 } else if (response.code() == 403) {
                     UserHelper.renovateToken(context);
-                    // saveQuestionType(question_type);
                 } else
                     Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show();
             }
@@ -127,19 +129,16 @@ public class Question_Type_Repository {
         deleteQuestionTypeCall.enqueue(new Callback<Question_Type>() {
             @Override
             public void onResponse(Call<Question_Type> call, Response<Question_Type> response) {
-
                 if (response.isSuccessful()) {
                     Question_Type question_type_response;
                     question_type_response = response.body();
                     Log.e("Question Type Delete ", question_type_response.getId() + " " + question_type_response.getType());
-
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         question_type_dao.deleteQuestionType(question_type_response);
                     });
                     Toast.makeText(context, context.getResources().getString(R.string.delete_success), Toast.LENGTH_SHORT).show();
                 } else if (response.code() == 403) {
                     UserHelper.renovateToken(context);
-                    //deleteQuestionType(question_type);
                 } else
                     Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show();
             }

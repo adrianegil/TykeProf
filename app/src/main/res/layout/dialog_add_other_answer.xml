@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayoutAnswerText"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:endIconMode="clear_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextAnswer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/selector_ic_textfield"
+                    android:drawablePadding="12dp"
+                    android:hint="@string/answer"
+                    android:imeOptions="flagNoExtractUi"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/sliderPunctuationOfOtherAnswer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:value="0.0"
+                android:valueFrom="0.0"
+                android:valueTo="100.0"
+                app:labelBehavior="floating"
+                app:labelStyle="@style/tooltip"
+                app:layout_constraintBottom_toBottomOf="@+id/textViewValue"
+                app:layout_constraintEnd_toEndOf="@+id/textInputLayoutAnswerText"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/textViewValue"
+                app:layout_constraintTop_toTopOf="@+id/textViewValue" />
+
+            <TextView
+                android:id="@+id/textViewValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/punctuation"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayoutAnswerText"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="left"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="@+id/textInputLayoutAnswerText"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayoutAnswerText">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/radioButtonCorrect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:buttonTint="@color/colorToolbarTyke"
+                    android:checked="true"
+                    android:text="@string/correct" />
+
+                <Space android:layout_width="25dp"></Space>
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/radioButtonIncorrect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/colorToolbarTyke"
+                    android:text="@string/incorrect" />
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</LinearLayout>

@@ -20,7 +20,7 @@
     <string name="yes">Si</string>
     <string name="exit_confirm">Confirmar Salir</string>
     <string name="exit_confirm_description">Desea realmente salir de la Aplicación</string>
-    <string name="exit_again_toast">Presione nuevamente atras para salir</string>
+    <string name="exit_again_toast">Presione de nuevo atrás para salir</string>
     <string name="home">Inicio</string>
     <string name="questions">Preguntas</string>
     <string name="question">Pregunta</string>
@@ -72,6 +72,9 @@
     <string name="change_password">Cambiar Contraseña</string>
     <string name="password_dont_coincide">Las contraseñas no coinciden</string>
     <string name="new_insignia">Nueva Insignia</string>
+    <string name="add_clue">Añadir Pista</string>
+    <string name="create_answer">Crear Respuesta</string>
+    <string name="add_bonus">Añadir Bonificación</string>
     <string name="new_gift">Nuevo Regalo</string>
     <string name="new_grant">Nuevo Otorgamiento</string>
     <string name="new_professional_rol">Nuevo Rol Profesional</string>
@@ -106,5 +109,28 @@
     <string name="strategy_cant">Cant. de estrategias:</string>
     <string name="topics_cant">Cant. de Temas: </string>
     <string name="question_cant">Cant. de preguntas: </string>
+    <string name="answer_time">Tiempo para responder:</string>
+    <string name="answer_point">Puntuación por contestar:</string>
+    <string name="clue">Pista</string>
+    <string name="question_title">Titulo pregunta:</string>
+    <string name="punctuation">Puntuación</string>
+    <string name="bonus">Bonificación:</string>
+    <string name="time_less">Tiempo Menor</string>
+    <string name="bonus_cant">Cant. de Bonificaciones:</string>
+    <string name="subject">Asignatura:</string>
+    <string name="answer">Respuesta</string>
+    <string name="order">Orden</string>
+    <string name="should_add_answer">Debe añadir respuestas</string>
+    <string name="question_link">Pregunta a enlazar</string>
+    <string name="answer_link">Respuesta a enlazar</string>
+    <string name="answer_order">Respuesta a ordenar</string>
+    <string name="correct">Correcta</string>
+    <string name="incorrect">Incorrecta</string>
+    <string name="link">Enlaza</string>
+    <string name="question_data">Datos de la Pregunta</string>
+    <string name="type_and_answers">Tipo y respuestas</string>
+    <string name="clues">Pistas</string>
+    <string name="bonusses">Bonificaciones</string>
+    <string name="summary">Resumen</string>
 
 </resources>

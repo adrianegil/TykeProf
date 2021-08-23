@@ -29,7 +29,7 @@ public class ToastHelper {
             break;
             case "error": {
                 cardView.setCardBackgroundColor(activity.getResources().getColor(R.color.colorRedTyke));
-                imageView.setImageDrawable(activity.getResources().getDrawable(R.drawable.ic_error_red));
+                imageView.setImageDrawable(activity.getResources().getDrawable(R.drawable.ic_error));
                 textView.setText(message);
             }
             break;

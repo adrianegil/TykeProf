@@ -19,6 +19,12 @@ public class Question_Type {
     @SerializedName("tipo")
     private String type;
 
+    @Ignore
+    @Override
+    public String toString() {
+        return type;
+    }
+
     public Question_Type() {
     }
 

@@ -23,6 +23,7 @@ import cu.cujae.gilsoft.tykeprof.data.entity.User;
 import cu.cujae.gilsoft.tykeprof.databinding.DialogChangePasswordBinding;
 import cu.cujae.gilsoft.tykeprof.databinding.DialogEditUserBinding;
 import cu.cujae.gilsoft.tykeprof.databinding.UserFragmentBinding;
+import cu.cujae.gilsoft.tykeprof.util.DialogHelper;
 import cu.cujae.gilsoft.tykeprof.util.ToastHelper;
 
 public class UserFragment extends Fragment {
@@ -56,7 +57,6 @@ public class UserFragment extends Fragment {
         });
     }
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -64,16 +64,14 @@ public class UserFragment extends Fragment {
         binding.materialButtonExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                exitApp(v);
+                DialogHelper.showExitDialog(getActivity());
             }
         });
 
         binding.materialButtonChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 User user = binding.getUser();
-
                 dialogChangePasswordBinding = DialogChangePasswordBinding.inflate(getLayoutInflater(), null, false);
 
                 AlertDialog dialog = new AlertDialog.Builder(getActivity())
@@ -193,15 +191,4 @@ public class UserFragment extends Fragment {
         }
     }
 
-    public void exitApp(View view) {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(getContext());
-        dialog.setTitle(R.string.exit_confirm);
-        dialog.setMessage(R.string.exit_confirm_description);
-        dialog.setPositiveButton(R.string.yes, (dialog12, which) -> {
-            getActivity().finish();
-        });
-        dialog.setNegativeButton("No", (dialog13, which) -> dialog13.dismiss());
-        dialog.setNeutralButton(R.string.cancel, (dialog1, which) -> dialog1.dismiss());
-        dialog.show();
-    }
 }

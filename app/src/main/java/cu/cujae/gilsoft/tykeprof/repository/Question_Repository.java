@@ -22,6 +22,7 @@ import cu.cujae.gilsoft.tykeprof.data.entity.Answer;
 import cu.cujae.gilsoft.tykeprof.data.entity.Bonus;
 import cu.cujae.gilsoft.tykeprof.data.entity.Clue;
 import cu.cujae.gilsoft.tykeprof.data.entity.Question;
+import cu.cujae.gilsoft.tykeprof.data.model.Question_Model;
 import cu.cujae.gilsoft.tykeprof.service.Question_Service;
 import cu.cujae.gilsoft.tykeprof.util.RetrofitClient;
 import cu.cujae.gilsoft.tykeprof.util.UserHelper;
@@ -50,12 +51,12 @@ public class Question_Repository {
     }
 
     public LiveData<List<Question>> getAllQuestionList() {
-
         Call<List<Question>> listCallQuestions = question_service.getAllQuestionsByWeb("Bearer " + UserHelper.getToken(context));
         listCallQuestions.enqueue(new Callback<List<Question>>() {
             @Override
             public void onResponse(Call<List<Question>> call, Response<List<Question>> response) {
                 if (response.isSuccessful()) {
+
                     ArrayList<Answer> answers = new ArrayList<>();
                     ArrayList<Bonus> bonuses = new ArrayList<>();
                     ArrayList<Clue> clues = new ArrayList<>();
@@ -122,6 +123,27 @@ public class Question_Repository {
 
     public List<Question> getAllQuestionLocalList() {
         return question_dao.getAllQuestionList();
+    }
+
+    public void saveQuestion(Question_Model question_model) {
+        Call<Question> listCallQuestions = question_service.saveQuestionByWeb("Bearer " + UserHelper.getToken(context), question_model);
+        listCallQuestions.enqueue(new Callback<Question>() {
+            @Override
+            public void onResponse(Call<Question> call, Response<Question> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(context, context.getString(R.string.save_success), Toast.LENGTH_SHORT).show();
+                    getAllQuestionList();
+                } else if (response.code() == 403) {
+                    UserHelper.renovateToken(context);
+                } else
+                    Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<Question> call, Throwable t) {
+                Toast.makeText(context, context.getResources().getString(R.string.check_connection), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void deleteQuestionByID(long id) {

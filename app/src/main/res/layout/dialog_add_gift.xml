@@ -28,7 +28,7 @@
                     android:id="@+id/autoCompleteGiftTypeOfGift"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/selector_ic_game_points"
+                    android:drawableStart="@drawable/selector_ic_gift_type"
                     android:drawablePadding="12dp"
                     android:editable="false"
                     android:hint="@string/gift_type" />
@@ -65,7 +65,7 @@
                     android:id="@+id/autoCompleteGrantOfGift"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableStart="@drawable/selector_ic_game_points"
+                    android:drawableStart="@drawable/selector_ic_grant"
                     android:drawablePadding="12dp"
                     android:editable="false"
                     android:hint="@string/grant" />

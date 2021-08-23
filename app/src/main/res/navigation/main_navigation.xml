@@ -16,6 +16,9 @@
         <action
             android:id="@+id/go_ClueTypeFragment"
             app:destination="@id/nav_clueTypeFragment" />
+        <action
+            android:id="@+id/go_QuestionFragmentFromHome"
+            app:destination="@id/nav_questionFragment" />
     </fragment>
     <fragment
         android:id="@+id/nav_questionTypeFragment"
@@ -66,10 +69,20 @@
         android:id="@+id/nav_questionFragment"
         android:name="cu.cujae.gilsoft.tykeprof.app.fragment.QuestionFragment"
         android:label="@string/questions"
-        tools:layout="@layout/question_fragment" />
+        tools:layout="@layout/question_fragment">
+        <action
+            android:id="@+id/go_newQuestion"
+            app:destination="@id/homeNewQuestionFragment" />
+    </fragment>
     <fragment
         android:id="@+id/nav_strategyFragment"
         android:name="cu.cujae.gilsoft.tykeprof.app.fragment.StrategyFragment"
         android:label="@string/strategies"
         tools:layout="@layout/strategy_fragment" />
+    <fragment
+        android:id="@+id/homeNewQuestionFragment"
+        android:name="cu.cujae.gilsoft.tykeprof.app.fragment.HomeNewQuestionFragment"
+        android:label="@string/new_question"
+        tools:layout="@layout/fragment_home_new_question" />
+
 </navigation>

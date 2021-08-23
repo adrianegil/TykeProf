@@ -2,10 +2,12 @@ package cu.cujae.gilsoft.tykeprof.app.fragment;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -38,6 +40,35 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        strategy_repository = new Strategy_Repository(getActivity().getApplication());
+        strategy_repository.getAllStrategiesList();
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            int cont;
+
+            @Override
+            public void handleOnBackPressed() {
+                if (cont == 0) {
+                    // Toast.makeText(getContext(), getString(R.string.exit_again_toast), Toast.LENGTH_SHORT).show();
+                    ToastHelper.showCustomToast(getActivity(), "warning", getString(R.string.exit_again_toast));
+                    cont++;
+                } else {
+                    getActivity().finish();
+                }
+                new CountDownTimer(3000, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        cont = 0;
+                    }
+                }.start();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     @Override
@@ -53,13 +84,10 @@ public class HomeFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        strategy_repository = new Strategy_Repository(getActivity().getApplication());
-        strategy_repository.getAllStrategiesList();
-
         questionViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(QuestionViewModel.class);
         questionViewModel.getAllQuestion().observe(getViewLifecycleOwner(), questionList -> {
-            binding.textViewCantsStrategies.setText(getString(R.string.strategy_cant) + " " + strategy_repository.getStrategiesListSize());
             binding.textViewCantsQuestions.setText(getString(R.string.question_cant) + " " + questionList.size());
+            binding.textViewCantsStrategies.setText(getString(R.string.strategy_cant) + " " + strategy_repository.getStrategiesListSize());
         });
 
     }
@@ -69,15 +97,18 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_container);
-        binding.materialButtonGotoClueTypeFragment.setOnClickListener(v -> {
+
+        binding.materialButtonGotoQuestionFragment.setOnClickListener(v -> {
             //Navigation.createNavigateOnClickListener(R.id.go_ClueTypeFragment,null);
             // navController.navigate(R.id.nav_clueTypeFragment, null);
+            navController.navigate(R.id.go_QuestionFragmentFromHome);
+        });
+
+        binding.materialButtonGotoClueTypeFragment.setOnClickListener(v -> {
             navController.navigate(R.id.go_ClueTypeFragment);
         });
 
         binding.materialButtonGotoQuestionTypeFragment.setOnClickListener(v -> {
-            //  Navigation.createNavigateOnClickListener(R.id.go_QuestionTypeFragment, null);
-            //  navController.navigate(R.id.nav_questionTypeFragment, null);
             navController.navigate(R.id.go_QuestionTypeFragment);
         });
 

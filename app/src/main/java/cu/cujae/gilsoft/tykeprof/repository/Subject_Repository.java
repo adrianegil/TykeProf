@@ -5,6 +5,8 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.lifecycle.LiveData;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,6 +67,10 @@ public class Subject_Repository {
 
     public List<Subject> getAllSubjectLocalList() {
         return subject_dao.getAllSubjectList();
+    }
+
+    public LiveData<List<Subject>> getLiveSubjectLocalList() {
+        return subject_dao.getLiveSubjectList();
     }
 
 }

@@ -91,24 +91,25 @@ public class Clue_Type_Repository {
         return clue_type_dao.getAllClueTypeList();
     }
 
+    public List<Clue_Type> getAllClueTypeLocalList() {
+        return clue_type_dao.getAllClueTypeList();
+    }
+
     public Clue_Type getClueTypeByID(long id) {
         Call<Clue_Type> callClueType = clue_type_service.getClueTypeByIdByWeb("Bearer " + UserHelper.getToken(context), id);
         callClueType.enqueue(new Callback<Clue_Type>() {
             @Override
             public void onResponse(Call<Clue_Type> call, Response<Clue_Type> response) {
-
                 if (response.isSuccessful()) {
                     Clue_Type clueType;
                     clueType = response.body();
                     Log.e("Clue Type ", clueType.getId() + " " + clueType.getType());
-
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         clue_type_dao.saveClueType(clueType);
                     });
 
                 } else if (response.code() == 403) {
                     UserHelper.renovateToken(context);
-                    //getAllQuestionTypeWeb();
                 } else
                     Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show();
             }
@@ -128,17 +129,14 @@ public class Clue_Type_Repository {
         callClueType.enqueue(new Callback<Clue_Type>() {
             @Override
             public void onResponse(Call<Clue_Type> call, Response<Clue_Type> response) {
-
                 if (response.isSuccessful()) {
                     Clue_Type clueType;
                     clueType = response.body();
                     Log.e("Clue Type Save ", clueType.getId() + " " + clueType.getType());
-
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         clue_type_dao.saveClueType(clueType);
                     });
                     Toast.makeText(context, context.getResources().getString(R.string.save_success), Toast.LENGTH_SHORT).show();
-
                 } else if (response.code() == 403) {
                     UserHelper.renovateToken(context);
                 } else
@@ -159,19 +157,16 @@ public class Clue_Type_Repository {
         callClueType.enqueue(new Callback<Clue_Type>() {
             @Override
             public void onResponse(Call<Clue_Type> call, Response<Clue_Type> response) {
-
                 if (response.isSuccessful()) {
                     Clue_Type clueType;
                     clueType = response.body();
                     Log.e("Clue Type Update", clueType.getId() + " " + clueType.getType());
-
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         clue_type_dao.updateClueType(clueType);
                     });
                     Toast.makeText(context, context.getResources().getString(R.string.edit_success), Toast.LENGTH_SHORT).show();
                 } else if (response.code() == 403) {
                     UserHelper.renovateToken(context);
-                    //getAllQuestionTypeWeb();
                 } else
                     Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show();
             }
@@ -199,7 +194,6 @@ public class Clue_Type_Repository {
                     Toast.makeText(context, context.getResources().getString(R.string.delete_success), Toast.LENGTH_SHORT).show();
                 } else if (response.code() == 403) {
                     UserHelper.renovateToken(context);
-                    //getAllQuestionTypeWeb();
                 } else
                     Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show();
             }
