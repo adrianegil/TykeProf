@@ -366,7 +366,7 @@ public class NewQuestionFragment extends Fragment {
                 newQuestion5stepFragmentBinding.textViewAnswerTimeFinish.setText(getString(R.string.answer_time) + " " + HomeNewQuestionFragment.questionModel.getTime_second());
                 newQuestion5stepFragmentBinding.textViewScoreFinish.setText(getString(R.string.punctuation) + " " + HomeNewQuestionFragment.questionModel.getPunctuation());
                 newQuestion5stepFragmentBinding.textViewQuestionTypeFinish.setText(getString(R.string.question_type) + ": " + HomeNewQuestionFragment.questionModel.getQuestionType());
-                newQuestion5stepFragmentBinding.textViewSubjectFinish.setText(getString(R.string.subject) + " " + HomeNewQuestionFragment.questionModel.getSubject_name());
+                newQuestion5stepFragmentBinding.textViewSubjectFinish.setText(getString(R.string.subject) + ": " + HomeNewQuestionFragment.questionModel.getSubject_name());
                 newQuestion5stepFragmentBinding.textViewAnswerCantFinish.setText(getString(R.string.answer_cant) + " " + HomeNewQuestionFragment.questionModel.getAnswerModelList().size());
                 if (!HomeNewQuestionFragment.questionModel.getClueModelList().isEmpty())
                     newQuestion5stepFragmentBinding.textViewClueFinish.setText(getString(R.string.clue) + ": " + getString(R.string.yes));

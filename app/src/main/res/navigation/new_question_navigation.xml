@@ -26,7 +26,6 @@
         android:id="@+id/newQuestion2StepFragment"
         android:name="cu.cujae.gilsoft.tykeprof.app.fragment.NewQuestionFragment"
         tools:layout="@layout/new_question_2step_fragment">
-
         <argument
             android:name="stepNumber"
             android:defaultValue="2"

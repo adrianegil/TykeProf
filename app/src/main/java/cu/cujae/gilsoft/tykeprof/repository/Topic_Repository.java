@@ -24,6 +24,7 @@ public class Topic_Repository {
     private final AppDatabase db;
     private Topic_Sevice topic_sevice;
     private Context context;
+    private ArrayList<Topic> topicArrayList;
 
     public Topic_Repository(Application application) {
         this.db = AppDatabase.getDatabase(application);
@@ -42,11 +43,9 @@ public class Topic_Repository {
                     ArrayList<Topic> topicsSave = new ArrayList<>();
                     List<Topic> topicListResponse;
                     topicListResponse = response.body();
-
                     for (Topic topic : topicListResponse) {
                         Topic topicSave = new Topic(topic.getId_topic(), topic.getName(), topic.getDescrip());
                         topicsSave.add(topicSave);
-
                         Log.e("Topic ", topicSave.getId_topic() + " " + topicSave.getName() + "" + topicSave.getDescrip());
                     }
                     AppDatabase.databaseWriteExecutor.execute(() -> {

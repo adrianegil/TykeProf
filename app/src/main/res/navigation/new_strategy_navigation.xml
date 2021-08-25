@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/new_strategy_navigation"
+    app:startDestination="@id/newStrategyFragment">
+
+    <fragment
+        android:id="@+id/newStrategyFragment"
+        android:name="cu.cujae.gilsoft.tykeprof.app.fragment.NewStrategyFragment"
+        tools:layout="@layout/new_strategy_fragment">
+        <argument
+            android:name="stepNumber"
+            android:defaultValue="1"
+            app:argType="integer" />
+        <action
+            android:id="@+id/go_newStrategy2Step"
+            app:destination="@id/newStrategy2StepFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newStrategy2StepFragment"
+        android:name="cu.cujae.gilsoft.tykeprof.app.fragment.NewStrategyFragment"
+        tools:layout="@layout/new_strategy_2step_fragment">
+        <argument
+            android:name="stepNumber"
+            android:defaultValue="2"
+            app:argType="integer" />
+        <action
+            android:id="@+id/go_newStrategyBack1Step"
+            app:destination="@id/newStrategyFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/go_newStrategy3Step"
+            app:destination="@id/newStrategy3StepFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newStrategy3StepFragment"
+        android:name="cu.cujae.gilsoft.tykeprof.app.fragment.NewStrategyFragment"
+        tools:layout="@layout/new_strategy_3step_fragment">
+        <argument
+            android:name="stepNumber"
+            android:defaultValue="3"
+            app:argType="integer" />
+        <action
+            android:id="@+id/go_newStrategyBack2Step"
+            app:destination="@id/newStrategy2StepFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+        <action
+            android:id="@+id/go_newStrategy4Step"
+            app:destination="@id/newStrategy4StepFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newStrategy4StepFragment"
+        android:name="cu.cujae.gilsoft.tykeprof.app.fragment.NewStrategyFragment"
+        tools:layout="@layout/new_strategy_4step_fragment">
+        <argument
+            android:name="stepNumber"
+            android:defaultValue="4"
+            app:argType="integer" />
+        <action
+            android:id="@+id/go_newStrategyBack3Step"
+            app:destination="@id/newStrategy3StepFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
+</navigation>

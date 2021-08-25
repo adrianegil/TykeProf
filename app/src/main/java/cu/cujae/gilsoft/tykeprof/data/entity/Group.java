@@ -19,13 +19,26 @@ public class Group {
     @SerializedName("grupo")
     private String group_name;
 
+    @Ignore
+    private boolean selected;
+
     public Group() {
+        this.selected = false;
     }
 
     @Ignore
     public Group(long id_group, String group_name) {
         this.id_group = id_group;
         this.group_name = group_name;
+        this.selected = false;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 
     public long getId_group() {

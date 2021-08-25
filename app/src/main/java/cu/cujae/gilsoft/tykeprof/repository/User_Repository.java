@@ -76,6 +76,10 @@ public class User_Repository {
         return user_dao.getLiveDataUser();
     }
 
+    public long getUserIdByUserName(String username) {
+        return user_dao.getUserIdByUserName(username);
+    }
+
     public void updateUser(User user) {
         user.setRoles(role_dao.getAllRoleList(user.getId_user()));
 

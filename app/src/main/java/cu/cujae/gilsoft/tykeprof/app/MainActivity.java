@@ -80,10 +80,8 @@ public class MainActivity extends AppCompatActivity {
         //VERIFICANDO SI EL USUARIO ESTA CONECTADO A LA RED
         if (!getIntent().getBooleanExtra("connected", true)) {
             Snackbar.make(binding.getRoot(), getResources().getString(R.string.no_connection), Snackbar.LENGTH_INDEFINITE).setAction("Ok", v -> {
-                //
             }).show();
         }
-
     }
 
     @Override

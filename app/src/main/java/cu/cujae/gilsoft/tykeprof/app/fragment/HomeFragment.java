@@ -83,7 +83,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         questionViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(QuestionViewModel.class);
         questionViewModel.getAllQuestion().observe(getViewLifecycleOwner(), questionList -> {
             binding.textViewCantsQuestions.setText(getString(R.string.question_cant) + " " + questionList.size());
@@ -102,6 +101,10 @@ public class HomeFragment extends Fragment {
             //Navigation.createNavigateOnClickListener(R.id.go_ClueTypeFragment,null);
             // navController.navigate(R.id.nav_clueTypeFragment, null);
             navController.navigate(R.id.go_QuestionFragmentFromHome);
+        });
+
+        binding.materialGotoStrategyFragment.setOnClickListener(v -> {
+            navController.navigate(R.id.go_StrategyFragmentFromHome);
         });
 
         binding.materialButtonGotoClueTypeFragment.setOnClickListener(v -> {

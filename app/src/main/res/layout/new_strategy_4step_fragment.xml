@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".app.fragment.NewQuestionFragment">
+    tools:context=".app.fragment.NewStrategyFragment">
 
     <TextView
-        android:id="@+id/textViewQuestionSummary"
+        android:id="@+id/textViewStrategySummary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="@string/question_summary"
+        android:text="@string/stratgey_summary"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,14 +24,14 @@
         android:layout_height="1dp"
         android:layout_marginTop="12dp"
         android:background="@android:color/darker_gray"
-        app:layout_constraintEnd_toEndOf="@+id/textViewQuestionSummary"
-        app:layout_constraintStart_toStartOf="@+id/textViewQuestionSummary"
-        app:layout_constraintTop_toBottomOf="@+id/textViewQuestionSummary" />
+        app:layout_constraintEnd_toEndOf="@+id/textViewStrategySummary"
+        app:layout_constraintStart_toStartOf="@+id/textViewStrategySummary"
+        app:layout_constraintTop_toBottomOf="@+id/textViewStrategySummary" />
 
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/materialButtonFinishNewQuestion"
+        app:layout_constraintBottom_toTopOf="@+id/floatingActionButtonBack3Step"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view">
@@ -41,63 +41,51 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/textViewQuestionTitleFinish"
+                android:id="@+id/textViewStrategyNameFinish"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/question_title"
+                android:text="@string/strategy_name"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textViewAnswerTimeFinish"
+                android:id="@+id/textViewCantsPointsFinish"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/answer_time"
+                android:text="Cant. de puntos"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textViewQuestionTitleFinish"
-                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionTitleFinish" />
+                app:layout_constraintStart_toStartOf="@+id/textViewStrategyNameFinish"
+                app:layout_constraintTop_toBottomOf="@+id/textViewStrategyNameFinish" />
 
             <TextView
-                android:id="@+id/textViewQuestionTypeFinish"
+                android:id="@+id/textViewEnabledFinish"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/question_type"
+                android:text="@string/enabled"
                 android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@+id/textViewAnswerTimeFinish"
-                app:layout_constraintTop_toBottomOf="@+id/textViewAnswerTimeFinish" />
+                app:layout_constraintStart_toStartOf="@+id/textViewCantsPointsFinish"
+                app:layout_constraintTop_toBottomOf="@+id/textViewCantsPointsFinish" />
 
             <TextView
-                android:id="@+id/textViewBonusFinish"
+                android:id="@+id/textViewEvaluatedFinish"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="Bonificación: "
+                android:text="@string/evaluated"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textViewQuestionTypeFinish"
-                app:layout_constraintTop_toBottomOf="@+id/textViewQuestionTypeFinish" />
-
-            <TextView
-                android:id="@+id/textViewClueFinish"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/clue"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textViewBonusFinish"
-                app:layout_constraintTop_toBottomOf="@+id/textViewBonusFinish" />
+                app:layout_constraintStart_toStartOf="@+id/textViewEnabledFinish"
+                app:layout_constraintTop_toBottomOf="@+id/textViewEnabledFinish" />
 
             <TextView
                 android:id="@+id/textViewSubjectFinish"
@@ -108,62 +96,60 @@
                 android:text="@string/subject"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textViewClueFinish"
-                app:layout_constraintTop_toBottomOf="@+id/textViewClueFinish" />
+                app:layout_constraintStart_toStartOf="@+id/textViewEvaluatedFinish"
+                app:layout_constraintTop_toBottomOf="@+id/textViewEvaluatedFinish" />
 
             <TextView
-                android:id="@+id/textViewScoreFinish"
+                android:id="@+id/textViewCantsGroupFinish"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/punctuation"
+                android:text="@string/group_cant"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textViewSubjectFinish"
                 app:layout_constraintTop_toBottomOf="@+id/textViewSubjectFinish" />
 
             <TextView
-                android:id="@+id/textViewAnswerCantFinish"
+                android:id="@+id/textViewCantsQuestionsFinish"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/answer_cant"
+                android:text="@string/question_cant"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textViewScoreFinish"
-                app:layout_constraintTop_toBottomOf="@+id/textViewScoreFinish" />
+                app:layout_constraintStart_toStartOf="@+id/textViewCantsGroupFinish"
+                app:layout_constraintTop_toBottomOf="@+id/textViewCantsGroupFinish" />
 
             <TextView
-                android:id="@+id/textViewBonusCantFinish"
+                android:id="@+id/textViewTopicFinish"
+                style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/bonus_cant"
-                android:textSize="20sp"
+                android:text="@string/topics"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textViewAnswerCantFinish"
-                app:layout_constraintTop_toBottomOf="@+id/textViewAnswerCantFinish" />
+                app:layout_constraintStart_toStartOf="@+id/textViewCantsQuestionsFinish"
+                app:layout_constraintTop_toBottomOf="@+id/textViewCantsQuestionsFinish" />
 
-            <TextView
-                android:id="@+id/textViewClueCantFinish"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewTopicFinish"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="@string/clue_cant"
-                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textViewBonusCantFinish"
-                app:layout_constraintTop_toBottomOf="@+id/textViewBonusCantFinish" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewTopicFinish" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButtonBack4Step"
+        android:id="@+id/floatingActionButtonBack3Step"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -177,7 +163,7 @@
         app:srcCompat="@drawable/ic_arrow_back" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButtonFinishNewQuestion"
+        android:id="@+id/materialButtonFinishNewStrategy"
         android:layout_width="wrap_content"
         android:layout_height="55dp"
         android:layout_marginEnd="16dp"

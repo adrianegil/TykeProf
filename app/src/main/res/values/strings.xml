@@ -113,11 +113,13 @@
     <string name="answer_point">Puntuación por contestar:</string>
     <string name="clue">Pista</string>
     <string name="question_title">Titulo pregunta:</string>
+    <string name="question_title_all">Titulo de la pregunta</string>
     <string name="punctuation">Puntuación</string>
     <string name="bonus">Bonificación:</string>
     <string name="time_less">Tiempo Menor</string>
     <string name="bonus_cant">Cant. de Bonificaciones:</string>
-    <string name="subject">Asignatura:</string>
+    <string name="subject">Asignatura</string>
+    <string name="subjects">Asignaturas</string>
     <string name="answer">Respuesta</string>
     <string name="order">Orden</string>
     <string name="should_add_answer">Debe añadir respuestas</string>
@@ -128,9 +130,21 @@
     <string name="incorrect">Incorrecta</string>
     <string name="link">Enlaza</string>
     <string name="question_data">Datos de la Pregunta</string>
+    <string name="strategy_data">Datos de la Estrategia</string>
     <string name="type_and_answers">Tipo y respuestas</string>
     <string name="clues">Pistas</string>
     <string name="bonusses">Bonificaciones</string>
     <string name="summary">Resumen</string>
-
+    <string name="build_strategy">Conformar Estrategia</string>
+    <string name="add_questions">Agregar Preguntas</string>
+    <string name="strategy_name">Nombre de la estrategia</string>
+    <string name="enabled">Habilitada</string>
+    <string name="evaluated">Evaluada</string>
+    <string name="question_summary">Resumen de la pregunta</string>
+    <string name="stratgey_summary">Resumen de la estrategia</string>
+    <string name="ready">Listo</string>
+    <string name="topics">Temas</string>
+    <string name="group_available">Grupos Disponibles</string>
+    <string name="question_available">Preguntas Disponibles</string>
+    <string name="group_cant">Cant. de grupos:</string>
 </resources>

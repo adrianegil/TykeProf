@@ -74,7 +74,19 @@ public class Question {
     @Ignore
     private boolean contenExpandable;
 
+    @Ignore
+    private boolean selected;
+
     public Question() {
+        this.selected = false;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 
     public Question_Type getQuestion_type() {

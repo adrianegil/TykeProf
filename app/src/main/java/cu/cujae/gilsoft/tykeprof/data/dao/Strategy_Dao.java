@@ -38,6 +38,15 @@ public interface Strategy_Dao {
     @Query("DELETE FROM strategy")
     void deleteAll();
 
+    @Query("DELETE FROM strategy_group")
+    void deleteAllStrategyGroup();
+
+    @Query("DELETE FROM strategy_topic")
+    void deleteAllStrategyTopic();
+
+    @Query("DELETE FROM strategy_question")
+    void deleteAllStrategyQuestion();
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void saveStrategy_Group(Strategy_Group strategy_group);
 

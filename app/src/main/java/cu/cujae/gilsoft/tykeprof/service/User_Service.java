@@ -18,4 +18,5 @@ public interface User_Service {
 
     @POST("user-service/api/user/change-password")
     Call<Integer> changePasswordByWeb(@Header("Authorization") String token, @Body User user);
+
 }

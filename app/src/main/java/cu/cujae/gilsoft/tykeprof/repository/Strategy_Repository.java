@@ -25,6 +25,7 @@ import cu.cujae.gilsoft.tykeprof.data.entity.Teacher;
 import cu.cujae.gilsoft.tykeprof.data.entity.Topic;
 import cu.cujae.gilsoft.tykeprof.data.model.GroupList_Model;
 import cu.cujae.gilsoft.tykeprof.data.model.QuestionID_Model;
+import cu.cujae.gilsoft.tykeprof.data.model.Strategy_Model;
 import cu.cujae.gilsoft.tykeprof.data.model.TopicList_Model;
 import cu.cujae.gilsoft.tykeprof.data.relation.StrategyWhitQuestions;
 import cu.cujae.gilsoft.tykeprof.data.relation.StrategyWhitTopics;
@@ -94,6 +95,9 @@ public class Strategy_Repository {
                     }
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         strategy_dao.deleteAll();
+                        strategy_dao.deleteAllStrategyQuestion();
+                        strategy_dao.deleteAllStrategyGroup();
+                        strategy_dao.deleteAllStrategyTopic();
                         teacher_dao.deleteAll();
                         teacher_dao.saveAllTeacher(teachers);
                         topic_dao.saveAllTopic(topics);
@@ -158,6 +162,9 @@ public class Strategy_Repository {
                     }
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         //strategy_dao.deleteAll();
+                        strategy_dao.deleteAllStrategyQuestion();
+                        strategy_dao.deleteAllStrategyGroup();
+                        strategy_dao.deleteAllStrategyTopic();
                         teacher_dao.saveAllTeacher(teachers);
                         topic_dao.saveAllTopic(topics);
                         group_dao.deleteAll();
@@ -181,6 +188,30 @@ public class Strategy_Repository {
         });
 
         return strategy_dao.getAllStrategies();
+    }
+
+    public void saveStrategy(Strategy_Model strategy_model) {
+
+        Call<ResponseBody> call = strategy_service.saveStrategyByWeb("Bearer " + UserHelper.getToken(context), strategy_model);
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(context, context.getString(R.string.save_success), Toast.LENGTH_SHORT).show();
+                    getAllStrategies();
+                } else if (response.code() == 403) {
+                    UserHelper.renovateToken(context);
+
+                } else
+                    Toast.makeText(context, "ERROR", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+            }
+        });
+
     }
 
     public void deleteStrategyByID(long id) {

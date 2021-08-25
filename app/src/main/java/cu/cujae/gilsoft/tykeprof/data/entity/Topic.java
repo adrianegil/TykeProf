@@ -24,12 +24,16 @@ public class Topic {
     private String descrip;
 
     @Ignore
+    private boolean selected;
+
+    @Ignore
     @Override
     public String toString() {
         return name;
     }
 
     public Topic() {
+        this.selected = false;
     }
 
     @Ignore
@@ -37,6 +41,15 @@ public class Topic {
         this.id_topic = id_topic;
         this.name = name;
         this.descrip = descrip;
+        this.selected = false;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 
     public long getId_topic() {

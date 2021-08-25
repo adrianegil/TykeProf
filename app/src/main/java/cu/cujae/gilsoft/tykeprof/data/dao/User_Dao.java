@@ -18,6 +18,9 @@ public interface User_Dao {
     @Query("SELECT * FROM user WHERE id_user =:id")
     User getUserById(long id);
 
+    @Query("SELECT id_user FROM user WHERE userName =:username")
+    long getUserIdByUserName(String username);
+
     @Query("SELECT * FROM user")
     User getUser();
 

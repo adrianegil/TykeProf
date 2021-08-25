@@ -17,6 +17,10 @@ public interface Question_Service {
     @GET("question-service/api/pregunta")
     Call<List<Question>> getAllQuestionsByWeb(@Header("Authorization") String token);
 
+    @GET("question-service/api/pregunta/all/signature")
+    Call<List<Question>> getQuestionsBySubjectName(@Header("Authorization") String token,
+                                                   @Query("asignatura") String subjectName);
+
     @POST("question-service/api/pregunta/save/complete")
     Call<Question> saveQuestionByWeb(@Header("Authorization") String token, @Body Question_Model question_model);
 

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".app.fragment.HomeNewStrategyFragment">
+
+    <com.shuhart.stepview.StepView
+        android:id="@+id/step_view_new_strategy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:sv_animationType="Line"
+        app:sv_doneCircleColor="@color/colorToolbarTyke"
+        app:sv_doneCircleRadius="12dp"
+        app:sv_doneStepLineColor="@color/colorToolbarTyke"
+        app:sv_doneStepMarkColor="@color/white"
+        app:sv_doneTextColor="@color/black"
+        app:sv_nextStepCircleColor="@android:color/darker_gray"
+        app:sv_nextStepCircleEnabled="true"
+        app:sv_nextStepLineColor="@android:color/darker_gray"
+        app:sv_nextTextColor="@color/gray_dark"
+        app:sv_selectedCircleColor="@color/colorToolbarTyke"
+        app:sv_selectedCircleRadius="12dp"
+        app:sv_selectedStepNumberColor="@android:color/white"
+        app:sv_selectedTextColor="@android:color/black"
+        app:sv_stepLineWidth="1dp"
+        app:sv_stepNumberTextSize="12sp"
+        app:sv_stepPadding="4dp"
+        app:sv_stepViewStyle="@style/StepView"
+        app:sv_stepsNumber="4" />
+
+    <fragment
+        android:id="@+id/newStrategyNavHostFragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:defaultNavHost="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/step_view_new_strategy"
+        app:navGraph="@navigation/new_strategy_navigation"
+        tools:layout="@layout/new_strategy_fragment" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
