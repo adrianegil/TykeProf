@@ -2,27 +2,18 @@ package cu.cujae.gilsoft.tykeprof.app.viewmodel;
 
 import android.app.Application;
 import android.content.Context;
-import android.os.StrictMode;
-import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.ViewModel;
 
-import java.io.IOException;
-import java.util.List;
+import com.google.android.material.snackbar.Snackbar;
 
 import cu.cujae.gilsoft.tykeprof.R;
-import cu.cujae.gilsoft.tykeprof.data.entity.Question;
-import cu.cujae.gilsoft.tykeprof.data.entity.Subject;
 import cu.cujae.gilsoft.tykeprof.data.model.Strategy_Model;
 import cu.cujae.gilsoft.tykeprof.data.model.TeacherSubjectsModel;
-import cu.cujae.gilsoft.tykeprof.repository.Clue_Type_Repository;
-import cu.cujae.gilsoft.tykeprof.repository.Question_Repository;
-import cu.cujae.gilsoft.tykeprof.repository.Question_Type_Repository;
 import cu.cujae.gilsoft.tykeprof.repository.Strategy_Repository;
-import cu.cujae.gilsoft.tykeprof.repository.Subject_Repository;
 import cu.cujae.gilsoft.tykeprof.repository.User_Repository;
 import cu.cujae.gilsoft.tykeprof.service.Teacher_Service;
 import cu.cujae.gilsoft.tykeprof.util.RetrofitClient;
@@ -52,7 +43,7 @@ public class HomeNewStrategyViewModel extends AndroidViewModel {
         strategy_repository.saveStrategy(strategy_model);
     }
 
-    public void getTeacherSubjectsModel() {
+    public void getTeacherSubjectsModel(View view) {
         userId = user_repository.getUserIdByUserName(UserHelper.getUserLogin(context).getUserCredential());
         Call<TeacherSubjectsModel> teacherSubjectsModelCall = teacher_service.getTeacherIdWhitSubjectsByUserId("Bearer " + UserHelper.getToken(context), userId);
         teacherSubjectsModelCall.enqueue(new Callback<TeacherSubjectsModel>() {
@@ -68,7 +59,9 @@ public class HomeNewStrategyViewModel extends AndroidViewModel {
 
             @Override
             public void onFailure(Call<TeacherSubjectsModel> call, Throwable t) {
-                Toast.makeText(context, context.getString(R.string.check_connection), Toast.LENGTH_SHORT).show();
+                Snackbar.make(view, context.getString(R.string.no_connection), Snackbar.LENGTH_INDEFINITE).setAction("Ok", v -> {
+                    Toast.makeText(context, context.getString(R.string.check_connection), Toast.LENGTH_SHORT).show();
+                }).show();
             }
         });
     }

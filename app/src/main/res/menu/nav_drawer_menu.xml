@@ -11,13 +11,13 @@
             android:title="@string/home" />
     </group>
 
-    <item android:title="@string/questions">
+    <item android:title="@string/question">
         <menu>
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_questionFragment"
                     android:icon="@drawable/ic_question"
-                    android:title="@string/question" />
+                    android:title="@string/questions" />
                 <item
                     android:id="@+id/nav_clueTypeFragment"
                     android:icon="@drawable/ic_clue"
@@ -30,13 +30,13 @@
         </menu>
     </item>
 
-    <item android:title="@string/strategies">
+    <item android:title="@string/strategy">
         <menu>
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_strategyFragment"
                     android:icon="@drawable/ic_strategy"
-                    android:title="@string/strategy" />
+                    android:title="@string/strategies" />
                 <item
                     android:id="@+id/nav_insigniaFragment"
                     android:icon="@drawable/ic_insignia"
@@ -64,4 +64,20 @@
             </group>
         </menu>
     </item>
+
+    <item android:title="@string/others">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_settingsFragment"
+                    android:icon="@drawable/ic_settings"
+                    android:title="@string/Settings" />
+                <item
+                    android:id="@+id/nav_infoFragment"
+                    android:icon="@drawable/ic_info"
+                    android:title="@string/information" />
+            </group>
+        </menu>
+    </item>
+
 </menu>

@@ -147,4 +147,17 @@
     <string name="group_available">Grupos Disponibles</string>
     <string name="question_available">Preguntas Disponibles</string>
     <string name="group_cant">Cant. de grupos:</string>
+    <string name="Settings">Configuración</string>
+    <string name="Darkmode">Modo Oscuro</string>
+    <string name="DarkmodeisEnabled">Habilitado</string>
+    <string name="DarkmodeisDisabled">Deshabilitado</string>
+    <string name="VisualInterface">Interfaz Visual</string>
+    <string name="information">Información</string>
+    <string name="TextInf">Aplicación desarrollada por la Facultad de Informática de la cujae dedicada a los profesores del Ministerio de Educación Superior para la formación vocacional de los estudiantes</string>
+    <string name="Version" translatable="false">Version: beta 0.1.23</string>
+    <string name="Informatic_Faculty">Facultad de Informática</string>
+    <string name="others">Otros</string>
+    <string name="add_question">Agregar Pregunta</string>
+    <string name="add_strategy">Agregar Estrategia</string>
+
 </resources>

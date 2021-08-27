@@ -13,7 +13,7 @@ public class DialogHelper {
         dialog.setTitle(R.string.exit_confirm);
         dialog.setMessage(R.string.exit_confirm_description);
         dialog.setPositiveButton(R.string.yes, (dialog12, which) -> {
-            activity.finish();
+            activity.finishAffinity();
         });
         dialog.setNegativeButton("No", (dialog13, which) -> dialog13.dismiss());
         dialog.setNeutralButton(R.string.cancel, (dialog1, which) -> dialog1.dismiss());

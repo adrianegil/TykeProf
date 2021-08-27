@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:openDrawer="start"
-    tools:context="cu.cujae.gilsoft.tykeprof.app.MainActivity">
+    tools:context="cu.cujae.gilsoft.tykeprof.app.MainActivity"
+    tools:openDrawer="start">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,9 +17,10 @@
             android:id="@+id/toolbarMainActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:titleTextColor="@color/white"
             android:background="@drawable/gradient_toolbar"
-            android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+            android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+            app:popupTheme="@style/Theme.AppCompat.DayNight"
+            app:titleTextColor="@color/white" />
 
         <fragment
             android:id="@+id/nav_host_fragment_container"
@@ -39,4 +39,5 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_drawer"
         app:menu="@menu/nav_drawer_menu" />
+
 </androidx.drawerlayout.widget.DrawerLayout>

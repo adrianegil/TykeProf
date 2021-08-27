@@ -90,14 +90,16 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/materialGotoStrategyFragment"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="55dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
                         android:backgroundTint="@color/colorBlueDarkTyke"
-                        android:text="Agregar Estrategia"
+                        android:text="@string/add_strategy"
                         app:icon="@drawable/ic_add"
                         app:iconGravity="textStart"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textViewCantsStrategies" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -112,7 +114,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="14dp"
-                android:minHeight="320dp"
+                android:minHeight="310dp"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -123,7 +125,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:minHeight="320dp">
+                    android:minHeight="310dp">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/materialCardView22"
@@ -179,38 +181,42 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/materialButtonGotoQuestionFragment"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="55dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
                         android:backgroundTint="@color/colorBlueDarkTyke"
-                        android:text="Agregar"
+                        android:text="@string/add_question"
                         app:icon="@drawable/ic_add"
                         app:iconGravity="textStart"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textViewCantsQuestions" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/materialButtonGotoQuestionTypeFragment"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="55dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
                         android:backgroundTint="@color/colorGrayTyke"
                         android:text="@string/question_type"
                         app:icon="@drawable/ic_question_type"
                         app:iconGravity="textStart"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/materialButtonGotoQuestionFragment"
                         app:layout_constraintTop_toBottomOf="@+id/materialButtonGotoQuestionFragment" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/materialButtonGotoClueTypeFragment"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="55dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
                         android:backgroundTint="@color/colorPink"
                         android:text="@string/clue_type"
                         app:icon="@drawable/ic_clue"
                         app:iconGravity="textStart"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/materialButtonGotoQuestionTypeFragment"
                         app:layout_constraintTop_toBottomOf="@+id/materialButtonGotoQuestionTypeFragment" />
 

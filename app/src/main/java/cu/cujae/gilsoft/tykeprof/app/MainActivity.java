@@ -1,7 +1,9 @@
 package cu.cujae.gilsoft.tykeprof.app;
 
+import android.app.UiModeManager;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,22 +11,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 import cu.cujae.gilsoft.tykeprof.R;
+import cu.cujae.gilsoft.tykeprof.app.viewmodel.ProfessionalRolViewModel;
 import cu.cujae.gilsoft.tykeprof.app.viewmodel.UserViewModel;
 import cu.cujae.gilsoft.tykeprof.databinding.ActivityMainBinding;
 import cu.cujae.gilsoft.tykeprof.util.DialogHelper;
-import cu.cujae.gilsoft.tykeprof.util.Login;
+import cu.cujae.gilsoft.tykeprof.util.ToastHelper;
 import cu.cujae.gilsoft.tykeprof.util.UserHelper;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,14 +44,20 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
 
-        //VERIFICANDO EN LA CONSOLA EL USUARIO Y EL TOKEN DE AUTORIZACIÓN
-        Login login = UserHelper.getUserLogin(MainActivity.this);
-        Log.e("JWT en MainActivity ", UserHelper.getToken(MainActivity.this));
-        Log.e("User Login ", login.getPassword() + "  " + login.getUserCredential());
+        //COMPROBAR SI ES LA PRIMERA VEZ QUE EL USUARIO ENTRA EN LA APP
+        if (getSharedPreferences("autenticacion", MODE_PRIVATE).getBoolean("firstLaunch", true)) {
+            ToastHelper.showCustomToast(MainActivity.this, "success", getString(R.string.success_aut));
+            ProfessionalRolViewModel professionalRolViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())).get(ProfessionalRolViewModel.class);
+            UserHelper.changefirstLaunch(MainActivity.this);
+            getSystemConfig();
+        } else {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O || Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                initConfig();
+        }
+
+        setContentView(binding.getRoot());
 
         //CONFIGURACIÓN DE LA TOOLBAR CON NAVIGATION COMPONENT
         setSupportActionBar(binding.toolbarMainActivity);
@@ -63,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, myAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        //ACTUALIZANDO INFORMACIÓN EN EL NAVIGATION DRAWER
+        //ACTUALIZAR INFORMACIÓN EN EL NAVIGATION DRAWER
         view1 = binding.navView.getHeaderView(0);
         imageViewUser = view1.findViewById(R.id.imageViewUserDrawer);
         textViewUserFullNameDrawer = view1.findViewById(R.id.textViewUserFullNameDrawer);
@@ -77,10 +88,11 @@ public class MainActivity extends AppCompatActivity {
             loadUserImage(user.getImage_url());
         });
 
-        //VERIFICANDO SI EL USUARIO ESTA CONECTADO A LA RED
-        if (!getIntent().getBooleanExtra("connected", true)) {
+        //VERIFICAR SI EL USUARIO ESTA CONECTADO A LA RED
+        if (!UserHelper.isConnected(MainActivity.this)) {
             Snackbar.make(binding.getRoot(), getResources().getString(R.string.no_connection), Snackbar.LENGTH_INDEFINITE).setAction("Ok", v -> {
             }).show();
+            UserHelper.changeConnectedStatus(MainActivity.this, true);
         }
     }
 
@@ -97,9 +109,9 @@ public class MainActivity extends AppCompatActivity {
                 DialogHelper.showExitDialog(MainActivity.this);
                 return true;
             default:
-                NavigationUI.onNavDestinationSelected(item, Navigation.findNavController(this, R.id.nav_host_fragment_container));
+                return super.onOptionsItemSelected(item) || NavigationUI.onNavDestinationSelected(item, Navigation.findNavController(this, R.id.nav_host_fragment_container));
         }
-        return super.onOptionsItemSelected(item);
+
     }
 
     @Override
@@ -126,7 +138,34 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /*    @Override
+    //INICIAR CONFIGURACIÓN PERSONAL DE USUARIO
+    public void initConfig() {
+        boolean themeDark = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).getBoolean("DarkTheme", false);
+        if (themeDark) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
+
+    //OBTENER CONFIGURACIÓN ACTUAL DEL SISTEMA ANDROID
+    public void getSystemConfig() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+        SharedPreferences.Editor editor = preferences.edit();
+        UiModeManager uiModeManager = (UiModeManager) getSystemService(UI_MODE_SERVICE);
+        switch (uiModeManager.getNightMode()) {
+            case UiModeManager.MODE_NIGHT_NO:
+                editor.putBoolean("DarkTheme", false);
+                break;
+            case UiModeManager.MODE_NIGHT_YES:
+                editor.putBoolean("DarkTheme", true);
+                break;
+        }
+        editor.apply();
+    }
+
+        /*    @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         setContentView(R.layout.activity_main);

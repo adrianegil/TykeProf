@@ -45,6 +45,18 @@ public class UserHelper {
         editor.apply();
     }
 
+    public static boolean isConnected(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences("autenticacion", Context.MODE_PRIVATE);
+        return preferences.getBoolean("connected", false);
+    }
+
+    public static void changeConnectedStatus(Context context, Boolean bool) {
+        SharedPreferences preferences = context.getSharedPreferences("autenticacion", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("connected", bool);
+        editor.apply();
+    }
+
     public static void renovateToken(Context context) {
         Login_Service login_service = RetrofitClient.getRetrofit().create(Login_Service.class);
         Login login = getUserLogin(context);
@@ -59,7 +71,6 @@ public class UserHelper {
                         Log.e("Json Web Token Renovado", token);
                     } catch (IOException e) {
                         e.printStackTrace();
-                        //Log.e("ERROR TOKEN:  ", e.getMessage());
                     }
                     saveToken(token, context);
                     Toast.makeText(context, context.getResources().getString(R.string.try_again_operation), Toast.LENGTH_SHORT).show();

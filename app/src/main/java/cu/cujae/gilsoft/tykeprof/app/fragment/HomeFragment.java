@@ -15,15 +15,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import cu.cujae.gilsoft.tykeprof.R;
-import cu.cujae.gilsoft.tykeprof.app.viewmodel.ProfessionalRolViewModel;
 import cu.cujae.gilsoft.tykeprof.app.viewmodel.QuestionViewModel;
 import cu.cujae.gilsoft.tykeprof.databinding.FragmentHomeBinding;
 import cu.cujae.gilsoft.tykeprof.repository.Strategy_Repository;
-import cu.cujae.gilsoft.tykeprof.util.ToastHelper;
-import cu.cujae.gilsoft.tykeprof.util.UserHelper;
-
-import static android.content.Context.MODE_PRIVATE;
 
 
 public class HomeFragment extends Fragment {
@@ -50,11 +47,10 @@ public class HomeFragment extends Fragment {
             @Override
             public void handleOnBackPressed() {
                 if (cont == 0) {
-                    // Toast.makeText(getContext(), getString(R.string.exit_again_toast), Toast.LENGTH_SHORT).show();
-                    ToastHelper.showCustomToast(getActivity(), "warning", getString(R.string.exit_again_toast));
+                    Snackbar.make(binding.getRoot(), getResources().getString(R.string.exit_again_toast), Snackbar.LENGTH_SHORT).show();
                     cont++;
                 } else {
-                    getActivity().finish();
+                    getActivity().finishAffinity();
                 }
                 new CountDownTimer(3000, 1000) {
                     @Override
@@ -88,7 +84,6 @@ public class HomeFragment extends Fragment {
             binding.textViewCantsQuestions.setText(getString(R.string.question_cant) + " " + questionList.size());
             binding.textViewCantsStrategies.setText(getString(R.string.strategy_cant) + " " + strategy_repository.getStrategiesListSize());
         });
-
     }
 
     @Override
@@ -114,13 +109,6 @@ public class HomeFragment extends Fragment {
         binding.materialButtonGotoQuestionTypeFragment.setOnClickListener(v -> {
             navController.navigate(R.id.go_QuestionTypeFragment);
         });
-
-        //COMPROBANDO SI ES LA PRIMERA VEZ QUE EL USUARIO ENTRA EN LA APP
-        if (getActivity().getSharedPreferences("autenticacion", MODE_PRIVATE).getBoolean("firstLaunch", true)) {
-            ToastHelper.showCustomToast(getActivity(), "success", getString(R.string.success_aut));
-            ProfessionalRolViewModel professionalRolViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(ProfessionalRolViewModel.class);
-            UserHelper.changefirstLaunch(getContext());
-        }
     }
 
     @Override
@@ -128,5 +116,4 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
 }

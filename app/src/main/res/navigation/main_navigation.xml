@@ -96,5 +96,14 @@
         android:name="cu.cujae.gilsoft.tykeprof.app.fragment.HomeNewStrategyFragment"
         android:label="@string/new_strategy"
         tools:layout="@layout/home_new_strategy_fragment" />
+    <fragment
+        android:id="@+id/nav_settingsFragment"
+        android:name="cu.cujae.gilsoft.tykeprof.app.fragment.SettingsFragment"
+        android:label="@string/Settings" />
+    <fragment
+        android:id="@+id/nav_infoFragment"
+        android:name="cu.cujae.gilsoft.tykeprof.app.fragment.InfoFragment"
+        android:label="@string/information"
+        tools:layout="@layout/fragment_info" />
 
 </navigation>

@@ -65,6 +65,7 @@ public class SplashActivity extends AppCompatActivity {
                         //Log.e("ERROR TOKEN:  ", e.getMessage());
                     }
                     UserHelper.saveToken(token, SplashActivity.this);
+                    UserHelper.changeConnectedStatus(SplashActivity.this, true);
                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
                     finish();
                 } else if (response.code() == 401 || response.code() == 500) {
@@ -78,11 +79,8 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putBoolean("connected", false);
-                intent.putExtras(bundle);
-                startActivity(intent);
+                UserHelper.changeConnectedStatus(SplashActivity.this, false);
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 finish();
             }
         });

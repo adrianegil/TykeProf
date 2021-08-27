@@ -136,7 +136,7 @@ public class NewQuestionFragment extends Fragment {
         newQuestionNavController = Navigation.findNavController(getActivity(), R.id.newQuestionNavHostFragment);
         mainNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_container);
 
-        //INICIALIZANDO DATOS
+        //INICIALIZAR DATOS
         init(step);
 
         //CHEQUEAR CAMBIOS EN EL TIPO DE PREGUNTA
@@ -173,7 +173,7 @@ public class NewQuestionFragment extends Fragment {
             }
         });
 
-        // ESCUCHAR CAMBIOS EN EL SLIDER CORRESPONDIETE AL TIEMPO PARA RESPONDER LA PREGUNTA
+        // ESCUCHAR CAMBIOS EN EL SLIDER CORRESPONDIENTE AL TIEMPO PARA RESPONDER LA PREGUNTA
         newQuestionFragmentBinding.sliderAnswerTime.addOnChangeListener(new Slider.OnChangeListener() {
             @Override
             public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
@@ -182,7 +182,7 @@ public class NewQuestionFragment extends Fragment {
             }
         });
 
-        //ESCUCHAR CAMBIOS EN EL SLIDER CORRESPONDIETE A LA PUNTUACIÓN PARA CONTESTAR LA PREGUNTA
+        //ESCUCHAR CAMBIOS EN EL SLIDER CORRESPONDIENTE A LA PUNTUACIÓN PARA CONTESTAR LA PREGUNTA
         newQuestionFragmentBinding.sliderAnswerPoints.addOnChangeListener(new Slider.OnChangeListener() {
             @Override
             public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
@@ -304,6 +304,7 @@ public class NewQuestionFragment extends Fragment {
         });
     }
 
+    //INICIAR COMPONENTES VISUALES EN DEPENDENCIA DEL PASO DONDE SE ENCUENTRE EL USUARIO
     @SuppressLint("SetTextI18n")
     public void init(int step) {
 
@@ -346,9 +347,6 @@ public class NewQuestionFragment extends Fragment {
                 clueTypeList = (ArrayList<Clue_Type>) HomeNewQuestionFragment.homeNewQuestionViewModel.getClue_typeList();
                 clueTypeAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, clueTypeList);
                 RecyclerView recyclerViewClues = newQuestion3stepFragmentBinding.recyclerViewCluesOfNewQuestion;
-                //LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());
-                //manager.setOrientation(RecyclerView.VERTICAL);
-                //recyclerViewClues.setLayoutManager(manager);
                 recyclerViewClues.setLayoutManager(new LinearLayoutManager(getActivity()));
                 recyclerViewClues.setHasFixedSize(true);
                 clue_adapter = new Clue_Adapter(HomeNewQuestionFragment.questionModel.getClueModelList(), getActivity());
@@ -383,6 +381,7 @@ public class NewQuestionFragment extends Fragment {
 
     }
 
+    // AÑADIR UNA PISTA A LA PREGUNTA
     public void addClue(View view) {
 
         dialogAddClueBinding = DialogAddClueBinding.inflate(getLayoutInflater(), null, false);
@@ -414,6 +413,7 @@ public class NewQuestionFragment extends Fragment {
         buttonNeg.setOnClickListener(v12 -> dialog.dismiss());
     }
 
+    // AÑADIR UNA BONIFICACIÓN A LA PREGUNTA
     public void addBonus(View view) {
         dialogAddBonusBinding = DialogAddBonusBinding.inflate(getLayoutInflater(), null, false);
         AlertDialog dialog = new AlertDialog.Builder(getActivity())
@@ -423,7 +423,7 @@ public class NewQuestionFragment extends Fragment {
                 .setView(dialogAddBonusBinding.getRoot())
                 .show();
 
-        //ESCUCHAR CAMBIOS EN EL SLIDER CORRESPONDIETE A LA BONIFICACIÓN
+        //ESCUCHAR CAMBIOS EN EL SLIDER CORRESPONDIENTE A LA BONIFICACIÓN
         dialogAddBonusBinding.sliderBonus.addOnChangeListener(new Slider.OnChangeListener() {
             @Override
             public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
@@ -432,7 +432,7 @@ public class NewQuestionFragment extends Fragment {
             }
         });
 
-        //ESCUCHAR CAMBIOS EN EL SLIDER CORRESPONDIETE AL TIEMPO MENOR
+        //ESCUCHAR CAMBIOS EN EL SLIDER CORRESPONDIENTE AL TIEMPO MENOR
         dialogAddBonusBinding.sliderTimeLess.addOnChangeListener(new Slider.OnChangeListener() {
             @Override
             public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
@@ -452,6 +452,7 @@ public class NewQuestionFragment extends Fragment {
         buttonNeg.setOnClickListener(v12 -> dialog.dismiss());
     }
 
+    // EN DEPENDENCIA DEL TIPO DE PREGUNTA SE MUESTRA EL DIÁLOGO CORRESPONDIENTE PARA AÑADIR UNA RESPUESTA
     public void checkAnswer(View view) {
         questionType = newQuestion2stepFragmentBinding.autoCompleteQuestionTypeOfNewQuestion.getText().toString();
         if (!questionType.isEmpty()) {
@@ -465,6 +466,7 @@ public class NewQuestionFragment extends Fragment {
             newQuestion2stepFragmentBinding.textInputLayoutQuestionTypeOfNewQuestion.setError(getString(R.string.required));
     }
 
+    // AÑADIR UNA RESPUESTA A UNA PREGUNTA DE TIPO ENLAZA
     public void addAnswerOfLinkQuestion() {
 
         dialogAddLinkAnswerBinding = DialogAddLinkAnswerBinding.inflate(getLayoutInflater(), null, false);
@@ -506,6 +508,7 @@ public class NewQuestionFragment extends Fragment {
 
     }
 
+    // AÑADIR UNA RESPUESTA A UNA PREGUNTA DE TIPO ORDENA
     public void addAnswerOfOrderQuestion() {
 
         dialogAddOrderAnswerBinding = DialogAddOrderAnswerBinding.inflate(getLayoutInflater(), null, false);
@@ -548,6 +551,7 @@ public class NewQuestionFragment extends Fragment {
 
     }
 
+    // AÑADIR UNA RESPUESTA A UNA PREGUNTA DE OTRO TIPO DIFERENTE
     public void addAnswerOfOtherQuestion() {
 
         dialogAddOtherAnswerBinding = DialogAddOtherAnswerBinding.inflate(getLayoutInflater(), null, false);
@@ -590,6 +594,7 @@ public class NewQuestionFragment extends Fragment {
 
     }
 
+    // INICIAR ADAPTADOR DE LA LISTA DE RESPUESTAS EN DEPENDENCIA DEL TIPO DE PREGUNTA
     public void initAdapter(String questionType) {
 
         if (questionType.equalsIgnoreCase("Enlazar")) {
@@ -604,6 +609,7 @@ public class NewQuestionFragment extends Fragment {
         }
     }
 
+    // CAMBIAR ADAPTADOR DEPENDENCIA DEL TIPO DE PREGUNTA
     public void changeAdapter(String questionType) {
 
         if (questionType.equalsIgnoreCase("Enlazar")) {
@@ -622,6 +628,7 @@ public class NewQuestionFragment extends Fragment {
         this.questionType = questionType;
     }
 
+    // AÑADIR LA LISTA DE RESPUESTAS A LA PREGUNTA
     public void addAnswerList(String questionType) {
 
         if (questionType.equalsIgnoreCase("Enlazar")) {

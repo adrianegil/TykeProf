@@ -7,8 +7,10 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.preference.PreferenceManager;
 
 import com.shuhart.stepview.StepView;
 
@@ -25,6 +27,7 @@ public class HomeNewQuestionFragment extends Fragment {
     private FragmentHomeNewQuestionBinding binding;
     public static Question_Model questionModel;
     public static HomeNewQuestionViewModel homeNewQuestionViewModel;
+    private boolean themeDark;
 
     public HomeNewQuestionFragment() {
         // Required empty public constructor
@@ -53,10 +56,13 @@ public class HomeNewQuestionFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initStepper();
+    }
+
+    // INICIAR CONFIGURACIÓN DEL STEPPER
+    public void initStepper() {
         stepViewNewQuestion = binding.stepViewNewQuestion;
         stepViewNewQuestion.getState()
-                // .selectedTextColor(ContextCompat.getColor(this, R.color.colorAccent))
-                // .animationType(StepView.ANIMATION_CIRCLE)
                 // .selectedCircleColor(ContextCompat.getColor(this, R.color.colorAccent))
                 // .selectedCircleRadius(getResources().getDimensionPixelSize(R.dimen.dp14))
                 //.selectedStepNumberColor(ContextCompat.getColor(this, R.color.colorPrimary))
@@ -69,16 +75,21 @@ public class HomeNewQuestionFragment extends Fragment {
                     add(getString(R.string.bonusses));
                     add(getString(R.string.summary));
                 }})
-                .animationType(StepView.ANIMATION_ALL)
-                // You should specify only steps number or steps array of strings.
-                // In case you specify both steps array is chosen.
                 //.stepsNumber(4)
+                .animationType(StepView.ANIMATION_ALL)
                 .animationDuration(getResources().getInteger(android.R.integer.config_longAnimTime))
                 //.stepLineWidth(getResources().getDimensionPixelSize(R.dimen.dp1))
                 //.textSize(getResources().getDimensionPixelSize(R.dimen.sp14))
                 //.stepNumberTextSize(getResources().getDimensionPixelSize(R.dimen.sp16))
                 //.typeface(ResourcesCompat.getFont(context, R.font.roboto_italic))
-                // other state methods are equal to the corresponding xml attributes
                 .commit();
+
+        themeDark = PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DarkTheme", false);
+        if (themeDark) {
+            stepViewNewQuestion.getState().
+                    selectedTextColor(ContextCompat.getColor(getContext(), R.color.white))
+                    .doneTextColor(ContextCompat.getColor(getContext(), R.color.white))
+                    .commit();
+        }
     }
 }

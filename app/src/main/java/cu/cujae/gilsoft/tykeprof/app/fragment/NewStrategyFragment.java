@@ -119,7 +119,7 @@ public class NewStrategyFragment extends Fragment {
         newStrategyNavController = Navigation.findNavController(getActivity(), R.id.newStrategyNavHostFragment);
         mainNavController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_container);
 
-        //INICIALIZANDO DATOS
+        //INICIALIZAR DATOS
         init(step);
 
         //CHEQUEAR CAMBIOS EN EL NOMBRE DE LA ASIGNATURA
@@ -247,6 +247,7 @@ public class NewStrategyFragment extends Fragment {
 
     }
 
+    //INICIAR COMPONENTES VISUALES EN DEPENDENCIA DEL PASO DONDE SE ENCUENTRE EL USUARIO
     @SuppressLint("SetTextI18n")
     public void init(int step) {
 
@@ -329,6 +330,7 @@ public class NewStrategyFragment extends Fragment {
 
     }
 
+    // CAMBIAR ADAPTADOR DE TEMAS EN DEPENDENCIA DEL NOMBRE DE LA ASIGNATURA
     public void changeTopicAdapter(String subjectName) {
 
         HomeNewStrategyFragment.topicList.clear();
@@ -357,6 +359,7 @@ public class NewStrategyFragment extends Fragment {
 
     }
 
+    // CAMBIAR ADAPTADOR DE GRUPOS EN DEPENDENCIA DEL NOMBRE DE LA ASIGNATURA
     public void changeGroupAdapter(String subjectName) {
 
         HomeNewStrategyFragment.groupList.clear();
@@ -384,6 +387,7 @@ public class NewStrategyFragment extends Fragment {
 
     }
 
+    // OBTENER PREGUNTAS DISPONIBLES EN DEPENDENCIA DEL NOMBRE DE LA ASIGNATURA
     public void getQuestionBySubjectName(String subjectName) {
         HomeNewStrategyFragment.topicList.clear();
         Call<List<Question>> call = question_service.getQuestionsBySubjectName("Bearer " + UserHelper.getToken(getContext()), subjectName);
@@ -406,6 +410,7 @@ public class NewStrategyFragment extends Fragment {
 
     }
 
+    // AÑADIR LISTA DE TEMAS Y GRUPOS SELECCIONADOS A LA ESTRATEGIA
     public void addTopicsAndGroups() {
         HomeNewStrategyFragment.strategy_model.getTopicsList().clear();
         HomeNewStrategyFragment.strategy_model.getGroupsList().clear();
@@ -420,6 +425,7 @@ public class NewStrategyFragment extends Fragment {
 
     }
 
+    // AÑADIR PREGUNTAS SELECIONADAS A LA ESTRATEGIA
     public void addQuestions() {
         HomeNewStrategyFragment.strategy_model.getQuestionsList().clear();
         for (Question question : questionOfStrategy_adapter.questions) {

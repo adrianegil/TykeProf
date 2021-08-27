@@ -7,8 +7,10 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.preference.PreferenceManager;
 
 import com.shuhart.stepview.StepView;
 
@@ -33,6 +35,7 @@ public class HomeNewStrategyFragment extends Fragment {
     public static ArrayList<Topic> topicList;
     public static ArrayList<Group> groupList;
     public static ArrayList<Question> questionList;
+    private boolean themeDark;
 
     public static HomeNewStrategyFragment newInstance() {
         return new HomeNewStrategyFragment();
@@ -59,13 +62,17 @@ public class HomeNewStrategyFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         homeNewStrategyViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(HomeNewStrategyViewModel.class);
-        homeNewStrategyViewModel.getTeacherSubjectsModel();
+        homeNewStrategyViewModel.getTeacherSubjectsModel(binding.getRoot());
     }
 
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initStepper();
+    }
 
+    // INICIAR CONFIGURACIÓN DEL STEPPER
+    public void initStepper() {
         stepViewNewStrategy = binding.stepViewNewStrategy;
         stepViewNewStrategy.getState()
                 .steps(new ArrayList<String>() {{
@@ -77,5 +84,13 @@ public class HomeNewStrategyFragment extends Fragment {
                 .animationType(StepView.ANIMATION_ALL)
                 .animationDuration(getResources().getInteger(android.R.integer.config_longAnimTime))
                 .commit();
+
+        themeDark = PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean("DarkTheme", false);
+        if (themeDark) {
+            stepViewNewStrategy.getState().
+                    selectedTextColor(ContextCompat.getColor(getContext(), R.color.white))
+                    .doneTextColor(ContextCompat.getColor(getContext(), R.color.white))
+                    .commit();
+        }
     }
 }
