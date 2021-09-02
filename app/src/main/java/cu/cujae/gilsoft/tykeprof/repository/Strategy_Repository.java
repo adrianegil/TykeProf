@@ -215,7 +215,6 @@ public class Strategy_Repository {
     }
 
     public void deleteStrategyByID(long id) {
-
         Call<ResponseBody> deleteStrategy = strategy_service.deleteStrategyByWeb("Bearer " + UserHelper.getToken(context), id);
         deleteStrategy.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -224,6 +223,7 @@ public class Strategy_Repository {
                     AppDatabase.databaseWriteExecutor.execute(() -> {
                         strategy_dao.deleteStrategyByID(id);
                     });
+                    Toast.makeText(context, context.getString(R.string.delete_success), Toast.LENGTH_SHORT).show();
                 } else if (response.code() == 403) {
                     UserHelper.renovateToken(context);
 

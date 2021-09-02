@@ -100,7 +100,6 @@ public class LoginActivity extends AppCompatActivity {
                             Log.e("Json Web Token ", token);
                         } catch (IOException e) {
                             e.printStackTrace();
-                            // Log.e("ERROR TOKEN:  ", e.getMessage());
                         }
                         UserHelper.saveToken(token, LoginActivity.this);
                         UserHelper.saveUserLogin(login, LoginActivity.this);
@@ -108,15 +107,13 @@ public class LoginActivity extends AppCompatActivity {
                     } else if (response.code() == 401 || response.code() == 500) {
                         progressBarLogin.setVisibility(View.INVISIBLE);
                         materialCardViewIncorrectLogin.setVisibility(View.VISIBLE);
-                        //textInputLayoutUserName.setError("Error");
-                        //textInputLayoutUserPassword.setError("Error");
                         editTextUserName.setError("Error");
                         editTextPassword.setError("Error");
                         editTextUserName.setText("");
                         editTextPassword.setText("");
                         ToastHelper.showCustomToast(LoginActivity.this, "error", getString(R.string.failed_aut));
                     } else {
-                        ToastHelper.showCustomToast(LoginActivity.this, "error", "ERROR EN LA SOLICITUD");
+                        ToastHelper.showCustomToast(LoginActivity.this, "error", "ERROR");
                     }
                 }
 
@@ -168,6 +165,7 @@ public class LoginActivity extends AppCompatActivity {
     //SI ES PROFESOR ACCEDE AL MENÚ PRINCIPAL
     public void goToMainActivity(boolean isTeacher) {
         if (isTeacher) {
+            UserHelper.changeConnectedStatus(LoginActivity.this, true);
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
         } else {

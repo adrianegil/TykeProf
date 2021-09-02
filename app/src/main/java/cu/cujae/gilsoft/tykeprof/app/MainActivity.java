@@ -26,6 +26,7 @@ import com.squareup.picasso.Picasso;
 
 import cu.cujae.gilsoft.tykeprof.R;
 import cu.cujae.gilsoft.tykeprof.app.viewmodel.ProfessionalRolViewModel;
+import cu.cujae.gilsoft.tykeprof.app.viewmodel.RankingViewModel;
 import cu.cujae.gilsoft.tykeprof.app.viewmodel.UserViewModel;
 import cu.cujae.gilsoft.tykeprof.databinding.ActivityMainBinding;
 import cu.cujae.gilsoft.tykeprof.util.DialogHelper;
@@ -46,41 +47,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
 
-        //COMPROBAR SI ES LA PRIMERA VEZ QUE EL USUARIO ENTRA EN LA APP
-        if (getSharedPreferences("autenticacion", MODE_PRIVATE).getBoolean("firstLaunch", true)) {
-            ToastHelper.showCustomToast(MainActivity.this, "success", getString(R.string.success_aut));
-            ProfessionalRolViewModel professionalRolViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())).get(ProfessionalRolViewModel.class);
-            UserHelper.changefirstLaunch(MainActivity.this);
-            getSystemConfig();
-        } else {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O || Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
-                initConfig();
-        }
+        //CHEQUEAR SI ES PRIMERA VEZ DEL USUARIO EN LA APP
+        checkFirstLaunch();
 
         setContentView(binding.getRoot());
 
-        //CONFIGURACIÓN DE LA TOOLBAR CON NAVIGATION COMPONENT
-        setSupportActionBar(binding.toolbarMainActivity);
-        DrawerLayout drawer = binding.drawerLayout;
-        NavigationView navigationView = binding.navView;
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        myAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home_Fragment, R.id.nav_questionTypeFragment,
-                R.id.nav_clueTypeFragment, R.id.nav_giftTypeFragment, R.id.nav_grantFragment, R.id.nav_giftFragment, R.id.nav_professionalRolFragment,
-                R.id.nav_insigniaFragment, R.id.nav_rankingFragment, R.id.nav_questionFragment, R.id.nav_strategyFragment)
-                .setOpenableLayout(drawer)
-                .build();
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment_container);
-        NavigationUI.setupActionBarWithNavController(this, navController, myAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
+        //CONFIGURACIÓN DEL APPBAR
+        configAppBar();
 
-        //ACTUALIZAR INFORMACIÓN EN EL NAVIGATION DRAWER
-        view1 = binding.navView.getHeaderView(0);
-        imageViewUser = view1.findViewById(R.id.imageViewUserDrawer);
-        textViewUserFullNameDrawer = view1.findViewById(R.id.textViewUserFullNameDrawer);
-        textViewUserEmailDrawer = view1.findViewById(R.id.textViewUserEmailDrawer);
-        imageViewUser = view1.findViewById(R.id.imageViewUserDrawer);
+        //VISTAS ASOCIADAS AL PÉRFIL DE USUARIO EN EL NAVIGATION DRAWER
+        initDrawerViews();
 
+        //OBSERVADOR DE CAMBIOS EN LOS DATOS DEL USUARIO
         UserViewModel userViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())).get(UserViewModel.class);
         userViewModel.getUser().observe(this, user -> {
             textViewUserEmailDrawer.setText(user.getEmail());
@@ -88,12 +66,8 @@ public class MainActivity extends AppCompatActivity {
             loadUserImage(user.getImage_url());
         });
 
-        //VERIFICAR SI EL USUARIO ESTA CONECTADO A LA RED
-        if (!UserHelper.isConnected(MainActivity.this)) {
-            Snackbar.make(binding.getRoot(), getResources().getString(R.string.no_connection), Snackbar.LENGTH_INDEFINITE).setAction("Ok", v -> {
-            }).show();
-            UserHelper.changeConnectedStatus(MainActivity.this, true);
-        }
+        //CHEQUEAR SI HAY CONEXIÓN
+        checkUserConecction();
     }
 
     @Override
@@ -111,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item) || NavigationUI.onNavDestinationSelected(item, Navigation.findNavController(this, R.id.nav_host_fragment_container));
         }
-
     }
 
     @Override
@@ -121,7 +94,56 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    //CARGA LA IMAGEN DE USUARIO Y LA GUARDA EN CACHÉ
+    //COMPROBAR SI ES LA PRIMERA VEZ QUE EL USUARIO ENTRA EN LA APP
+    public void checkFirstLaunch(){
+        if (getSharedPreferences("autenticacion", MODE_PRIVATE).getBoolean("firstLaunch", true)) {
+            ToastHelper.showCustomToast(MainActivity.this, "success", getString(R.string.success_aut));
+            RankingViewModel rankingViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())).get(RankingViewModel.class);
+            ProfessionalRolViewModel professionalRolViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())).get(ProfessionalRolViewModel.class);
+            UserHelper.changefirstLaunch(MainActivity.this);
+            getSystemConfig();
+        } else {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O || Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                initConfig();
+        }
+    }
+
+    //CONFIGURACIÓN DE LA TOOLBAR CON NAVIGATION COMPONENT
+    public void configAppBar(){
+        setSupportActionBar(binding.toolbarMainActivity);
+        DrawerLayout drawer = binding.drawerLayout;
+        NavigationView navigationView = binding.navView;
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        myAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_home_Fragment, R.id.nav_questionTypeFragment,
+                R.id.nav_clueTypeFragment, R.id.nav_giftTypeFragment, R.id.nav_grantFragment, R.id.nav_giftFragment, R.id.nav_professionalRolFragment,
+                R.id.nav_insigniaFragment, R.id.nav_rankingFragment, R.id.nav_questionFragment, R.id.nav_strategyFragment)
+                .setOpenableLayout(drawer)
+                .build();
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment_container);
+        NavigationUI.setupActionBarWithNavController(this, navController, myAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
+    }
+
+    //INICIALIZAR VISTAS ASOCIADAS AL PÉRFIL DE USUARIO EN EL NAVIGATION DRAWER
+    public void initDrawerViews(){
+        view1 = binding.navView.getHeaderView(0);
+        imageViewUser = view1.findViewById(R.id.imageViewUserDrawer);
+        textViewUserFullNameDrawer = view1.findViewById(R.id.textViewUserFullNameDrawer);
+        textViewUserEmailDrawer = view1.findViewById(R.id.textViewUserEmailDrawer);
+        imageViewUser = view1.findViewById(R.id.imageViewUserDrawer);
+    }
+
+    //VERIFICAR SI EL USUARIO ESTA CONECTADO A LA RED
+    public void checkUserConecction(){
+        if (!UserHelper.isConnected(MainActivity.this)) {
+            Snackbar.make(binding.getRoot(), getResources().getString(R.string.no_connection), Snackbar.LENGTH_INDEFINITE).setAction("Ok", v -> {
+                UserHelper.changeConnectedStatus(MainActivity.this, true);
+            }).show();
+        }
+    }
+
+    //CARGAR LA IMAGEN DE USUARIO Y GUARDARLA EN CACHÉ
     public void loadUserImage(String url) {
         Picasso picasso = Picasso.get();
         if (!url.isEmpty()) {

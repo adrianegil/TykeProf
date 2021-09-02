@@ -2,6 +2,9 @@
     <string name="app_name">TykeProf</string>
     <string name="password">Contraseña</string>
     <string name="user">Usuario</string>
+    <string name="players">Jugadores</string>
+    <string name="ranking_list">Lista</string>
+    <string name="ranking_chart">Gráfico</string>
     <string name="welcome">Bienvenido</string>
     <string name="exit">Salir</string>
     <string name="login">Iniciar Sesión</string>
@@ -159,5 +162,4 @@
     <string name="others">Otros</string>
     <string name="add_question">Agregar Pregunta</string>
     <string name="add_strategy">Agregar Estrategia</string>
-
 </resources>

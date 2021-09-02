@@ -55,7 +55,7 @@ public class QuestionFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_container);
         binding.materialButtonAddQuestion.setOnClickListener(v -> {
-            navController.navigate(R.id.homeNewQuestionFragment);
+            navController.navigate(R.id.go_newQuestion);
         });
     }
 

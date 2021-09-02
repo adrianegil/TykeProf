@@ -75,7 +75,9 @@
         tools:layout="@layout/question_fragment">
         <action
             android:id="@+id/go_newQuestion"
-            app:destination="@id/homeNewQuestionFragment" />
+            app:destination="@id/homeNewQuestionFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/nav_strategyFragment"
@@ -84,7 +86,9 @@
         tools:layout="@layout/strategy_fragment">
         <action
             android:id="@+id/go_newStrategy"
-            app:destination="@id/homeNewStrategyFragment" />
+            app:destination="@id/homeNewStrategyFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/homeNewQuestionFragment"

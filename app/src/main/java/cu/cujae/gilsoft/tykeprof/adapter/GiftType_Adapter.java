@@ -18,9 +18,7 @@ import org.jetbrains.annotations.NotNull;
 
 import cu.cujae.gilsoft.tykeprof.R;
 import cu.cujae.gilsoft.tykeprof.app.viewmodel.GiftTypeViewModel;
-import cu.cujae.gilsoft.tykeprof.app.viewmodel.QuestionTypeViewModel;
 import cu.cujae.gilsoft.tykeprof.data.entity.Gift_Type;
-import cu.cujae.gilsoft.tykeprof.data.entity.Question_Type;
 
 public class GiftType_Adapter extends ListAdapter<Gift_Type, GiftType_Adapter.ViewHolder> {
 
@@ -47,7 +45,7 @@ public class GiftType_Adapter extends ListAdapter<Gift_Type, GiftType_Adapter.Vi
         holder.materialTextViewGiftType.setText(gift_type.getName());
         holder.viewDeleteGiftType.setOnClickListener(v -> {
             AlertDialog.Builder dialog = new AlertDialog.Builder(context);
-            dialog.setTitle(R.string.delete_clue_type);
+            dialog.setTitle(R.string.delete_gift_type);
             dialog.setMessage(R.string.confirm_delete_gift_type);
             dialog.setPositiveButton(R.string.yes, (dialog1, which) -> {
                 giftTypeViewModel.deleteGiftType(gift_type);
