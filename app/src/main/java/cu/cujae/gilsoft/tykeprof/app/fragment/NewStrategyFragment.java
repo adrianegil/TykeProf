@@ -148,7 +148,6 @@ public class NewStrategyFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String strategyName = newStrategyFragmentBinding.editTextStrategyName.getText().toString();
-
                 if (strategyName.isEmpty()) {
                     newStrategyFragmentBinding.textInputLayoutStrategyName.setError(getString(R.string.required));
                 } else {
@@ -159,7 +158,6 @@ public class NewStrategyFragment extends Fragment {
                     newStrategyNavController.navigate(R.id.go_newStrategy2Step);
                     HomeNewStrategyFragment.stepViewNewStrategy.go(1, true);
                 }
-
             }
         });
 
@@ -244,13 +242,11 @@ public class NewStrategyFragment extends Fragment {
                 mainNavController.popBackStack(R.id.nav_strategyFragment, false);
             }
         });
-
     }
 
     //INICIAR COMPONENTES VISUALES EN DEPENDENCIA DEL PASO DONDE SE ENCUENTRE EL USUARIO
     @SuppressLint("SetTextI18n")
     public void init(int step) {
-
         switch (step) {
             case 1:
                 try {
@@ -302,6 +298,8 @@ public class NewStrategyFragment extends Fragment {
                 recyclerQuestionsAvailable.setHasFixedSize(true);
                 questionOfStrategy_adapter = new QuestionOfStrategy_Adapter(HomeNewStrategyFragment.questionList, getActivity());
                 recyclerQuestionsAvailable.setAdapter(questionOfStrategy_adapter);
+                if (HomeNewStrategyFragment.questionList.isEmpty())
+                    showQuestionWarning();
                 break;
             case 4:
                 newStrategy4stepFragmentBinding.textViewStrategyNameFinish.setText(getString(R.string.strategy_name) + ": " + HomeNewStrategyFragment.strategy_model.getName());
@@ -327,14 +325,18 @@ public class NewStrategyFragment extends Fragment {
                 recyclerViewTopicFinish.setAdapter(topicFinishAdapter);
                 break;
         }
+    }
 
+    //SE MUESTRA SOLO SI NO HAY PREGUNTAS DISPONIBLES PARA LA ASIGNATURA SELECCIONADA
+    private void showQuestionWarning() {
+        Snackbar.make(newStrategy3stepFragmentBinding.getRoot(), getResources().getString(R.string.question_list_empty) + " " + HomeNewStrategyFragment.strategy_model.getSubjectName(), Snackbar.LENGTH_LONG).setAction("Ok", v -> {
+            //Toast.makeText(getContext(), getString(R.string.need_question_list), Toast.LENGTH_SHORT).show();
+        }).show();
     }
 
     // CAMBIAR ADAPTADOR DE TEMAS EN DEPENDENCIA DEL NOMBRE DE LA ASIGNATURA
     public void changeTopicAdapter(String subjectName) {
-
         HomeNewStrategyFragment.topicList.clear();
-
         Call<List<Topic>> callTopicList = topic_sevice.getTopicsBySubjectName("Bearer " + UserHelper.getToken(getContext()), subjectName);
         callTopicList.enqueue(new Callback<List<Topic>>() {
             @Override
@@ -361,9 +363,7 @@ public class NewStrategyFragment extends Fragment {
 
     // CAMBIAR ADAPTADOR DE GRUPOS EN DEPENDENCIA DEL NOMBRE DE LA ASIGNATURA
     public void changeGroupAdapter(String subjectName) {
-
         HomeNewStrategyFragment.groupList.clear();
-
         Call<List<Group>> callGroupList = group_service.getGroupsBySubjectNameAndTeacherId("Bearer " + UserHelper.getToken(getContext())
                 , subjectName, HomeNewStrategyFragment.strategy_model.getId_teacher());
         callGroupList.enqueue(new Callback<List<Group>>() {
@@ -381,7 +381,6 @@ public class NewStrategyFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Group>> call, Throwable t) {
-
             }
         });
 
@@ -389,7 +388,7 @@ public class NewStrategyFragment extends Fragment {
 
     // OBTENER PREGUNTAS DISPONIBLES EN DEPENDENCIA DEL NOMBRE DE LA ASIGNATURA
     public void getQuestionBySubjectName(String subjectName) {
-        HomeNewStrategyFragment.topicList.clear();
+        HomeNewStrategyFragment.questionList.clear();
         Call<List<Question>> call = question_service.getQuestionsBySubjectName("Bearer " + UserHelper.getToken(getContext()), subjectName);
         call.enqueue(new Callback<List<Question>>() {
             @Override
@@ -404,7 +403,6 @@ public class NewStrategyFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Question>> call, Throwable t) {
-
             }
         });
 
@@ -422,7 +420,6 @@ public class NewStrategyFragment extends Fragment {
             if (group.isSelected())
                 HomeNewStrategyFragment.strategy_model.getGroupsList().add(group);
         }
-
     }
 
     // AÑADIR PREGUNTAS SELECIONADAS A LA ESTRATEGIA

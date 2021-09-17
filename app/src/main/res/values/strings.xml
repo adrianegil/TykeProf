@@ -12,6 +12,8 @@
     <string name="incorrect_credentials">Las Credenciales son Incorrectas</string>
     <string name="empty_fields">Campos Vacíos</string>
     <string name="no_connection">No tienes conexión a la red</string>
+    <string name="question_list_empty">No hay preguntas disponibles para</string>
+    <string name="need_question_list">Debe crear al menos una pregunta para esta asignatura</string>
     <string name="success_aut">Autenticación Exitosa</string>
     <string name="failed_aut">Autenticación Fallida</string>
     <string name="required_user">Usuario Requerido</string>

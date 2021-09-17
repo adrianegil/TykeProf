@@ -65,7 +65,7 @@ public class RankingFragment extends Fragment {
     @SuppressLint("ResourceAsColor")
     private void configTabLayout(ViewGroup container) {
         View parent = (View) container.getParent();
-        appBar = (AppBarLayout) parent.findViewById(R.id.appBarLayoutMainActivity);
+        appBar = parent.findViewById(R.id.appBarLayoutMainActivity);
         View view1 = getLayoutInflater().inflate(R.layout.ranking_tablayout, null);
         tabLayout = (TabLayout) view1;
         // tabLayout.setBackgroundColor(Color.parseColor("#3F9655"));
