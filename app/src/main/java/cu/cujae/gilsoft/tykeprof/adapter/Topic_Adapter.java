@@ -38,7 +38,6 @@ public class Topic_Adapter extends RecyclerView.Adapter<Topic_Adapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         Topic topic = topics.get(position);
 
         if (HomeNewStrategyFragment.strategy_model.getTopicsList().contains(topic)){

@@ -63,7 +63,6 @@ public class Question_Adapter extends ListAdapter<Question, Question_Adapter.Vie
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         Question question = getItem(position);
         holder.binding.setQuestion(question);
         holder.binding.layoutExpandedQuestionContent.setVisibility(question.isContenExpandable() ? View.VISIBLE : View.GONE);

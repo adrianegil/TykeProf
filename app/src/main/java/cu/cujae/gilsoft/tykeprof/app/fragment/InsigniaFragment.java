@@ -54,10 +54,8 @@ public class InsigniaFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         professional_rol_repository = new Professional_Rol_Repository(getActivity().getApplication());
         professional_rols = (ArrayList<Professional_Rol>) professional_rol_repository.getAllProfessionalRolList();
-
         RecyclerView recyclerView = binding.RecyclerViewInsignia;
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         insigniaViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(InsigniaViewModel.class);
@@ -86,7 +84,6 @@ public class InsigniaFragment extends Fragment {
                     sliderAdvancePoints.setValue(Integer.valueOf((int) slider.getValue()));
                 }
             });
-
             Slider sliderGrantPoints = view1.findViewById(R.id.sliderGrantPoints);
             sliderGrantPoints.addOnChangeListener(new Slider.OnChangeListener() {
                 @Override
@@ -97,7 +94,6 @@ public class InsigniaFragment extends Fragment {
 
             TextInputLayout textInputLayoutNewInsignia = view1.findViewById(R.id.textInputLayoutNewInsignia);
             EditText editTextInsigniaName = view1.findViewById(R.id.editTextInsigniaName);
-
             TextInputLayout textInputLayoutProfessRolToInsignia = view1.findViewById(R.id.textInputLayoutProfessRolToInsignia);
             AutoCompleteTextView autoCompleteProfessRolToInsignia = view1.findViewById(R.id.autoCompleteProfessRolToInsignia);
 

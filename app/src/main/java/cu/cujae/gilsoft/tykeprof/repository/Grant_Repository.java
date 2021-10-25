@@ -113,7 +113,6 @@ public class Grant_Repository {
         saveGrantCall.enqueue(new Callback<Grant>() {
             @Override
             public void onResponse(Call<Grant> call, Response<Grant> response) {
-
                 if (response.isSuccessful()) {
                     Grant gran_response;
                     gran_response = response.body();
@@ -140,7 +139,6 @@ public class Grant_Repository {
         updateGrantCall.enqueue(new Callback<Grant>() {
             @Override
             public void onResponse(Call<Grant> call, Response<Grant> response) {
-
                 if (response.isSuccessful()) {
                     Grant gran_response;
                     gran_response = response.body();

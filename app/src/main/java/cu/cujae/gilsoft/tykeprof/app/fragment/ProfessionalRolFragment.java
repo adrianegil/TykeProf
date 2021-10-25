@@ -57,7 +57,6 @@ public class ProfessionalRolFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         topic_repository = new Topic_Repository(getActivity().getApplication());
         career_repository = new Career_Repository(getActivity().getApplication());
         topics = (ArrayList<Topic>) topic_repository.getAllTopicList();
@@ -77,7 +76,6 @@ public class ProfessionalRolFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         View view1 = getLayoutInflater().inflate(R.layout.dialog_add_professional_rol, null);
 
         MaterialButton materialButtonAddGift = binding.materialButtonAddProfessionalRol;

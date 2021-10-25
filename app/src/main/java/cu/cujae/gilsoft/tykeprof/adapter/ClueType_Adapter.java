@@ -74,7 +74,6 @@ public class ClueType_Adapter extends ListAdapter<Clue_Type, ClueType_Adapter.Vi
         });
 
         holder.viewEditClueType.setOnClickListener(v -> {
-
             ViewGroup parent = (ViewGroup) view1.getParent();
             if (parent != null)
                 parent.removeAllViews();

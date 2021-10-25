@@ -38,7 +38,6 @@ public class Group_Adapter extends RecyclerView.Adapter<Group_Adapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         Group group = groups.get(position);
 
         if (HomeNewStrategyFragment.strategy_model.getGroupsList().contains(group))

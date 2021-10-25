@@ -37,13 +37,11 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         strategy_repository = new Strategy_Repository(getActivity().getApplication());
         strategy_repository.getAllStrategiesList();
 
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             int cont;
-
             @Override
             public void handleOnBackPressed() {
                 if (cont == 0) {
@@ -97,15 +95,12 @@ public class HomeFragment extends Fragment {
             // navController.navigate(R.id.nav_clueTypeFragment, null);
             navController.navigate(R.id.go_QuestionFragmentFromHome);
         });
-
         binding.materialGotoStrategyFragment.setOnClickListener(v -> {
             navController.navigate(R.id.go_StrategyFragmentFromHome);
         });
-
         binding.materialButtonGotoClueTypeFragment.setOnClickListener(v -> {
             navController.navigate(R.id.go_ClueTypeFragment);
         });
-
         binding.materialButtonGotoQuestionTypeFragment.setOnClickListener(v -> {
             navController.navigate(R.id.go_QuestionTypeFragment);
         });

@@ -39,7 +39,6 @@ public class AnswerOrder_Adapter extends RecyclerView.Adapter<AnswerOrder_Adapte
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         Answer_Model answer_model = answerModels.get(position);
         holder.binding.textViewAnswerText.setText(context.getString(R.string.answer) + ": " + answer_model.getAnswer());
         holder.binding.textViewOrder.setText(context.getString(R.string.order) + ": " + answer_model.getOrder());

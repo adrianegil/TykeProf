@@ -62,7 +62,6 @@ public class Insignia_Adapter extends ListAdapter<Insignia, Insignia_Adapter.Vie
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         Insignia insignia = getItem(position);
 
         holder.textViewInsigniaName.setText(insignia.getName());

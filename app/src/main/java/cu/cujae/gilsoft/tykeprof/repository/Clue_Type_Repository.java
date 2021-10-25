@@ -39,7 +39,6 @@ public class Clue_Type_Repository {
         listCallClueType.enqueue(new Callback<List<Clue_Type>>() {
             @Override
             public void onResponse(Call<List<Clue_Type>> call, Response<List<Clue_Type>> response) {
-
                 if (response.isSuccessful()) {
                     List<Clue_Type> clue_typeList;
                     clue_typeList = response.body();
@@ -68,7 +67,6 @@ public class Clue_Type_Repository {
         listCallClueType.enqueue(new Callback<List<Clue_Type>>() {
             @Override
             public void onResponse(Call<List<Clue_Type>> call, Response<List<Clue_Type>> response) {
-
                 if (response.isSuccessful()) {
                     List<Clue_Type> clue_typeList;
                     clue_typeList = response.body();

@@ -56,13 +56,10 @@ public class GiftFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         gift_type_repository = new Gift_Type_Repository(getActivity().getApplication());
         grant_repository = new Grant_Repository(getActivity().getApplication());
-
         gift_typeArrayList = (ArrayList<Gift_Type>) gift_type_repository.getAllGiftTypeList();
         grantArrayList = (ArrayList<Grant>) grant_repository.getAllGrantList();
-
         RecyclerView recyclerView = binding.RecyclerViewGift;
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         giftViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(GiftViewModel.class);

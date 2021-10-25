@@ -34,7 +34,6 @@ public class AnswerOther_Adapter extends RecyclerView.Adapter<AnswerOther_Adapte
     @NotNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         AnswerOtherItemlistBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.answer_other_itemlist,
                 parent, false);
         return new AnswerOther_Adapter.ViewHolder(binding);

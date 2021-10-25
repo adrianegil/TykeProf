@@ -50,9 +50,7 @@ public class Grant_Adapter extends ListAdapter<Grant, Grant_Adapter.ViewHolder> 
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         Grant grant = getItem(position);
-
         holder.TextViewGrantName.setText(grant.getGrant_name());
         holder.textViewGrantPoints.setText(activity.getString(R.string.points) + ": " + grant.getCant_points());
 

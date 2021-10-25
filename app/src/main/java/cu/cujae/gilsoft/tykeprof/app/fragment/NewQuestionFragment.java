@@ -120,7 +120,6 @@ public class NewQuestionFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         //SOLICITAR AL SERVIDOR TODAS LAS ASIGNATURAS
         HomeNewQuestionFragment.homeNewQuestionViewModel.getLiveSubjectList().observe(getViewLifecycleOwner(), subjectList -> {
             ArrayAdapter<Subject> subjectAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, subjectList);
@@ -383,7 +382,6 @@ public class NewQuestionFragment extends Fragment {
 
     // AÑADIR UNA PISTA A LA PREGUNTA
     public void addClue(View view) {
-
         dialogAddClueBinding = DialogAddClueBinding.inflate(getLayoutInflater(), null, false);
         AlertDialog dialog = new AlertDialog.Builder(getActivity())
                 .setTitle(R.string.add_clue)
@@ -468,7 +466,6 @@ public class NewQuestionFragment extends Fragment {
 
     // AÑADIR UNA RESPUESTA A UNA PREGUNTA DE TIPO ENLAZA
     public void addAnswerOfLinkQuestion() {
-
         dialogAddLinkAnswerBinding = DialogAddLinkAnswerBinding.inflate(getLayoutInflater(), null, false);
         dialogAddLinkAnswerBinding.sliderPunctuationOfLinkQuestion.addOnChangeListener(new Slider.OnChangeListener() {
             @Override
@@ -510,9 +507,7 @@ public class NewQuestionFragment extends Fragment {
 
     // AÑADIR UNA RESPUESTA A UNA PREGUNTA DE TIPO ORDENA
     public void addAnswerOfOrderQuestion() {
-
         dialogAddOrderAnswerBinding = DialogAddOrderAnswerBinding.inflate(getLayoutInflater(), null, false);
-
         dialogAddOrderAnswerBinding.sliderPunctuationOfOrderAnswer.addOnChangeListener(new Slider.OnChangeListener() {
             @Override
             public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
@@ -548,14 +543,11 @@ public class NewQuestionFragment extends Fragment {
         });
         Button buttonNeg = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
         buttonNeg.setOnClickListener(v12 -> dialog.dismiss());
-
     }
 
     // AÑADIR UNA RESPUESTA A UNA PREGUNTA DE OTRO TIPO DIFERENTE
     public void addAnswerOfOtherQuestion() {
-
         dialogAddOtherAnswerBinding = DialogAddOtherAnswerBinding.inflate(getLayoutInflater(), null, false);
-
         dialogAddOtherAnswerBinding.sliderPunctuationOfOtherAnswer.addOnChangeListener(new Slider.OnChangeListener() {
             @Override
             public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
@@ -591,12 +583,10 @@ public class NewQuestionFragment extends Fragment {
         });
         Button buttonNeg = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
         buttonNeg.setOnClickListener(v12 -> dialog.dismiss());
-
     }
 
     // INICIAR ADAPTADOR DE LA LISTA DE RESPUESTAS EN DEPENDENCIA DEL TIPO DE PREGUNTA
     public void initAdapter(String questionType) {
-
         if (questionType.equalsIgnoreCase("Enlazar")) {
             answerLinkAdapter = new AnswerLink_Adapter(HomeNewQuestionFragment.questionModel.getAnswerModelList(), getActivity());
             recyclerAnswerList.setAdapter(answerLinkAdapter);
@@ -611,7 +601,6 @@ public class NewQuestionFragment extends Fragment {
 
     // CAMBIAR ADAPTADOR DEPENDENCIA DEL TIPO DE PREGUNTA
     public void changeAdapter(String questionType) {
-
         if (questionType.equalsIgnoreCase("Enlazar")) {
             HomeNewQuestionFragment.questionModel.getAnswerModelList().clear();
             answerLinkAdapter = new AnswerLink_Adapter(HomeNewQuestionFragment.questionModel.getAnswerModelList(), getActivity());
@@ -630,7 +619,6 @@ public class NewQuestionFragment extends Fragment {
 
     // AÑADIR LA LISTA DE RESPUESTAS A LA PREGUNTA
     public void addAnswerList(String questionType) {
-
         if (questionType.equalsIgnoreCase("Enlazar")) {
             HomeNewQuestionFragment.questionModel.setAnswerModelList(answerLinkAdapter.answerModels);
         } else if (questionType.equalsIgnoreCase("Ordenar")) {

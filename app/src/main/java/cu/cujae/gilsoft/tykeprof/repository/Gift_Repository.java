@@ -110,7 +110,6 @@ public class Gift_Repository {
         updateGiftCall.enqueue(new Callback<Gift>() {
             @Override
             public void onResponse(Call<Gift> call, Response<Gift> response) {
-
                 if (response.isSuccessful()) {
                     Gift gift_response = response.body();
                     Grant grant = gift_response.getGrant();

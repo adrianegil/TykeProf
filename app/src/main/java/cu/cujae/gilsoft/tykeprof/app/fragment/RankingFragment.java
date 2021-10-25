@@ -28,7 +28,6 @@ public class RankingFragment extends Fragment {
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-
     public static RankingFragment newInstance() {
         return new RankingFragment();
     }
@@ -44,7 +43,6 @@ public class RankingFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = RankingFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
         if (savedInstanceState == null) {
             configTabLayout(container);
             viewPager = binding.viewPagerRanking;
@@ -53,7 +51,6 @@ public class RankingFragment extends Fragment {
             tabLayout.getTabAt(0).setIcon(R.drawable.ic_chart);
             tabLayout.getTabAt(1).setIcon(R.drawable.ic_people);
         }
-
         return root;
     }
 

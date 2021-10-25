@@ -63,13 +63,12 @@ public class ClueTypeFragment extends Fragment {
 
         MaterialButton materialButtonAddClueType = binding.materialButtonAddClueType;
         materialButtonAddClueType.setOnClickListener(v -> {
+
             View view1 = getLayoutInflater().inflate(R.layout.dialog_add_clue_type, null);
             TextInputLayout textInputLayoutClueType = view1.findViewById(R.id.textInputLayoutClueType);
             EditText editTextClueType = view1.findViewById(R.id.editTextClueType);
-
             TextInputLayout textInputLayoutGamePoints = view1.findViewById(R.id.textInputLayoutGamePoints);
             EditText editTextGamePoints = view1.findViewById(R.id.editTextGamePoints);
-
             TextInputLayout textInputLayoutCluePoints = view1.findViewById(R.id.textInputLayoutCluePoints);
             EditText editTextCluePoints = view1.findViewById(R.id.editTextCluePoints);
 

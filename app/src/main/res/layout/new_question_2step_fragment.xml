@@ -35,7 +35,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="Respuestas"
+        android:text="@string/answers"
         android:textSize="28sp"
         app:layout_constraintEnd_toStartOf="@+id/viewAddAnswer"
         app:layout_constraintStart_toStartOf="@+id/textInputLayoutQuestionTypeOfNewQuestion"

@@ -64,7 +64,6 @@ public class Gift_Adapter extends ListAdapter<Gift, Gift_Adapter.ViewHolder> {
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         Gift gift = getItem(position);
         holder.textViewGiftDecrip.setText(activity.getString(R.string.description) + ": " + gift.getDescrip());
         holder.layoutExpanded.setVisibility(gift.isContenExpandable() ? View.VISIBLE : View.GONE);

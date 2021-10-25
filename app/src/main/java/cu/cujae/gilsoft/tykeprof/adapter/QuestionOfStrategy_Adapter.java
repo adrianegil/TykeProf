@@ -39,7 +39,6 @@ public class QuestionOfStrategy_Adapter extends RecyclerView.Adapter<QuestionOfS
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
-
         Question question = questions.get(position);
 
         if (HomeNewStrategyFragment.strategy_model.getQuestionsList().contains(question))

@@ -44,7 +44,6 @@ public class GiftTypeFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         giftTypeViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(GiftTypeViewModel.class);
         RecyclerView recyclerView = binding.RecyclerViewGiftType;
         final GiftType_Adapter adapter = new GiftType_Adapter(new GiftType_Adapter.GiftTypeDiff(), giftTypeViewModel, getActivity());

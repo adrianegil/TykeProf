@@ -37,7 +37,6 @@ public class Clue_Adapter extends RecyclerView.Adapter<Clue_Adapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         Clue_Model clue_model = clueModels.get(position);
         holder.binding.textViewClueName.setText(context.getString(R.string.clue) + ": " + clue_model.getClue_name());
         holder.binding.textViewClueTypeOfClue.setText(context.getString(R.string.clue_type) + ": " + clue_model.getClue_type_selected());

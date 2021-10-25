@@ -58,8 +58,8 @@ public class HomeNewStrategyViewModel extends AndroidViewModel {
             }
             @Override
             public void onFailure(Call<TeacherSubjectsModel> call, Throwable t) {
-                Snackbar.make(view, context.getString(R.string.no_connection), Snackbar.LENGTH_LONG).setAction("Ok", v -> {
-                    Toast.makeText(context, context.getString(R.string.check_connection), Toast.LENGTH_SHORT).show();
+                Snackbar.make(view, context.getResources().getString(R.string.no_connection), Snackbar.LENGTH_LONG).setAction("Ok", v -> {
+                    Toast.makeText(context, context.getResources().getString(R.string.check_connection), Toast.LENGTH_SHORT).show();
                 }).show();
             }
         });

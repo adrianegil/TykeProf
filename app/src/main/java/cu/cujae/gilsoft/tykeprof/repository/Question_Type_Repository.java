@@ -102,7 +102,6 @@ public class Question_Type_Repository {
         saveQuestionTypeCall.enqueue(new Callback<Question_Type>() {
             @Override
             public void onResponse(Call<Question_Type> call, Response<Question_Type> response) {
-
                 if (response.isSuccessful()) {
                     Question_Type question_type_response;
                     question_type_response = response.body();

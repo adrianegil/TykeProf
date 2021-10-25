@@ -39,7 +39,6 @@ public class AnswerLink_Adapter extends RecyclerView.Adapter<AnswerLink_Adapter.
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         Answer_Model answer_model = answerModels.get(position);
         holder.binding.textViewQuestionTextOfAnswer.setText(context.getString(R.string.question)+": "+answer_model.getQuestion());
         holder.binding.textViewAnswerText.setText(context.getString(R.string.link)+": "+ answer_model.getAnswer());
@@ -50,7 +49,6 @@ public class AnswerLink_Adapter extends RecyclerView.Adapter<AnswerLink_Adapter.
                 notifyDataSetChanged();
             }
         });
-
     }
 
     @Override

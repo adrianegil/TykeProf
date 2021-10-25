@@ -36,7 +36,6 @@ android {
 }
 
 dependencies {
-
     //SYSTEM
     //implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.2.0'
@@ -63,11 +62,9 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.3.5'
     //implementation 'androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5'
 
-    // LIFECYCLE COMPONENTS
+    //LIFECYCLE COMPONENTS
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.3.0"
     implementation "androidx.lifecycle:lifecycle-livedata:2.3.0"
-    //implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
-    //implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     //implementation "androidx.lifecycle:lifecycle-common-java8:2.3.0"
     //implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     //implementation 'androidx.lifecycle:lifecycle-runtime:2.2.0'

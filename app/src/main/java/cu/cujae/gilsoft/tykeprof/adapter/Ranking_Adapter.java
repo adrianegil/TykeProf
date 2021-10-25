@@ -18,7 +18,6 @@ import cu.cujae.gilsoft.tykeprof.databinding.RankingItemlistBinding;
 
 public class Ranking_Adapter extends ListAdapter<Punctuation, Ranking_Adapter.ViewHolder> {
 
-
     public Ranking_Adapter(@NonNull DiffUtil.ItemCallback<Punctuation> diffCallback) {
         super(diffCallback);
     }
@@ -34,7 +33,6 @@ public class Ranking_Adapter extends ListAdapter<Punctuation, Ranking_Adapter.Vi
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         Punctuation punctuation = getItem(position);
         holder.binding.textViewFullName.setText(punctuation.getPlayer().getFullName());
         holder.binding.textViewUserName.setText(punctuation.getPlayer().getUserName());

@@ -1,6 +1,7 @@
 package cu.cujae.gilsoft.tykeprof.app;
 
 import android.app.UiModeManager;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ import cu.cujae.gilsoft.tykeprof.app.viewmodel.RankingViewModel;
 import cu.cujae.gilsoft.tykeprof.app.viewmodel.UserViewModel;
 import cu.cujae.gilsoft.tykeprof.databinding.ActivityMainBinding;
 import cu.cujae.gilsoft.tykeprof.util.DialogHelper;
+import cu.cujae.gilsoft.tykeprof.util.LocaleHelper;
 import cu.cujae.gilsoft.tykeprof.util.ToastHelper;
 import cu.cujae.gilsoft.tykeprof.util.UserHelper;
 
@@ -46,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-
         //CHEQUEAR SI ES PRIMERA VEZ DEL USUARIO EN LA APP
         checkFirstLaunch();
 
@@ -54,10 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
         //CONFIGURACIÓN DEL APPBAR
         configAppBar();
-
         //VISTAS ASOCIADAS AL PÉRFIL DE USUARIO EN EL NAVIGATION DRAWER
         initDrawerViews();
-
         //OBSERVADOR DE CAMBIOS EN LOS DATOS DEL USUARIO
         UserViewModel userViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())).get(UserViewModel.class);
         userViewModel.getUser().observe(this, user -> {
@@ -65,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
             textViewUserFullNameDrawer.setText(user.getFullName());
             loadUserImage(user.getImage_url());
         });
-
         //CHEQUEAR SI HAY CONEXIÓN
         checkUserConecction();
     }
@@ -95,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //COMPROBAR SI ES LA PRIMERA VEZ QUE EL USUARIO ENTRA EN LA APP
-    public void checkFirstLaunch(){
+    public void checkFirstLaunch() {
         if (getSharedPreferences("autenticacion", MODE_PRIVATE).getBoolean("firstLaunch", true)) {
             ToastHelper.showCustomToast(MainActivity.this, "success", getString(R.string.success_aut));
             RankingViewModel rankingViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())).get(RankingViewModel.class);
@@ -103,13 +101,14 @@ public class MainActivity extends AppCompatActivity {
             UserHelper.changefirstLaunch(MainActivity.this);
             getSystemConfig();
         } else {
+            loadLang();
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O || Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
                 initConfig();
         }
     }
 
     //CONFIGURACIÓN DE LA TOOLBAR CON NAVIGATION COMPONENT
-    public void configAppBar(){
+    public void configAppBar() {
         setSupportActionBar(binding.toolbarMainActivity);
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -126,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //INICIALIZAR VISTAS ASOCIADAS AL PÉRFIL DE USUARIO EN EL NAVIGATION DRAWER
-    public void initDrawerViews(){
+    public void initDrawerViews() {
         view1 = binding.navView.getHeaderView(0);
         imageViewUser = view1.findViewById(R.id.imageViewUserDrawer);
         textViewUserFullNameDrawer = view1.findViewById(R.id.textViewUserFullNameDrawer);
@@ -135,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //VERIFICAR SI EL USUARIO ESTA CONECTADO A LA RED
-    public void checkUserConecction(){
+    public void checkUserConecction() {
         if (!UserHelper.isConnected(MainActivity.this)) {
             Snackbar.make(binding.getRoot(), getResources().getString(R.string.no_connection), Snackbar.LENGTH_INDEFINITE).setAction("Ok", v -> {
                 UserHelper.changeConnectedStatus(MainActivity.this, true);
@@ -165,7 +164,6 @@ public class MainActivity extends AppCompatActivity {
         boolean themeDark = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).getBoolean("DarkTheme", false);
         if (themeDark) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
@@ -187,10 +185,16 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
     }
 
-        /*    @Override
-    public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        setContentView(R.layout.activity_main);
-    }*/
+    public void loadLang() {
+        String lang = LocaleHelper.getLanguage(this);
+        LocaleHelper.setLocale(this, lang);
+        //if (Build.VERSION.SDK_INT == Build.VERSION_CODES.O || Build.VERSION.SDK_INT == Build.VERSION_CODES.O_MR1 || Build.VERSION.SDK_INT == Build.VERSION_CODES.LOLLIPOP || Build.VERSION.SDK_INT == Build.VERSION_CODES.LOLLIPOP_MR1)
+        // recreate();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
 }
 

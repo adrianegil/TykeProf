@@ -37,7 +37,6 @@ public class Bonus_Adapter extends RecyclerView.Adapter<Bonus_Adapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
-
         Bonus_Model bonusModel = bonusModels.get(position);
         holder.binding.textViewBonus.setText(context.getString(R.string.bonus) + " " + bonusModel.getBonus());
         holder.binding.textViewTimeLess.setText(context.getString(R.string.time_less) + ": " + bonusModel.getTime_less());

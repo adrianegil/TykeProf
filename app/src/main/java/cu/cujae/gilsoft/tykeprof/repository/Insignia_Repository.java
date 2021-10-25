@@ -46,7 +46,6 @@ public class Insignia_Repository {
         listCallInsignia.enqueue(new Callback<List<Insignia>>() {
             @Override
             public void onResponse(Call<List<Insignia>> call, Response<List<Insignia>> response) {
-
                 if (response.isSuccessful()) {
                     ArrayList<Professional_Rol> professional_rol = new ArrayList<>();
                     ArrayList<Insignia> insigniasSave = new ArrayList<>();

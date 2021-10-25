@@ -144,18 +144,11 @@ public abstract class AppDatabase extends RoomDatabase {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
-
             databaseWriteExecutor.execute(() -> {
                 // Populate the database in the background.
-                // If you want to start with more words, just add them.
                 /*Question_Type_Dao question_type_dao = INSTANCE.question_type_dao();
                 question_type_dao.deleteAll();
-
-                Clue_Type_Dao clue_type_dao = INSTANCE.clue_type_dao();
-                clue_type_dao.deleteAll();
-
-                Gift_Type_Dao gift_type_dao = INSTANCE.gift_type_dao();
-                gift_type_dao.deleteAll();*/
+                */
             });
         }
     };

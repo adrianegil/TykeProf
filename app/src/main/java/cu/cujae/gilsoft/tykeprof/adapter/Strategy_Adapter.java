@@ -49,7 +49,6 @@ public class Strategy_Adapter extends ListAdapter<Strategy, Strategy_Adapter.Vie
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         Strategy strategy = getItem(position);
         holder.binding.setStrategy(strategy);
         holder.binding.layoutExpandedStrategyContent.setVisibility(strategy.isContenExpandable() ? View.VISIBLE : View.GONE);
